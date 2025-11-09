@@ -43,7 +43,7 @@ export default function Home() {
 
 					<div className="mt-8">
 						<a
-							href="#explorar"
+							href="/explore"
 							className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-base font-semibold hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 transition"
 						>
 							Explorar
