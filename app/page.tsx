@@ -1,51 +1,56 @@
-import { DeployButton } from "@/components/deploy-button";
-import { EnvVarWarning } from "@/components/env-var-warning";
-import { AuthButton } from "@/components/auth-button";
-import { Hero } from "@/components/hero";
-import { ThemeSwitcher } from "@/components/theme-switcher";
-import { ConnectSupabaseSteps } from "@/components/tutorial/connect-supabase-steps";
-import { SignUpUserSteps } from "@/components/tutorial/sign-up-user-steps";
-import { hasEnvVars } from "@/lib/utils";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen flex flex-col items-center">
-      <div className="flex-1 w-full flex flex-col gap-20 items-center">
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-          <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-            <div className="flex gap-5 items-center font-semibold">
-              <Link href={"/"}>Next.js Supabase Starter</Link>
-              <div className="flex items-center gap-2">
-                <DeployButton />
-              </div>
-            </div>
-            {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
-          </div>
-        </nav>
-        <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">
-          <Hero />
-          <main className="flex-1 flex flex-col gap-6 px-4">
-            <h2 className="font-medium text-xl mb-4">Next steps</h2>
-            {hasEnvVars ? <SignUpUserSteps /> : <ConnectSupabaseSteps />}
-          </main>
-        </div>
+	return (
+		<main className="min-h-screen relative overflow-hidden">
+			{/* Navbar */}
+			<header className="absolute inset-x-0 top-0 z-10">
+				<div className="mx-auto max-w-7xl px-6 py-6 flex items-center justify-between">
+					<div className="flex items-center gap-3">
+						<span className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-emerald-500/90">
+							<span className="sr-only">Logo</span>
+							{/* pequeño rombo */}
+							<span className="h-3 w-3 rotate-45 bg-emerald-900 rounded-[2px]" />
+						</span>
+						<span className="font-medium">Museo Virtual: Santurbán</span>
+					</div>
+					<Button
+						aria-label="Abrir menú"
+						className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition"
+					>
+						<Menu className="h-5 w-5" />
+					</Button>
+				</div>
+			</header>
 
-        <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-          <p>
-            Powered by{" "}
-            <a
-              href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-              target="_blank"
-              className="font-bold hover:underline"
-              rel="noreferrer"
-            >
-              Supabase
-            </a>
-          </p>
-          <ThemeSwitcher />
-        </footer>
-      </div>
-    </main>
-  );
+			{/* Glow de fondo */}
+			<div className="pointer-events-none absolute inset-0">
+				<div className="absolute left-1/2 top-1/3 -translate-x-1/2 h-[60vh] w-[60vw] rounded-full blur-[200px] opacity-30 bg-emerald-500 mix-blend-screen" />
+			</div>
+
+			{/* Hero Card */}
+			<section className="flex min-h-screen items-center justify-center px-6">
+				<div className="mx-auto max-w-3xl rounded-2xl bg-white/[0.03] p-10 text-center ring-1 ring-white/10 shadow-glass backdrop-blur-sm">
+					<h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+						Museo Virtual:
+						<br />
+						Santurbán
+					</h1>
+					<p className="mt-6 text-lg text-white/70">
+						Donde el agua nace, la vida florece
+					</p>
+
+					<div className="mt-8">
+						<a
+							href="#explorar"
+							className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-base font-semibold hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 transition"
+						>
+							Explorar
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+	);
 }
