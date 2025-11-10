@@ -1,3 +1,4 @@
+import PageTransition from "@/components/ui/page-transition";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
@@ -35,7 +36,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					{children}
+					<PageTransition>{children}</PageTransition>
 				</ThemeProvider>
 			</body>
 		</html>

@@ -1,5 +1,6 @@
 "use client";
 
+import { BlurFade } from "@/components/ui/blur-fade";
 import {
 	Select,
 	SelectContent,
@@ -45,15 +46,28 @@ export default function SpeciesList({
 				</div>
 			</div>
 
-			<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-				{filtered.map((sp) => (
-					<SpeciesCard
+			{/* key the grid by `filter` so it remounts when the filter changes
+				— this forces the BlurFade animations to run as a stacked entrance
+				every time the filter changes. */}
+			<div
+				key={filter}
+				className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+			>
+				{filtered.map((sp, i) => (
+					<BlurFade
 						key={sp.id}
-						href={`/species/${sp.id}`}
-						title={sp.common_name}
-						subtitle={sp.scientific_name}
-						image={sp.poster}
-					/>
+						delay={i * 0.05}
+						duration={0.38}
+						offset={8}
+						className="w-full"
+					>
+						<SpeciesCard
+							href={`/species/${sp.id}`}
+							title={sp.common_name}
+							subtitle={sp.scientific_name}
+							image={sp.poster}
+						/>
+					</BlurFade>
 				))}
 			</div>
 		</div>
