@@ -8,11 +8,15 @@ export default function SpeciesCard({
 	title,
 	subtitle,
 	image,
+	picOwner,
+	licenseType,
 }: {
 	href: string;
 	title: string;
 	subtitle: string;
 	image: string;
+	picOwner?: string | null;
+	licenseType?: string | null;
 }) {
 	return (
 		<Link
@@ -31,7 +35,15 @@ export default function SpeciesCard({
 				{/* Dark overlay by default; it fades out on hover so the image returns to original color */}
 				<div className="absolute inset-0 bg-black/40 group-hover:opacity-0 transition-opacity duration-300" />
 			</div>
-			<div className="absolute inset-0 p-5 flex flex-col justify-end">
+
+			{/* Photo Credits */}
+			{picOwner && licenseType && (
+				<div className="absolute top-0 right-0 bg-black/70 px-2 py-0.5 text-[9px] text-gray-200/90 backdrop-blur-sm z-10 rounded-bl-md">
+					Foto por {picOwner} bajo licencia {licenseType}
+				</div>
+			)}
+
+			<div className="absolute inset-0 p-5 flex flex-col justify-end pointer-events-none">
 				<h3 className="text-white font-extrabold text-lg md:text-xl">
 					{title}
 				</h3>

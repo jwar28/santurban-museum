@@ -1,7 +1,6 @@
 import SpeciesList from "@/components/species/species-list";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
-import Link from "next/link";
 
 export const metadata = { title: "Explorar — Museo Virtual: Santurbán" };
 
@@ -24,7 +23,9 @@ export default async function ExplorePage() {
 
 	const { data, error } = await supabase
 		.from("species")
-		.select("id, common_name, scientific_name, type, image_url, glb_reference")
+		.select(
+			"id, common_name, scientific_name, type, image_url, glb_reference, pic_owner, license_type",
+		)
 		.order("common_name", { ascending: true });
 
 	if (error) {
@@ -44,24 +45,7 @@ export default async function ExplorePage() {
 
 	return (
 		<main className="min-h-screen bg-[#0b1210] text-white">
-			{/* Navbar simple */}
-			<nav className="sticky top-0 z-20 backdrop-blur bg-white/[0.02] ring-1 ring-white/10">
-				<div className="mx-auto max-w-7xl px-6 h-14 flex items-center gap-3">
-					<div className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/90">
-						<span className="h-3 w-3 rotate-45 bg-emerald-900 rounded-[2px]" />
-					</div>
-					<span className="font-semibold">
-						Museo Virtual: Páramo de Santurbán
-					</span>
-					<div className="ml-auto">
-						<Link href="/" className="text-white/80 hover:text-white">
-							Inicio
-						</Link>
-					</div>
-				</div>
-			</nav>
-
-			<section className="mx-auto max-w-7xl px-6 py-12">
+			<section className="mx-auto max-w-7xl px-6 py-12 mt-12">
 				<h1 className="text-3xl md:text-4xl font-extrabold">
 					Explorar Especies Endémicas
 				</h1>

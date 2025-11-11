@@ -11,4 +11,6 @@ export type SpeciesRow = {
 	characteristics: string | null;
 	glb_reference: string | null;
 	image_url?: string | null;
+	pic_owner?: string | null;
+	license_type?: string | null;
 };

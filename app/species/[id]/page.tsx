@@ -1,7 +1,6 @@
 import ModelViewer from "@/components/species/model-viewer";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface SpeciesPageProps {
@@ -35,37 +34,18 @@ export default async function SpeciesPage({ params }: SpeciesPageProps) {
 	}
 
 	return (
-		<main className="min-h-screen bg-[#0b1210] text-white">
-			{/* Header */}
-			<header className="sticky top-0 z-20 backdrop-blur bg-[#0b1210]/80 border-b border-emerald-500/20">
-				<div className="max-w-[1600px] mx-auto px-6 h-16 flex items-center gap-3">
-					<div className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/90">
-						<span className="text-lg">🏛️</span>
-					</div>
-					<span className="font-semibold text-sm">
-						Virtual Museum: Santurbán Páramo
-					</span>
-
-					<Link
-						href="/explore"
-						className="ml-auto text-sm text-emerald-400 hover:text-emerald-300 flex items-center gap-2"
-					>
-						← Volver al museo
-					</Link>
-				</div>
-			</header>
-
-			<div className="max-w-[1600px] mx-auto p-6">
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-8rem)]">
+		<main className="h-screen bg-[#0b1210] text-white pt-16 overflow-hidden">
+			<div className="max-w-[1600px] mx-auto p-6 h-full">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full h-full">
 					{/* Left Panel - 3D Model */}
-					<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8 overflow-hidden">
+					<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8 overflow-hidden h-[60vh] lg:h-full">
 						<div className="w-full h-full flex items-center justify-center">
 							<ModelViewer modelUrl={modelUrl} />
 						</div>
 					</div>
 
 					{/* Right Panel - Species Information */}
-					<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8 overflow-y-auto">
+					<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8 overflow-y-auto max-h-[80vh] lg:max-h-full">
 						{/* Common Name */}
 						<div className="mb-6">
 							<p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-2">

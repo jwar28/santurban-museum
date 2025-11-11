@@ -1,3 +1,4 @@
+import Navbar from "@/components/ui/navbar";
 import PageTransition from "@/components/ui/page-transition";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
@@ -36,6 +37,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
+					<Navbar />
 					<PageTransition>{children}</PageTransition>
 				</ThemeProvider>
 			</body>

@@ -63,4 +63,8 @@
     color-scheme: dark;
     height: 100%;
   }
+
+  html {
+    scrollbar-gutter: stable both-edges;
+  }
 }

@@ -66,6 +66,8 @@ export default function SpeciesList({
 							title={sp.common_name}
 							subtitle={sp.scientific_name}
 							image={sp.poster}
+							picOwner={sp.pic_owner}
+							licenseType={sp.license_type}
 						/>
 					</BlurFade>
 				))}
