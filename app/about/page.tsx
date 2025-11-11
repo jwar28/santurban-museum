@@ -3,122 +3,116 @@ export const metadata = { title: "Acerca de — Museo Virtual: Santurbán" };
 export default function AboutPage() {
 	return (
 		<main className="min-h-screen bg-[#0b1210] text-white pt-16">
-			<div className="max-w-7xl mx-auto px-6 py-16">
-				{/* Page Title */}
-				<h1 className="text-4xl md:text-5xl font-extrabold text-center mb-16">
-					Acerca del Museo Virtual del Páramo de Santurbán
-				</h1>
+			{/* Hero Section */}
+			<div className="max-w-5xl mx-auto px-6 py-24">
+				<div className="text-center mb-32">
+					<h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
+						Santurbán
+					</h1>
+					<p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto font-light">
+						Preservando la biodiversidad digital del páramo
+					</p>
+				</div>
 
-				{/* Nuestra Misión */}
-				<section className="mb-16">
-					<h2 className="text-2xl md:text-3xl font-bold text-emerald-400 mb-6">
-						Nuestra Misión
-					</h2>
-					<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8">
-						<p className="text-gray-300 leading-relaxed text-lg">
-							Nuestra misión es preservar y celebrar digitalmente la
-							biodiversidad única del Páramo de Santurbán. A través de
-							exhibiciones virtuales inmersivas, nuestro objetivo es educar a
-							una audiencia global sobre la importancia ecológica de este
-							ecosistema vital e inspirar un compromiso colectivo para su
-							conservación para las futuras generaciones.
+				{/* Misión y Visión - Layout Minimalista */}
+				<div className="space-y-24 mb-32">
+					<section className="group">
+						<div className="flex items-center gap-4 mb-6">
+							<div className="h-px w-12 bg-emerald-500/50 group-hover:w-20 transition-all duration-500" />
+							<h2 className="text-sm uppercase tracking-widest text-emerald-400 font-medium">
+								Misión
+							</h2>
+						</div>
+						<p className="text-2xl md:text-3xl text-gray-300 leading-relaxed font-light ml-16">
+							Educar a una audiencia global sobre la importancia ecológica de
+							este ecosistema vital e inspirar un compromiso colectivo para su
+							conservación.
 						</p>
-					</div>
-				</section>
+					</section>
 
-				{/* Nuestra Visión */}
-				<section className="mb-16">
-					<h2 className="text-2xl md:text-3xl font-bold text-emerald-400 mb-6">
-						Nuestra Visión
-					</h2>
-					<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8">
-						<p className="text-gray-300 leading-relaxed text-lg">
-							Nos vemos como un faro digital de conservación, convirtiéndonos en
-							el principal recurso en línea para la educación e investigación
-							sobre los ecosistemas de páramo. Aspiramos a fomentar una
-							comunidad global de defensores de Santurbán, impulsando acciones
-							de conservación tangibles a través de la conciencia y la
-							apreciación digital.
+					<section className="group">
+						<div className="flex items-center gap-4 mb-6">
+							<div className="h-px w-12 bg-emerald-500/50 group-hover:w-20 transition-all duration-500" />
+							<h2 className="text-sm uppercase tracking-widest text-emerald-400 font-medium">
+								Visión
+							</h2>
+						</div>
+						<p className="text-2xl md:text-3xl text-gray-300 leading-relaxed font-light ml-16">
+							Convertirnos en el principal recurso digital para la educación
+							sobre ecosistemas de páramo, fomentando una comunidad global de
+							defensores.
 						</p>
-					</div>
-				</section>
+					</section>
+				</div>
 
 				{/* El Equipo */}
 				<section>
-					<h2 className="text-2xl md:text-3xl font-bold text-emerald-400 mb-6">
-						El Equipo
-					</h2>
-					<p className="text-gray-300 leading-relaxed text-lg mb-12">
-						Conoce a los apasionados individuos dedicados a dar vida al Páramo
-						de Santurbán a través de este museo virtual.
-					</p>
+					<div className="flex items-center gap-4 mb-16">
+						<div className="h-px w-12 bg-emerald-500/50" />
+						<h2 className="text-sm uppercase tracking-widest text-emerald-400 font-medium">
+							Equipo
+						</h2>
+					</div>
 
-					{/* Team Members Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+					{/* Team Members Grid - Diseño Minimalista */}
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-12">
 						{/* Team Member 1 */}
-						<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8 text-center">
-							<div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-700/20 border-4 border-emerald-500/30 flex items-center justify-center overflow-hidden">
+						<div className="group text-center">
+							<div className="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-emerald-500/30 hover:border-emerald-500 transition-all duration-500 hover:scale-105">
 								<img
 									src="/lc.jpg"
 									alt="Liliana Calderón-Benavides"
-									className="w-full h-full object-cover"
+									className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
 								/>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-2">
+							<h3 className="text-lg font-semibold text-white mb-1">
 								Liliana Calderón-Benavides
 							</h3>
-							<p className="text-emerald-400 text-sm font-semibold mb-4">
-								Directora proyecto de grado
+							<p className="text-emerald-400 text-xs uppercase tracking-wide mb-4 font-medium">
+								Directora
 							</p>
-							<p className="text-gray-300 text-sm leading-relaxed text-pretty">
-								Directora del Centro de Desarrollo Tecnológico Smart Regions
-								Center, con amplia experiencia en el desarrollo y gestión de
-								proyectos tecnológicos e innovación.
+							<p className="text-gray-400 text-sm leading-relaxed">
+								Smart Regions Center
 							</p>
 						</div>
 
 						{/* Team Member 2 */}
-						<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8 text-center">
-							<div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-700/20 border-4 border-emerald-500/30 flex items-center justify-center overflow-hidden">
+						<div className="group text-center">
+							<div className="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-emerald-500/30 hover:border-emerald-500 transition-all duration-500 hover:scale-105">
 								<img
 									src="/vc.jpg"
 									alt="Verónica Chajín Ortiz"
-									className="w-full h-full object-cover"
+									className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
 								/>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-2">
+							<h3 className="text-lg font-semibold text-white mb-1">
 								Verónica Chajín Ortiz
 							</h3>
-							<p className="text-emerald-400 text-sm font-semibold mb-4">
-								Co-directora proyecto de grado
+							<p className="text-emerald-400 text-xs uppercase tracking-wide mb-4 font-medium">
+								Co-directora
 							</p>
-							<p className="text-gray-300 text-sm leading-relaxed text-pretty">
-								Ingeniera de Sistemas y Magíster en Software con 10 años de
-								experiencia en docencia, investigación y consultoría en
-								analítica de datos y gestión de proyectos.
+							<p className="text-gray-400 text-sm leading-relaxed">
+								Ing. de Sistemas & Magíster en Software
 							</p>
 						</div>
 
 						{/* Team Member 3 */}
-						<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-8 text-center">
-							<div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-700/20 border-4 border-emerald-500/30 flex items-center justify-center overflow-hidden">
+						<div className="group text-center">
+							<div className="relative w-40 h-40 mx-auto mb-6 overflow-hidden rounded-full border-2 border-emerald-500/30 hover:border-emerald-500 transition-all duration-500 hover:scale-105">
 								<img
 									src="/jg.png"
 									alt="Javier Guerra Turizo"
-									className="w-full h-full object-cover"
+									className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
 								/>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-2">
+							<h3 className="text-lg font-semibold text-white mb-1">
 								Javier Guerra Turizo
 							</h3>
-							<p className="text-emerald-400 text-sm font-semibold mb-4">
-								Ing. de Sistemas
+							<p className="text-emerald-400 text-xs uppercase tracking-wide mb-4 font-medium">
+								Desarrollador
 							</p>
-							<p className="text-gray-300 text-sm leading-relaxed text-pretty">
-								Ingeniero de Sistemas con formación en desarrollo Full Stack y
-								análisis de datos. Aplica Python, SQL y tecnologías web modernas
-								para construir soluciones basadas en datos y automatización de
-								procesos.
+							<p className="text-gray-400 text-sm leading-relaxed">
+								Ing. de Sistemas
 							</p>
 						</div>
 					</div>

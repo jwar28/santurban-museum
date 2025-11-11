@@ -1,3 +1,4 @@
+import AudioPlayer from "@/components/ui/audio-player";
 import BearNarrator from "@/components/ui/bear-narrator";
 import ParticleBackground from "@/components/ui/particle-background";
 
@@ -24,6 +25,14 @@ export default function Home() {
 					<p className="mt-6 text-sm md:text-base text-slate-200/80 max-w-2xl mx-auto">
 						Donde el agua nace, la vida florece
 					</p>
+
+					{/* Audio Player */}
+					<div className="mt-10 flex justify-center">
+						<AudioPlayer
+							audioFileName="intro.mp3"
+							className="max-w-md w-full"
+						/>
+					</div>
 
 					<div className="mt-8">
 						<a
