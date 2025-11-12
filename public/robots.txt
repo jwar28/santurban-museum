@@ -1,0 +1,10 @@
+# Museo Virtual Santurbán - robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://santurban-museum.vercel.app/sitemap.xml
+
+# Disallow admin paths if any
+# User-agent: *
+# Disallow: /admin/

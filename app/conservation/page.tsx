@@ -1,4 +1,15 @@
-export const metadata = { title: "Conservación — Museo Virtual: Santurbán" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Conservación",
+	description:
+		"Conoce la importancia del páramo de Santurbán, las amenazas que enfrenta y cómo podemos contribuir a su conservación. Un ecosistema vital que provee agua a millones de personas.",
+	openGraph: {
+		title: "Conservación del Páramo de Santurbán",
+		description:
+			"Descubre por qué proteger el páramo de Santurbán es fundamental para el futuro del agua en Colombia.",
+	},
+};
 
 export default function ConservationPage() {
 	return (

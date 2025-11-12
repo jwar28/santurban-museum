@@ -1,4 +1,15 @@
-export const metadata = { title: "Acerca de — Museo Virtual: Santurbán" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Acerca de",
+	description:
+		"Conoce nuestro museo virtual dedicado a preservar y compartir la biodiversidad del páramo de Santurbán. Misión, visión y el equipo detrás de este proyecto educativo digital.",
+	openGraph: {
+		title: "Acerca del Museo Virtual Santurbán",
+		description:
+			"Un proyecto educativo digital para preservar y compartir la biodiversidad del páramo de Santurbán.",
+	},
+};
 
 export default function AboutPage() {
 	return (

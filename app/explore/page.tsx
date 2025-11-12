@@ -1,8 +1,18 @@
 import SpeciesList from "@/components/species/species-list";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Explorar — Museo Virtual: Santurbán" };
+export const metadata: Metadata = {
+	title: "Explorar Especies",
+	description:
+		"Descubre todas las especies del páramo de Santurbán. Explora nuestra colección de flora y fauna con modelos 3D interactivos, información detallada y datos sobre conservación.",
+	openGraph: {
+		title: "Explorar Especies - Museo Virtual Santurbán",
+		description:
+			"Descubre todas las especies del páramo de Santurbán con modelos 3D interactivos.",
+	},
+};
 
 function posterUrl(row: SpeciesRow) {
 	// 1) Prioriza columna image_url si existe

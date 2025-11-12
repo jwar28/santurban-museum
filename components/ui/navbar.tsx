@@ -2,6 +2,7 @@
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Menu } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -37,8 +38,13 @@ export default function Navbar() {
 					href="/"
 					className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity"
 				>
-					<div className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-emerald-500/90">
-						<span className="text-lg">🏛️</span>
+					<div className="relative h-8 w-8 flex-shrink-0">
+						<Image
+							src="/logo.svg"
+							alt="Museo Virtual Santurbán"
+							fill
+							className="object-contain"
+						/>
 					</div>
 					<span className="font-semibold text-xs md:text-sm text-white">
 						Museo Virtual: Santurbán
