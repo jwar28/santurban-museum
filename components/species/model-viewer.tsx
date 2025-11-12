@@ -104,7 +104,7 @@ export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 				/>
 			</Canvas>
 			{!hasError && (
-				<div className="absolute bottom-4 left-4 text-xs text-white/60 bg-black/30 px-3 py-1.5 rounded-md backdrop-blur-sm">
+				<div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center text-xs text-white/60 bg-black/30 px-3 py-1.5 rounded-md backdrop-blur-sm lg:left-4 lg:translate-x-0 lg:text-left">
 					Clickea y arrastra para rotar el modelo
 				</div>
 			)}
