@@ -1,3 +1,4 @@
+import AudioPlayer from "@/components/ui/audio-player";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -165,10 +166,15 @@ export default function ConservationPage() {
 			<footer className="border-t border-emerald-500/10 py-8">
 				<div className="max-w-7xl mx-auto px-6 text-center">
 					<p className="text-gray-500 text-sm">
-						© 2024 Museo Virtual: Santurbán
+						© 2025 Museo Virtual: Santurbán
 					</p>
 				</div>
 			</footer>
+
+			{/* Audio Player - Fixed Position */}
+			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
+				<AudioPlayer audioFileName="conservacion.mp3" autoPlay={false} />
+			</div>
 		</main>
 	);
 }

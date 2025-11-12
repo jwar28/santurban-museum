@@ -1,4 +1,5 @@
 import ModelViewer from "@/components/species/model-viewer";
+import AudioPlayer from "@/components/ui/audio-player";
 import BackButton from "@/components/ui/back-button";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
@@ -85,8 +86,15 @@ export default async function SpeciesPage({ params }: SpeciesPageProps) {
 		modelUrl = urlData.publicUrl;
 	}
 
+	// Generate audio filename from GLB reference
+	let audioFileName = "";
+	if (species.glb_reference) {
+		// Replace .glb or .gltf extension with .mp3
+		audioFileName = species.glb_reference.replace(/\.(glb|gltf)$/i, ".mp3");
+	}
+
 	return (
-		<main className="min-h-screen lg:h-screen bg-[#0b1210] text-white pt-16 lg:overflow-hidden">
+		<main className="min-h-screen lg:h-screen bg-[#0b1210] text-white pt-16 lg:overflow-hidden pb-28 lg:pb-0">
 			<div className="max-w-[1600px] mx-auto p-4 md:p-6 h-full flex flex-col">
 				{/* Back Button - Mobile Only */}
 				<BackButton />
@@ -195,6 +203,13 @@ export default async function SpeciesPage({ params }: SpeciesPageProps) {
 					</div>
 				</div>
 			</div>
+
+			{/* Audio Player - Fixed Position, centered on mobile */}
+			{audioFileName && (
+				<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
+					<AudioPlayer audioFileName={audioFileName} autoPlay={false} />
+				</div>
+			)}
 		</main>
 	);
 }

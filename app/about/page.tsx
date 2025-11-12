@@ -1,3 +1,4 @@
+import AudioPlayer from "@/components/ui/audio-player";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -73,7 +74,7 @@ export default function AboutPage() {
 								<img
 									src="/lc.jpg"
 									alt="Liliana Calderón-Benavides"
-									className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+									className="w-full h-full object-cover transition-all duration-500"
 								/>
 							</div>
 							<h3 className="text-lg font-semibold text-white mb-1">
@@ -93,7 +94,7 @@ export default function AboutPage() {
 								<img
 									src="/vc.jpg"
 									alt="Verónica Chajín Ortiz"
-									className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+									className="w-full h-full object-cover transition-all duration-500"
 								/>
 							</div>
 							<h3 className="text-lg font-semibold text-white mb-1">
@@ -113,7 +114,7 @@ export default function AboutPage() {
 								<img
 									src="/jg.png"
 									alt="Javier Guerra Turizo"
-									className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+									className="w-full h-full object-cover transition-all duration-500"
 								/>
 							</div>
 							<h3 className="text-lg font-semibold text-white mb-1">
@@ -128,6 +129,11 @@ export default function AboutPage() {
 						</div>
 					</div>
 				</section>
+			</div>
+
+			{/* Audio Player - Fixed Position */}
+			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
+				<AudioPlayer audioFileName="creditos.mp3" autoPlay={false} />
 			</div>
 		</main>
 	);

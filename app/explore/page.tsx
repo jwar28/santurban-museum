@@ -1,4 +1,5 @@
 import SpeciesList from "@/components/species/species-list";
+import AudioPlayer from "@/components/ui/audio-player";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
 import type { Metadata } from "next";
@@ -54,7 +55,7 @@ export default async function ExplorePage() {
 	const rowsWithPoster = rows.map((r) => ({ ...r, poster: posterUrl(r) }));
 
 	return (
-		<main className="min-h-screen bg-[#0b1210] text-white">
+		<main className="min-h-screen bg-[#0b1210] text-white pb-20 md:pb-0">
 			<section className="mx-auto max-w-7xl px-6 py-12 mt-12">
 				<h1 className="text-3xl md:text-4xl font-extrabold">
 					Explorar Especies Endémicas
@@ -69,6 +70,11 @@ export default async function ExplorePage() {
 					<SpeciesList rows={rowsWithPoster} />
 				</div>
 			</section>
+
+			{/* Audio Player - Fixed Position, centered on mobile */}
+			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
+				<AudioPlayer audioFileName="explora.mp3" autoPlay={false} />
+			</div>
 		</main>
 	);
 }
