@@ -1,8 +1,13 @@
+"use client";
+
 import AudioPlayer from "@/components/ui/audio-player";
 import BearNarrator from "@/components/ui/bear-narrator";
 import ParticleBackground from "@/components/ui/particle-background";
+import { useState } from "react";
 
 export default function Home() {
+	const [hasStarted, setHasStarted] = useState(false);
+
 	return (
 		<main className="min-h-screen relative overflow-hidden">
 			{/* Glow de fondo (tinted to match narrator) */}
@@ -28,10 +33,21 @@ export default function Home() {
 
 					{/* Audio Player */}
 					<div className="mt-10 flex justify-center">
-						<AudioPlayer
-							audioFileName="intro.mp3"
-							className="max-w-md w-full"
-						/>
+						{!hasStarted ? (
+							<button
+								type="button"
+								onClick={() => setHasStarted(true)}
+								className="inline-flex items-center justify-center rounded-full border border-emerald-600/30 bg-emerald-500/20 px-8 py-4 text-lg font-semibold text-emerald-100 hover:bg-emerald-500/30 hover:border-emerald-500/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 transition-all duration-300 shadow-lg shadow-emerald-500/20"
+							>
+								🎵 Iniciar Experiencia
+							</button>
+						) : (
+							<AudioPlayer
+								audioFileName="intro.mp3"
+								className="max-w-md w-full"
+								autoPlay={true}
+							/>
+						)}
 					</div>
 
 					<div className="mt-8">

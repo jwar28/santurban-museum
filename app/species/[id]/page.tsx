@@ -50,40 +50,36 @@ export default async function SpeciesPage({ params }: SpeciesPageProps) {
 
 					{/* Right Panel - Species Information */}
 					<div className="bg-gradient-to-br from-[#0f1f1a] to-[#0b1210] rounded-2xl border border-emerald-500/20 p-4 md:p-8 lg:overflow-y-auto lg:h-[85vh]">
-						{/* Common Name */}
-						<div className="mb-4 md:mb-6">
-							<p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-2">
-								NOMBRE COMÚN
-							</p>
-							<h1 className="text-2xl md:text-4xl font-bold text-white">
-								{species.common_name}
-							</h1>
-							<p className="text-gray-400 italic mt-1 md:mt-2 text-base md:text-lg">
-								{species.scientific_name}
-							</p>
-						</div>
-
-						{/* Type and Conservation Status */}
-						<div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
-							<div>
-								<p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-2">
-									TIPO
+						{/* Header Section - Name, Type, and Conservation Status */}
+						<div className="mb-6 md:mb-8">
+							<div className="flex flex-wrap items-center gap-4 md:gap-6 mb-2">
+								<p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+									NOMBRE COMÚN
 								</p>
-								<p className="text-white text-sm md:text-base">
-									{species.type || "N/A"}
-								</p>
-							</div>
-							<div>
-								<p className="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-2">
-									ESTADO DE CONSERVACIÓN
-								</p>
-								<div className="flex items-center gap-2">
-									<div className="h-2 w-2 rounded-full bg-emerald-500"></div>
-									<span className="text-emerald-400 text-xs md:text-sm">
-										{species.conservation_status || "N/A"}
+								<div className="flex items-center gap-2 text-xs">
+									<span className="text-emerald-400 font-semibold uppercase tracking-wider">
+										TIPO:
 									</span>
+									<span className="text-white">{species.type || "N/A"}</span>
+								</div>
+								<div className="flex items-center gap-2 text-xs">
+									<span className="text-emerald-400 font-semibold uppercase tracking-wider">
+										ESTADO:
+									</span>
+									<div className="flex items-center gap-2">
+										<div className="h-2 w-2 rounded-full bg-emerald-500 flex-shrink-0"></div>
+										<span className="text-white">
+											{species.conservation_status || "N/A"}
+										</span>
+									</div>
 								</div>
 							</div>
+							<h1 className="text-2xl md:text-4xl font-bold text-white mb-1 md:mb-2">
+								{species.common_name}
+							</h1>
+							<p className="text-gray-400 italic mb-4 text-base md:text-lg">
+								{species.scientific_name}
+							</p>
 						</div>
 
 						{/* Description */}

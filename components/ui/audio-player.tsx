@@ -8,12 +8,14 @@ interface AudioPlayerProps {
 	bucketName?: string;
 	audioFileName: string;
 	className?: string;
+	autoPlay?: boolean;
 }
 
 export default function AudioPlayer({
 	bucketName = "audios",
 	audioFileName,
 	className = "",
+	autoPlay = false,
 }: AudioPlayerProps) {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentTime, setCurrentTime] = useState(0);
@@ -98,6 +100,29 @@ export default function AudioPlayer({
 			audio.removeEventListener("loadstart", handleLoadStart);
 		};
 	}, [audioUrl]);
+
+	// Autoplay con manejo de promesa
+	useEffect(() => {
+		const audio = audioRef.current;
+		if (!audio || !audioUrl || !autoPlay) return;
+
+		const playAudio = async () => {
+			try {
+				await audio.play();
+				setIsPlaying(true);
+			} catch (error) {
+				console.warn("Autoplay bloqueado por el navegador:", error);
+				// El navegador bloqueó el autoplay, que es normal
+			}
+		};
+
+		// Pequeño delay para asegurar que el audio esté completamente listo
+		const timer = setTimeout(() => {
+			playAudio();
+		}, 500);
+
+		return () => clearTimeout(timer);
+	}, [audioUrl, autoPlay]);
 
 	const togglePlayPause = () => {
 		const audio = audioRef.current;

@@ -7,7 +7,8 @@ import {
 	useGLTF,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 
 interface ModelProps {
 	url: string;
@@ -15,7 +16,37 @@ interface ModelProps {
 
 function Model({ url }: ModelProps) {
 	const { scene } = useGLTF(url);
-	return <primitive object={scene} />;
+	const groupRef = useRef<THREE.Group>(null);
+
+	useEffect(() => {
+		if (groupRef.current && scene) {
+			// Clone the scene to avoid modifying the cached version
+			const clonedScene = scene.clone();
+
+			// Calculate bounding box
+			const box = new THREE.Box3().setFromObject(clonedScene);
+			const center = box.getCenter(new THREE.Vector3());
+			const size = box.getSize(new THREE.Vector3());
+
+			// Center the model by moving it to origin
+			clonedScene.position.x = -center.x;
+			clonedScene.position.y = -center.y;
+			clonedScene.position.z = -center.z;
+
+			// Scale to fit nicely in view
+			const maxDim = Math.max(size.x, size.y, size.z);
+			const scale = 2.2 / maxDim; // Slightly smaller for better framing
+			groupRef.current.scale.setScalar(scale);
+
+			// Clear and add the cloned scene
+			while (groupRef.current.children.length > 0) {
+				groupRef.current.remove(groupRef.current.children[0]);
+			}
+			groupRef.current.add(clonedScene);
+		}
+	}, [scene]);
+
+	return <group ref={groupRef} />;
 }
 
 function LoadingFallback() {
@@ -78,7 +109,7 @@ export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 					);
 				}}
 			>
-				<PerspectiveCamera makeDefault position={[0, 0, 5]} />
+				<PerspectiveCamera makeDefault position={[0, 0, 3]} />
 				{/* Very bright ambient light for overall visibility */}
 				<ambientLight intensity={2} />
 				{/* Strong hemisphere light for natural lighting */}
@@ -98,9 +129,10 @@ export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 				<OrbitControls
 					enablePan={false}
 					enableZoom={true}
-					minDistance={2}
-					maxDistance={10}
+					minDistance={1.5}
+					maxDistance={8}
 					autoRotate={false}
+					target={[0, 0, 0]}
 				/>
 			</Canvas>
 			{!hasError && (
