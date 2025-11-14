@@ -54,6 +54,14 @@ export default async function ExplorePage() {
 	// doesn't need to re-derive it or access env vars.
 	const rowsWithPoster = rows.map((r) => ({ ...r, poster: posterUrl(r) }));
 
+	// Contar fauna y flora
+	const faunaCount = rows.filter(
+		(r) => r.type?.toLowerCase() === "fauna",
+	).length;
+	const floraCount = rows.filter(
+		(r) => r.type?.toLowerCase() === "flora",
+	).length;
+
 	return (
 		<main className="min-h-screen bg-[#0b1210] text-white pb-20 md:pb-0">
 			<section className="mx-auto max-w-7xl px-6 py-12 mt-12">
@@ -65,6 +73,35 @@ export default async function ExplorePage() {
 					en cualquier especie para descubrir su modelo 3D interactivo y conocer
 					sus fascinantes características y estado de conservación.
 				</p>
+
+				{/* Información sobre especies endémicas */}
+				<div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
+					<h2 className="text-xl font-bold mb-3">
+						¿Qué es una especie endémica?
+					</h2>
+					<p className="text-white/80 mb-4">
+						Las especies endémicas son aquellas que solo se encuentran en una
+						región geográfica específica y no existen naturalmente en ningún
+						otro lugar del mundo. El Páramo de Santurbán alberga una riqueza
+						única de biodiversidad.
+					</p>
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+						<div className="bg-emerald-950/30 p-4 rounded-lg border border-emerald-800/30">
+							<div className="text-emerald-400 font-semibold text-sm mb-1">
+								Fauna
+							</div>
+							<div className="text-2xl font-bold">{faunaCount}/293</div>
+							<div className="text-white/60 text-sm">especies documentadas</div>
+						</div>
+						<div className="bg-green-950/30 p-4 rounded-lg border border-green-800/30">
+							<div className="text-green-400 font-semibold text-sm mb-1">
+								Flora
+							</div>
+							<div className="text-2xl font-bold">{floraCount}/457</div>
+							<div className="text-white/60 text-sm">variedades de plantas</div>
+						</div>
+					</div>
+				</div>
 
 				<div className="mt-8">
 					<SpeciesList rows={rowsWithPoster} />

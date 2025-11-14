@@ -52,7 +52,7 @@ export default function Home() {
 
 					<div className="mt-8">
 						<a
-							href="/conservation"
+							href="/santurban"
 							className="inline-flex items-center justify-center rounded-full border border-slate-600/20 bg-slate-900/10 px-6 py-3 text-base font-semibold text-slate-100 hover:bg-slate-900/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500/30 transition"
 						>
 							Explorar

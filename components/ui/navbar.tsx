@@ -19,7 +19,7 @@ export default function Navbar() {
 	}, []);
 
 	const navLinks = [
-		{ href: "/conservation", label: "Conservación" },
+		{ href: "/santurban", label: "Conoce Santurbán" },
 		{ href: "/explore", label: "Ver especies" },
 		{ href: "/about", label: "Acerca de" },
 	];

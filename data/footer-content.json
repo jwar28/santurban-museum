@@ -1,0 +1,33 @@
+{
+	"sources": {
+		"title": "📚 Fuentes de Información",
+		"official": {
+			"title": "Instituciones Oficiales:",
+			"items": [
+				"Corporación Autónoma Regional para la Defensa de la Meseta de Bucaramanga (CDMB)",
+				"Ministerio de Ambiente y Desarrollo Sostenible de Colombia",
+				"Instituto de Investigación de Recursos Biológicos Alexander von Humboldt"
+			]
+		},
+		"academic": {
+			"title": "Referencias Académicas:",
+			"items": [
+				"Universidad Industrial de Santander (UIS) - Estudios de Biodiversidad",
+				"Fundación Natura - Conservación de Páramos Colombianos",
+				"Parques Nacionales Naturales de Colombia - Ecosistemas de Alta Montaña"
+			]
+		}
+	},
+	"copyright": "© 2025 Museo Virtual: Santurbán. Proyecto educativo sin fines de lucro.",
+	"links": [
+		{
+			"text": "Acerca de",
+			"href": "/about"
+		},
+		{
+			"text": "Explorar Especies",
+			"href": "/explore"
+		}
+	],
+	"educationalNote": "Este museo virtual tiene fines educativos y de concientización ambiental. La información presentada se basa en estudios científicos y fuentes oficiales."
+}

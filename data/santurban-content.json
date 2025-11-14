@@ -1,0 +1,153 @@
+{
+	"hero": {
+		"title": "Páramo de Santurbán",
+		"subtitle": "La fábrica natural de agua que sustenta la vida de millones",
+		"backgroundImage": "https://upload.wikimedia.org/wikipedia/commons/9/99/P%C3%A1ramo_de_Santurban.jpg"
+	},
+	"introduction": {
+		"text": "El Páramo de Santurbán es uno de los ecosistemas más importantes de Colombia, un complejo hídrico de 26 lagunas que lo convierten en una verdadera fábrica natural de agua."
+	},
+	"keyStats": [
+		{
+			"id": 1,
+			"icon": "💧",
+			"value": "2.3M",
+			"description": "Personas en 48 municipios",
+			"color": "blue"
+		},
+		{
+			"id": 2,
+			"icon": "🏔️",
+			"value": "142,000",
+			"description": "Hectáreas (72% N. Santander)",
+			"color": "emerald"
+		},
+		{
+			"id": 3,
+			"icon": "🌊",
+			"value": "26+",
+			"description": "Lagunas de origen glaciar",
+			"color": "cyan"
+		},
+		{
+			"id": 4,
+			"icon": "🌡️",
+			"value": "0° - 15°C",
+			"description": "Rango térmico diario",
+			"color": "green"
+		}
+	],
+	"detailedInfo": {
+		"waterFactory": {
+			"title": "Fábrica de Agua",
+			"icon": "💧",
+			"color": "blue",
+			"paragraphs": [
+				"El páramo actúa como una {esponja natural} que captura, almacena y libera agua gradualmente a través de sus 26 lagunas interconectadas.",
+				"Suministra agua potable a ciudades como **Bucaramanga, Cúcuta y más de 40 municipios** de Norte de Santander y Santander.",
+				"Sus {humedales} pueden retener hasta **90% de su peso** en agua, regulando el ciclo hídrico durante todo el año."
+			]
+		},
+		"biodiversity": {
+			"title": "Biodiversidad Única",
+			"icon": "🌿",
+			"color": "emerald",
+			"paragraphs": [
+				"Alberga **293 especies de fauna** y **457 variedades de plantas**, muchas de ellas {endémicas}.",
+				"El {frailejón} es la especie emblemática del páramo, capaz de capturar agua de la niebla y regular el clima local.",
+				"Es hogar del **oso de anteojos**, el único oso nativo de Suramérica, y más de 70 especies de aves."
+			]
+		}
+	},
+	"curiosities": [
+		{
+			"id": 1,
+			"icon": "🌡️",
+			"title": "Clima Extremo",
+			"description": "Las temperaturas pueden variar de **-5°C a 20°C en un solo día**. Los frailejones han evolucionado durante millones de años para adaptarse a estas condiciones."
+		},
+		{
+			"id": 2,
+			"icon": "⏳",
+			"title": "Crecimiento Lento",
+			"description": "Los frailejones crecen apenas **1 cm por año**. Un frailejón de 5 metros puede tener más de **500 años de edad**."
+		},
+		{
+			"id": 3,
+			"icon": "🌫️",
+			"title": "Capturadores de Niebla",
+			"description": "Las hojas peludas de los frailejones **capturan agua de la niebla** y la conducen hasta sus raíces, contribuyendo significativamente al ciclo del agua."
+		},
+		{
+			"id": 4,
+			"icon": "🔬",
+			"title": "Carbono Atrapado",
+			"description": "El suelo del páramo almacena enormes cantidades de **carbono**, ayudando a mitigar el cambio climático. Su {turba} puede tener miles de años."
+		},
+		{
+			"id": 5,
+			"icon": "🦋",
+			"title": "Mariposas de Altura",
+			"description": "Santurbán alberga especies de **mariposas que solo viven a más de 3,000 metros**, adaptadas para volar en el aire delgado del páramo."
+		},
+		{
+			"id": 6,
+			"icon": "🌍",
+			"title": "Ecosistema Raro",
+			"description": "Los páramos solo existen en **Colombia, Venezuela, Ecuador, Perú y Costa Rica**. Colombia tiene el 50% de todos los páramos del mundo."
+		}
+	],
+	"climate": {
+		"title": "Clima del Páramo",
+		"sections": [
+			{
+				"title": "Características Climáticas",
+				"paragraphs": [
+					"El clima es **frío a extremadamente frío** con temperaturas mínimas por debajo de **0°C** y máximas que superan los **15°C**.",
+					"La {humedad relativa} se mantiene alta, por encima del **83%**, y rara vez baja del 73%."
+				]
+			},
+			{
+				"title": "Precipitación",
+				"paragraphs": [
+					"El {régimen bimodal} presenta períodos de alta precipitación entre abril-mayo y septiembre-noviembre.",
+					"Las lluvias varían entre **700 mm** (Páramo Berlín) y **2,000 mm** (Páramo Loma Grande) anuales.",
+					"La {evapotranspiración} es relativamente baja (~700 mm anuales), clasificando el clima como moderadamente a ligeramente húmedo."
+				]
+			}
+		]
+	},
+	"geology": {
+		"title": "Formación Geológica",
+		"icon": "⛰️",
+		"intro": "El Páramo de Santurbán se formó hace aproximadamente **2-3 millones de años** durante el levantamiento de la Cordillera Oriental de los Andes. Su geología única incluye:",
+		"features": [
+			"{Rocas ígneas y metamórficas} ricas en minerales",
+			"Depósitos de {turba} que actúan como esponjas naturales",
+			"{Sistemas lacustres glaciares} que datan de la última era de hielo"
+		]
+	},
+	"conservation": {
+		"title": "Estado de Conservación",
+		"icon": "⚠️",
+		"intro": "A pesar de su importancia vital, el Páramo de Santurbán enfrenta amenazas significativas que ponen en riesgo este ecosistema único y el suministro de agua para millones de personas.",
+		"threats": [
+			"{Minería ilegal y proyectos extractivos}",
+			"{Cambio climático y variabilidad de temperaturas}",
+			"{Expansión de la frontera agrícola}",
+			"Turismo no regulado"
+		],
+		"protectionActions": [
+			"Declaración como área protegida desde 2014",
+			"Monitoreo científico continuo de la biodiversidad",
+			"Programas de educación ambiental comunitaria",
+			"Restauración de zonas degradadas"
+		]
+	},
+	"cta": {
+		"title": "Descubre las Especies del Páramo",
+		"description": "Explora en 3D la biodiversidad única que hace de Santurbán un tesoro natural",
+		"buttonText": "Explorar Especies",
+		"buttonLink": "/explore"
+	}
+}
