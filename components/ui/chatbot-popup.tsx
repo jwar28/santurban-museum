@@ -23,13 +23,15 @@ export function ChatbotPopup({ className }: ChatbotPopupProps) {
 	const handleSubmit = async (event?: { preventDefault?: () => void }) => {
 		event?.preventDefault?.();
 
-		if (!input.trim()) return;
+		if (!input.trim() || isGenerating) return;
+
+		const userInput = input.trim();
 
 		// Añadir mensaje del usuario
-		const userMessage = {
+		const userMessage: Message = {
 			id: Date.now().toString(),
-			role: "user" as const,
-			content: input,
+			role: "user",
+			content: userInput,
 			createdAt: new Date(),
 		};
 
@@ -37,18 +39,58 @@ export function ChatbotPopup({ className }: ChatbotPopupProps) {
 		setInput("");
 		setIsGenerating(true);
 
-		// Simular respuesta del bot (aquí deberías conectar tu API)
-		setTimeout(() => {
-			const botMessage = {
+		try {
+			// Preparar historial para la API (excluir el mensaje actual)
+			const history = messages.map((msg) => ({
+				role: msg.role,
+				content: msg.content,
+			}));
+
+			// Llamar a la API
+			const response = await fetch("/api/chat", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					message: userInput,
+					history,
+				}),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				const errorMsg =
+					(data as { error?: string }).error ||
+					"Error al procesar la solicitud";
+				throw new Error(errorMsg);
+			}
+
+			// Añadir respuesta del bot
+			const botMessage: Message = {
 				id: (Date.now() + 1).toString(),
-				role: "assistant" as const,
-				content:
-					"¡Hola! Soy el asistente virtual del Museo de Santurbán. ¿En qué puedo ayudarte?",
+				role: "assistant",
+				content: data.response,
 				createdAt: new Date(),
 			};
+
 			setMessages((prev) => [...prev, botMessage]);
+		} catch (err) {
+			console.error("Error en chat:", err);
+
+			// Añadir mensaje de error
+			const errorMessage: Message = {
+				id: (Date.now() + 1).toString(),
+				role: "assistant",
+				content:
+					"Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo.",
+				createdAt: new Date(),
+			};
+			setMessages((prev) => [...prev, errorMessage]);
+		} finally {
 			setIsGenerating(false);
-		}, 1000);
+		}
 	};
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -59,13 +101,25 @@ export function ChatbotPopup({ className }: ChatbotPopupProps) {
 		setIsGenerating(false);
 	};
 
-	const messagesEndRef = useRef<HTMLDivElement>(null);
+	const lastMessageRef = useRef<HTMLDivElement>(null);
 
+	// Scroll suave al último mensaje del asistente cuando se agrega uno nuevo
 	useEffect(() => {
 		if (messages.length > 0) {
-			messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+			const lastMessage = messages[messages.length - 1];
+
+			// Si el último mensaje es del asistente, hacer scroll a su inicio
+			if (lastMessage.role === "assistant" && lastMessageRef.current) {
+				// Pequeño delay para asegurar que el DOM se haya actualizado
+				setTimeout(() => {
+					lastMessageRef.current?.scrollIntoView({
+						behavior: "smooth",
+						block: "start",
+					});
+				}, 100);
+			}
 		}
-	}, [messages.length]);
+	}, [messages.length, messages]);
 
 	return (
 		<>
@@ -175,7 +229,7 @@ export function ChatbotPopup({ className }: ChatbotPopupProps) {
 												messages={messages}
 												isTyping={isGenerating}
 											/>
-											<div ref={messagesEndRef} />
+											<div ref={lastMessageRef} />
 										</>
 									)}
 								</div>
