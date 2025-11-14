@@ -62,39 +62,60 @@ export default function Navbar() {
 							{link.label}
 						</Link>
 					))}
+
+					{/* CDT Logo */}
+					<div className="relative h-14 w-28 ml-4 flex-shrink-0">
+						<Image
+							src="/cdt-logo.png"
+							alt="CDT"
+							fill
+							className="object-contain brightness-110"
+						/>
+					</div>
 				</div>
 
-				{/* Mobile Dropdown Menu */}
-				<DropdownMenu.Root>
-					<DropdownMenu.Trigger asChild>
-						<button
-							type="button"
-							className="md:hidden p-2 text-emerald-400 hover:text-emerald-300 transition-colors"
-							aria-label="Toggle menu"
-						>
-							<Menu className="w-6 h-6" />
-						</button>
-					</DropdownMenu.Trigger>
+				{/* Mobile: CDT Logo + Menu */}
+				<div className="flex md:hidden items-center gap-3">
+					<div className="relative h-8 w-20 flex-shrink-0">
+						<Image
+							src="/cdt-logo.png"
+							alt="CDT"
+							fill
+							className="object-contain brightness-110"
+						/>
+					</div>
 
-					<DropdownMenu.Portal>
-						<DropdownMenu.Content
-							className="md:hidden min-w-[220px] bg-[#0b1210]/95 backdrop-blur-lg rounded-lg border border-emerald-500/20 shadow-lg p-2 z-50"
-							sideOffset={5}
-							align="end"
-						>
-							{navLinks.map((link) => (
-								<DropdownMenu.Item key={link.href} asChild>
-									<Link
-										href={link.href}
-										className="flex items-center px-4 py-3 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 rounded-md transition-colors outline-none cursor-pointer font-medium"
-									>
-										{link.label}
-									</Link>
-								</DropdownMenu.Item>
-							))}
-						</DropdownMenu.Content>
-					</DropdownMenu.Portal>
-				</DropdownMenu.Root>
+					<DropdownMenu.Root>
+						<DropdownMenu.Trigger asChild>
+							<button
+								type="button"
+								className="p-2 text-emerald-400 hover:text-emerald-300 transition-colors"
+								aria-label="Toggle menu"
+							>
+								<Menu className="w-6 h-6" />
+							</button>
+						</DropdownMenu.Trigger>
+
+						<DropdownMenu.Portal>
+							<DropdownMenu.Content
+								className="md:hidden min-w-[220px] bg-[#0b1210]/95 backdrop-blur-lg rounded-lg border border-emerald-500/20 shadow-lg p-2 z-50"
+								sideOffset={5}
+								align="end"
+							>
+								{navLinks.map((link) => (
+									<DropdownMenu.Item key={link.href} asChild>
+										<Link
+											href={link.href}
+											className="flex items-center px-4 py-3 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 rounded-md transition-colors outline-none cursor-pointer font-medium"
+										>
+											{link.label}
+										</Link>
+									</DropdownMenu.Item>
+								))}
+							</DropdownMenu.Content>
+						</DropdownMenu.Portal>
+					</DropdownMenu.Root>
+				</div>
 			</div>
 		</nav>
 	);

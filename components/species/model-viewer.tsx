@@ -1,5 +1,6 @@
 "use client";
 
+import { useSpeciesStore } from "@/lib/store/species-store";
 import {
 	Environment,
 	OrbitControls,
@@ -9,7 +10,6 @@ import {
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { useSpeciesStore } from "@/lib/store/species-store";
 
 interface ModelProps {
 	url: string;

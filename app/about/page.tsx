@@ -57,6 +57,61 @@ export default function AboutPage() {
 					</section>
 				</div>
 
+				{/* Reconocimientos */}
+				<section className="mb-24">
+					<div className="flex items-center gap-3 mb-12">
+						<div className="h-px w-8 bg-emerald-500/50" />
+						<h2 className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
+							Reconocimientos
+						</h2>
+					</div>
+
+					<div className="space-y-6">
+						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
+							<div className="flex items-start gap-4">
+								<div className="text-emerald-400 text-sm font-bold">2024</div>
+								<div>
+									<p className="text-gray-300 text-sm leading-relaxed">
+										Participación destacada{" "}
+										<span className="text-white font-medium">
+											XI CIINATIC 2024
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
+							<div className="flex items-start gap-4">
+								<div className="text-emerald-400 text-sm font-bold">2025</div>
+								<div>
+									<p className="text-gray-300 text-sm leading-relaxed">
+										Ganador{" "}
+										<span className="text-white font-medium">INNGENIATE-C</span>
+										, Semana de Ingeniería UNAB
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
+							<div className="flex items-start gap-4">
+								<div className="text-emerald-400 text-sm font-bold">
+									Propuesta
+								</div>
+								<div>
+									<p className="text-gray-300 text-sm leading-relaxed">
+										<span className="text-white font-medium">
+											Hub Eco Smart Regions
+										</span>{" "}
+										— Centro de interpretación del Paramo de Santurbán
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				{/* El Equipo */}
 				<section>
 					<div className="flex items-center gap-3 mb-12">

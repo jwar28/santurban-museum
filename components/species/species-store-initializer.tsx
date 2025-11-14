@@ -1,10 +1,10 @@
 "use client";
 
 import { useSpeciesStore } from "@/lib/store/species-store";
+import { createClient } from "@/lib/supabase/client";
 import type { SpeciesRow } from "@/lib/types";
 import { useEffect, useMemo } from "react";
 import ModelPreloader from "./model-preloader";
-import { createClient } from "@/lib/supabase/client";
 
 interface SpeciesStoreInitializerProps {
 	species: SpeciesRow[];
