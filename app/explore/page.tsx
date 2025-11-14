@@ -90,15 +90,23 @@ export default async function ExplorePage() {
 							<div className="text-emerald-400 font-semibold text-xs mb-2 uppercase tracking-wide">
 								Fauna
 							</div>
-							<div className="text-2xl font-bold text-gray-100">{faunaCount}/293</div>
-							<div className="text-gray-400 text-xs mt-1">especies documentadas</div>
+							<div className="text-2xl font-bold text-gray-100">
+								{faunaCount}/293
+							</div>
+							<div className="text-gray-400 text-xs mt-1">
+								especies documentadas
+							</div>
 						</div>
 						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
 							<div className="text-emerald-400 font-semibold text-xs mb-2 uppercase tracking-wide">
 								Flora
 							</div>
-							<div className="text-2xl font-bold text-gray-100">{floraCount}/457</div>
-							<div className="text-gray-400 text-xs mt-1">variedades de plantas</div>
+							<div className="text-2xl font-bold text-gray-100">
+								{floraCount}/457
+							</div>
+							<div className="text-gray-400 text-xs mt-1">
+								variedades de plantas
+							</div>
 						</div>
 					</div>
 				</div>

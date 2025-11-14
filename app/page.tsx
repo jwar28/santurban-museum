@@ -20,14 +20,16 @@ export default function Home() {
 
 			{/* Hero Card */}
 			<section className="flex min-h-screen items-center justify-center px-6 relative z-10">
-				{/* Grayish glass-style hero card (slightly darker) */}
-				<div className="mx-auto max-w-3xl md:max-w-4xl rounded-2xl bg-slate-800/40 p-8 md:p-14 text-center ring-1 ring-slate-700/28 border border-slate-700/16 shadow-lg backdrop-blur-sm">
-					<h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
+				{/* Card minimalista */}
+				<div className="mx-auto max-w-3xl md:max-w-4xl rounded-xl bg-[#0b1210]/80 p-10 md:p-16 text-center border border-white/20 shadow-2xl backdrop-blur-md">
+					<h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight text-white">
 						Museo Virtual:
 						<br />
-						Santurbán
+						<span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
+							Santurbán
+						</span>
 					</h1>
-					<p className="mt-6 text-sm md:text-base text-slate-200/80 max-w-2xl mx-auto">
+					<p className="mt-5 text-base md:text-lg text-gray-300 max-w-2xl mx-auto font-light">
 						Donde el agua nace, la vida florece
 					</p>
 
@@ -37,7 +39,7 @@ export default function Home() {
 							<button
 								type="button"
 								onClick={() => setHasStarted(true)}
-								className="inline-flex items-center justify-center rounded-full border border-emerald-600/30 bg-emerald-500/20 px-8 py-4 text-lg font-semibold text-emerald-100 hover:bg-emerald-500/30 hover:border-emerald-500/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 transition-all duration-300 shadow-lg shadow-emerald-500/20"
+								className="inline-flex items-center justify-center rounded-full bg-emerald-500 px-8 py-3.5 text-base font-semibold text-white hover:bg-emerald-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 transition-all duration-300 shadow-lg hover:scale-105"
 							>
 								🎵 Iniciar Experiencia
 							</button>
@@ -50,10 +52,10 @@ export default function Home() {
 						)}
 					</div>
 
-					<div className="mt-8">
+					<div className="mt-7">
 						<a
 							href="/santurban"
-							className="inline-flex items-center justify-center rounded-full border border-slate-600/20 bg-slate-900/10 px-6 py-3 text-base font-semibold text-slate-100 hover:bg-slate-900/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500/30 transition"
+							className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-3 text-base font-semibold text-white hover:bg-white/15 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/30 transition-all"
 						>
 							Explorar
 						</a>
