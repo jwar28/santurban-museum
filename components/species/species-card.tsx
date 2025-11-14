@@ -10,6 +10,7 @@ export default function SpeciesCard({
 	image,
 	picOwner,
 	licenseType,
+	type,
 }: {
 	href: string;
 	title: string;
@@ -17,6 +18,7 @@ export default function SpeciesCard({
 	image: string;
 	picOwner?: string | null;
 	licenseType?: string | null;
+	type?: string | null;
 }) {
 	return (
 		<Link
@@ -40,6 +42,13 @@ export default function SpeciesCard({
 			{picOwner && licenseType && (
 				<div className="absolute top-0 right-0 bg-black/70 px-2 py-0.5 text-[9px] text-gray-200/90 backdrop-blur-sm z-10 rounded-bl-md">
 					Foto por {picOwner} bajo licencia {licenseType}
+				</div>
+			)}
+
+			{/* Type indicator (Fauna/Flora) */}
+			{type && (
+				<div className="absolute top-0 left-0 bg-black/70 px-2 py-0.5 text-[9px] text-gray-200/90 backdrop-blur-sm z-10 rounded-br-md uppercase">
+					{type}
 				</div>
 			)}
 
