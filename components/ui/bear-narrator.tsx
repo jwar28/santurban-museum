@@ -9,42 +9,50 @@ export default function BearNarrator({
 	wrapperClassName?: string;
 	imgClassName?: string;
 }) {
-	const [speaking, setSpeaking] = useState(false);
+	const [isSpeaking, setIsSpeaking] = useState(false);
+	const [isSaluting, setIsSaluting] = useState(false);
 
 	useEffect(() => {
 		let mounted = true;
 
-		// Cycle: idle for idleMs, then speak for speakMs, repeat
-		const idleMs = 4800;
-		const speakMs = 2200;
+		// Alterna entre normal y saludando cada 3 segundos
+		const saluteInterval = setInterval(() => {
+			if (mounted) {
+				setIsSaluting((prev) => !prev);
+			}
+		}, 3000);
 
-		let speakTimeout: ReturnType<typeof setTimeout>;
-		let idleTimeout: ReturnType<typeof setTimeout>;
+		// Escuchar eventos personalizados de cambio de estado del audio
+		const handleAudioStateChange = (e: Event) => {
+			const customEvent = e as CustomEvent<{ isPlaying: boolean }>;
+			if (mounted) {
+				setIsSpeaking(customEvent.detail.isPlaying);
+			}
+		};
 
-		function startIdleCycle() {
-			if (!mounted) return;
-			// ensure state idle
-			setSpeaking(false);
-			idleTimeout = setTimeout(() => {
-				if (!mounted) return;
-				setSpeaking(true);
-				speakTimeout = setTimeout(() => {
-					if (!mounted) return;
-					startIdleCycle();
-				}, speakMs);
-			}, idleMs);
-		}
-
-		startIdleCycle();
+		window.addEventListener("audioStateChange", handleAudioStateChange);
 
 		return () => {
 			mounted = false;
-			clearTimeout(speakTimeout);
-			clearTimeout(idleTimeout);
+			clearInterval(saluteInterval);
+			window.removeEventListener("audioStateChange", handleAudioStateChange);
 		};
 	}, []);
 
-	const src = speaking ? "/talking-bear.png" : "/idle-bear.png";
+	// Determinar qué imagen mostrar
+	const getImageSrc = () => {
+		if (isSpeaking) {
+			return isSaluting ? "/bear/speaking_salute.png" : "/bear/speaking.png";
+		}
+		return isSaluting ? "/bear/idle_salute.png" : "/bear/idle.png";
+	};
+
+	const getAltText = () => {
+		if (isSpeaking) {
+			return isSaluting ? "Oso hablando y saludando" : "Oso hablando";
+		}
+		return isSaluting ? "Oso saludando" : "Oso";
+	};
 
 	return (
 		<div
@@ -52,9 +60,9 @@ export default function BearNarrator({
 			aria-hidden
 		>
 			<img
-				src={src}
-				alt={speaking ? "Oso hablando" : "Oso"}
-				className={`${imgClassName} h-auto select-none`}
+				src={getImageSrc()}
+				alt={getAltText()}
+				className={`${imgClassName} h-auto select-none transition-opacity duration-300`}
 			/>
 		</div>
 	);

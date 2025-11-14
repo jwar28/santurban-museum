@@ -63,9 +63,9 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* Fixed narrator bear at bottom-right (matches indicated area) */}
-			<div className="pointer-events-none fixed right-4 bottom-4 z-30 md:right-12 md:bottom-12">
-				<BearNarrator wrapperClassName="-mr-2" imgClassName="w-36 md:w-56" />
+			{/* Fixed narrator bear at bottom-right */}
+			<div className="pointer-events-none fixed right-0 bottom-0 z-30">
+				<BearNarrator wrapperClassName="" imgClassName="w-36 md:w-56" />
 			</div>
 		</main>
 	);

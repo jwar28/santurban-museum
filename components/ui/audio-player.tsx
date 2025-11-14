@@ -66,7 +66,29 @@ export default function AudioPlayer({
 			setDuration(audio.duration);
 			setIsLoading(false);
 		};
-		const handleEnded = () => setIsPlaying(false);
+		const handleEnded = () => {
+			setIsPlaying(false);
+			// Disparar evento personalizado cuando el audio termina
+			window.dispatchEvent(
+				new CustomEvent("audioStateChange", { detail: { isPlaying: false } }),
+			);
+		};
+		const handlePlay = () => {
+			console.log("Audio playing");
+			setIsPlaying(true);
+			// Disparar evento cuando el audio empieza a reproducirse
+			window.dispatchEvent(
+				new CustomEvent("audioStateChange", { detail: { isPlaying: true } }),
+			);
+		};
+		const handlePause = () => {
+			console.log("Audio paused");
+			setIsPlaying(false);
+			// Disparar evento cuando el audio se pausa
+			window.dispatchEvent(
+				new CustomEvent("audioStateChange", { detail: { isPlaying: false } }),
+			);
+		};
 		const handleError = (e: Event) => {
 			console.error("Error al cargar el audio:", e);
 			setHasError(true);
@@ -84,6 +106,8 @@ export default function AudioPlayer({
 		audio.addEventListener("timeupdate", updateTime);
 		audio.addEventListener("loadedmetadata", updateDuration);
 		audio.addEventListener("ended", handleEnded);
+		audio.addEventListener("play", handlePlay);
+		audio.addEventListener("pause", handlePause);
 		audio.addEventListener("error", handleError);
 		audio.addEventListener("canplay", handleCanPlay);
 		audio.addEventListener("loadstart", handleLoadStart);
@@ -95,6 +119,8 @@ export default function AudioPlayer({
 			audio.removeEventListener("timeupdate", updateTime);
 			audio.removeEventListener("loadedmetadata", updateDuration);
 			audio.removeEventListener("ended", handleEnded);
+			audio.removeEventListener("play", handlePlay);
+			audio.removeEventListener("pause", handlePause);
 			audio.removeEventListener("error", handleError);
 			audio.removeEventListener("canplay", handleCanPlay);
 			audio.removeEventListener("loadstart", handleLoadStart);
@@ -109,7 +135,7 @@ export default function AudioPlayer({
 		const playAudio = async () => {
 			try {
 				await audio.play();
-				setIsPlaying(true);
+				// El evento 'play' del audio disparará el evento personalizado
 			} catch (error) {
 				console.warn("Autoplay bloqueado por el navegador:", error);
 				// El navegador bloqueó el autoplay, que es normal
@@ -130,10 +156,11 @@ export default function AudioPlayer({
 
 		if (isPlaying) {
 			audio.pause();
+			// El evento 'pause' del audio disparará el evento personalizado
 		} else {
 			audio.play();
+			// El evento 'play' del audio disparará el evento personalizado
 		}
-		setIsPlaying(!isPlaying);
 	};
 
 	const handleProgressClick = (
