@@ -1,4 +1,5 @@
 import SpeciesList from "@/components/species/species-list";
+import SpeciesStoreInitializer from "@/components/species/species-store-initializer";
 import AudioPlayer from "@/components/ui/audio-player";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
@@ -32,11 +33,10 @@ function posterUrl(row: SpeciesRow) {
 export default async function ExplorePage() {
 	const supabase = await createClient();
 
+	// Fetch ALL data for each species (not just summary fields)
 	const { data, error } = await supabase
 		.from("species")
-		.select(
-			"id, common_name, scientific_name, type, image_url, glb_reference, pic_owner, license_type",
-		)
+		.select("*")
 		.order("common_name", { ascending: true });
 
 	if (error) {
@@ -64,6 +64,9 @@ export default async function ExplorePage() {
 
 	return (
 		<main className="min-h-screen bg-[#0b1210] text-white pb-20 md:pb-0">
+			{/* Initialize Zustand store with all species data */}
+			<SpeciesStoreInitializer species={rows} />
+
 			<section className="mx-auto max-w-7xl px-6 py-16 mt-12">
 				<h1 className="text-2xl md:text-3xl font-bold text-gray-100">
 					Explorar Especies Endémicas
