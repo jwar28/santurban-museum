@@ -1,5 +1,6 @@
 import { TextWithTooltips } from "@/components/santurban/text-with-tooltips";
 import AudioPlayer from "@/components/ui/audio-player";
+import { ParamoGallery } from "@/components/ui/paramo-gallery";
 import footerContent from "@/data/footer-content.json";
 import content from "@/data/santurban-content.json";
 import type { Metadata } from "next";
@@ -41,7 +42,11 @@ export default function SanturbanPage() {
 				<p className="text-2xl md:text-3xl text-gray-200 text-center leading-relaxed font-light">
 					<TextWithTooltips text={content.introduction.text} />
 				</p>
-			</section>{" "}
+			</section>
+
+			{/* Galería del Páramo */}
+			<ParamoGallery />
+
 			{/* Datos Científicos Clave */}
 			<section className="max-w-6xl mx-auto px-6 pb-16">
 				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
