@@ -64,46 +64,46 @@ export default async function ExplorePage() {
 
 	return (
 		<main className="min-h-screen bg-[#0b1210] text-white pb-20 md:pb-0">
-			<section className="mx-auto max-w-7xl px-6 py-12 mt-12">
-				<h1 className="text-3xl md:text-4xl font-extrabold">
+			<section className="mx-auto max-w-7xl px-6 py-16 mt-12">
+				<h1 className="text-2xl md:text-3xl font-bold text-gray-100">
 					Explorar Especies Endémicas
 				</h1>
-				<p className="mt-4 max-w-3xl text-white/70">
+				<p className="mt-4 max-w-3xl text-sm text-gray-400">
 					Sumérgete en la biodiversidad única del Páramo de Santurbán. Haz clic
 					en cualquier especie para descubrir su modelo 3D interactivo y conocer
 					sus fascinantes características y estado de conservación.
 				</p>
 
 				{/* Información sobre especies endémicas */}
-				<div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
-					<h2 className="text-xl font-bold mb-3">
+				<div className="mt-8 p-8 bg-white/5 rounded-xl border border-white/10">
+					<h2 className="text-xl font-bold mb-4 text-gray-100">
 						¿Qué es una especie endémica?
 					</h2>
-					<p className="text-white/80 mb-4">
+					<p className="text-sm text-gray-400 mb-6">
 						Las especies endémicas son aquellas que solo se encuentran en una
 						región geográfica específica y no existen naturalmente en ningún
 						otro lugar del mundo. El Páramo de Santurbán alberga una riqueza
 						única de biodiversidad.
 					</p>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<div className="bg-emerald-950/30 p-4 rounded-lg border border-emerald-800/30">
-							<div className="text-emerald-400 font-semibold text-sm mb-1">
+						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
+							<div className="text-emerald-400 font-semibold text-xs mb-2 uppercase tracking-wide">
 								Fauna
 							</div>
-							<div className="text-2xl font-bold">{faunaCount}/293</div>
-							<div className="text-white/60 text-sm">especies documentadas</div>
+							<div className="text-2xl font-bold text-gray-100">{faunaCount}/293</div>
+							<div className="text-gray-400 text-xs mt-1">especies documentadas</div>
 						</div>
-						<div className="bg-green-950/30 p-4 rounded-lg border border-green-800/30">
-							<div className="text-green-400 font-semibold text-sm mb-1">
+						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
+							<div className="text-emerald-400 font-semibold text-xs mb-2 uppercase tracking-wide">
 								Flora
 							</div>
-							<div className="text-2xl font-bold">{floraCount}/457</div>
-							<div className="text-white/60 text-sm">variedades de plantas</div>
+							<div className="text-2xl font-bold text-gray-100">{floraCount}/457</div>
+							<div className="text-gray-400 text-xs mt-1">variedades de plantas</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="mt-8">
+				<div className="mt-12">
 					<SpeciesList rows={rowsWithPoster} />
 				</div>
 			</section>

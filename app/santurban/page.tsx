@@ -38,8 +38,8 @@ export default function SanturbanPage() {
 				</div>
 			</section>
 			{/* Introducción */}
-			<section className="max-w-4xl mx-auto px-6 py-20">
-				<p className="text-2xl md:text-3xl text-gray-200 text-center leading-relaxed font-light">
+			<section className="max-w-4xl mx-auto px-6 py-16">
+				<p className="text-xl md:text-2xl text-gray-300 text-center leading-relaxed font-light">
 					<TextWithTooltips text={content.introduction.text} />
 				</p>
 			</section>
@@ -48,39 +48,39 @@ export default function SanturbanPage() {
 			<ParamoGallery />
 
 			{/* Datos Científicos Clave */}
-			<section className="max-w-6xl mx-auto px-6 pb-16">
-				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+			<section className="max-w-6xl mx-auto px-6 py-16">
+				<h2 className="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-100">
 					Datos Científicos Clave
 				</h2>
-				<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
 					{content.keyStats.map((stat) => (
 						<div
 							key={stat.id}
-							className={`bg-gradient-to-b from-${stat.color}-500/10 to-transparent p-6 rounded-2xl border border-${stat.color}-500/20`}
+							className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all"
 						>
-							<div className="text-4xl mb-3">{stat.icon}</div>
-							<div className={`text-3xl font-bold text-${stat.color}-400 mb-2`}>
+							<div className="text-3xl mb-3">{stat.icon}</div>
+							<div className="text-2xl font-bold text-emerald-400 mb-2">
 								{stat.value}
 							</div>
-							<p className="text-gray-300">{stat.description}</p>
+							<p className="text-sm text-gray-400">{stat.description}</p>
 						</div>
 					))}
 				</div>
 			</section>
 			{/* Información Detallada */}
-			<section className="max-w-6xl mx-auto px-6 pb-16">
-				<div className="grid md:grid-cols-2 gap-8">
+			<section className="max-w-6xl mx-auto px-6 py-16">
+				<div className="grid md:grid-cols-2 gap-6">
 					{/* Importancia Hídrica */}
-					<div className="bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-transparent p-8 rounded-3xl border border-blue-500/20">
-						<div className="flex items-center gap-3 mb-4">
-							<div className="text-4xl">
+					<div className="bg-white/5 p-8 rounded-xl border border-white/10 hover:border-blue-500/30 transition-all">
+						<div className="flex items-center gap-3 mb-6">
+							<div className="text-3xl">
 								{content.detailedInfo.waterFactory.icon}
 							</div>
-							<h3 className="text-2xl font-bold text-blue-400">
+							<h3 className="text-xl font-bold text-blue-400">
 								{content.detailedInfo.waterFactory.title}
 							</h3>
 						</div>
-						<div className="space-y-3 text-gray-300">
+						<div className="space-y-3 text-sm text-gray-400">
 							{content.detailedInfo.waterFactory.paragraphs.map((para) => (
 								<p key={para.substring(0, 50)}>
 									<TextWithTooltips text={para} color="blue" />
@@ -90,16 +90,16 @@ export default function SanturbanPage() {
 					</div>
 
 					{/* Biodiversidad */}
-					<div className="bg-gradient-to-br from-emerald-500/10 via-green-500/5 to-transparent p-8 rounded-3xl border border-emerald-500/20">
-						<div className="flex items-center gap-3 mb-4">
-							<div className="text-4xl">
+					<div className="bg-white/5 p-8 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all">
+						<div className="flex items-center gap-3 mb-6">
+							<div className="text-3xl">
 								{content.detailedInfo.biodiversity.icon}
 							</div>
-							<h3 className="text-2xl font-bold text-emerald-400">
+							<h3 className="text-xl font-bold text-emerald-400">
 								{content.detailedInfo.biodiversity.title}
 							</h3>
 						</div>
-						<div className="space-y-3 text-gray-300">
+						<div className="space-y-3 text-sm text-gray-400">
 							{content.detailedInfo.biodiversity.paragraphs.map((para) => (
 								<p key={para.substring(0, 50)}>
 									<TextWithTooltips text={para} color="emerald" />
@@ -110,21 +110,21 @@ export default function SanturbanPage() {
 				</div>
 			</section>
 			{/* Curiosidades */}
-			<section className="max-w-6xl mx-auto px-6 pb-16">
-				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+			<section className="max-w-6xl mx-auto px-6 py-16">
+				<h2 className="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-100">
 					Curiosidades del Páramo
 				</h2>
-				<div className="grid md:grid-cols-3 gap-6">
+				<div className="grid md:grid-cols-3 gap-4">
 					{content.curiosities.map((curiosity) => (
 						<div
 							key={curiosity.id}
-							className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all"
+							className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all"
 						>
-							<div className="text-4xl mb-4">{curiosity.icon}</div>
-							<h4 className="text-xl font-bold mb-3 text-emerald-400">
+							<div className="text-3xl mb-4">{curiosity.icon}</div>
+							<h4 className="text-lg font-bold mb-3 text-emerald-400">
 								{curiosity.title}
 							</h4>
-							<p className="text-gray-300">
+							<p className="text-sm text-gray-400">
 								<TextWithTooltips text={curiosity.description} />
 							</p>
 						</div>
@@ -132,18 +132,18 @@ export default function SanturbanPage() {
 				</div>
 			</section>
 			{/* Clima del Páramo */}
-			<section className="max-w-6xl mx-auto px-6 pb-16">
-				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+			<section className="max-w-6xl mx-auto px-6 py-16">
+				<h2 className="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-100">
 					{content.climate.title}
 				</h2>
-				<div className="bg-gradient-to-br from-sky-500/10 via-blue-500/5 to-transparent p-8 rounded-3xl border border-sky-500/20">
+				<div className="bg-white/5 p-8 rounded-xl border border-white/10">
 					<div className="grid md:grid-cols-2 gap-8">
 						{content.climate.sections.map((section) => (
 							<div key={section.title}>
-								<h3 className="text-xl font-bold text-sky-400 mb-4">
+								<h3 className="text-lg font-bold text-sky-400 mb-4">
 									{section.title}
 								</h3>
-								<div className="space-y-3 text-gray-300">
+								<div className="space-y-3 text-sm text-gray-400">
 									{section.paragraphs.map((para) => (
 										<p key={para.substring(0, 40)}>
 											<TextWithTooltips text={para} color="sky" />
@@ -156,18 +156,18 @@ export default function SanturbanPage() {
 				</div>
 			</section>
 			{/* Importancia Geológica */}
-			<section className="max-w-4xl mx-auto px-6 pb-16">
-				<div className="bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-transparent p-8 rounded-3xl border border-amber-500/20">
-					<div className="flex items-center gap-3 mb-4">
-						<div className="text-4xl">{content.geology.icon}</div>
-						<h3 className="text-2xl font-bold text-amber-400">
+			<section className="max-w-4xl mx-auto px-6 py-16">
+				<div className="bg-white/5 p-8 rounded-xl border border-white/10">
+					<div className="flex items-center gap-3 mb-6">
+						<div className="text-3xl">{content.geology.icon}</div>
+						<h3 className="text-xl font-bold text-amber-400">
 							{content.geology.title}
 						</h3>
 					</div>
-					<p className="text-gray-300 mb-4">
+					<p className="text-sm text-gray-400 mb-4">
 						<TextWithTooltips text={content.geology.intro} />
 					</p>
-					<ul className="space-y-2 text-gray-300">
+					<ul className="space-y-2 text-sm text-gray-400">
 						{content.geology.features.map((feature) => (
 							<li key={feature} className="flex items-start gap-2">
 								<span className="text-amber-500 mt-1.5 text-xs">●</span>
@@ -180,23 +180,23 @@ export default function SanturbanPage() {
 				</div>
 			</section>
 			{/* Conservación */}
-			<section className="max-w-6xl mx-auto px-6 pb-24">
-				<div className="bg-gradient-to-br from-red-500/10 via-orange-500/5 to-transparent p-8 rounded-3xl border border-red-500/20">
+			<section className="max-w-6xl mx-auto px-6 py-16">
+				<div className="bg-white/5 p-8 rounded-xl border border-white/10">
 					<div className="flex items-center gap-3 mb-6">
-						<div className="text-4xl">{content.conservation.icon}</div>
-						<h3 className="text-2xl font-bold text-red-400">
+						<div className="text-3xl">{content.conservation.icon}</div>
+						<h3 className="text-xl font-bold text-red-400">
 							{content.conservation.title}
 						</h3>
 					</div>
-					<p className="text-gray-300 mb-6 text-lg">
+					<p className="text-sm text-gray-400 mb-6">
 						{content.conservation.intro}
 					</p>
 					<div className="grid md:grid-cols-2 gap-6">
 						<div>
-							<h4 className="text-lg font-semibold text-white mb-3">
+							<h4 className="text-base font-semibold text-gray-200 mb-3">
 								Principales Amenazas:
 							</h4>
-							<ul className="space-y-2 text-gray-300">
+							<ul className="space-y-2 text-sm text-gray-400">
 								{content.conservation.threats.map((threat) => (
 									<li key={threat} className="flex items-start gap-2">
 										<span className="text-red-400 mt-1.5 text-xs">●</span>
@@ -208,10 +208,10 @@ export default function SanturbanPage() {
 							</ul>
 						</div>
 						<div>
-							<h4 className="text-lg font-semibold text-white mb-3">
+							<h4 className="text-base font-semibold text-gray-200 mb-3">
 								Acciones de Protección:
 							</h4>
-							<ul className="space-y-2 text-gray-300">
+							<ul className="space-y-2 text-sm text-gray-400">
 								{content.conservation.protectionActions.map((action) => (
 									<li key={action} className="flex items-start gap-2">
 										<span className="text-emerald-400 mt-1.5 text-xs">●</span>
@@ -224,26 +224,27 @@ export default function SanturbanPage() {
 				</div>
 			</section>
 			{/* CTA */}
-			<section className="max-w-4xl mx-auto px-6 pb-24">
-				<div className="text-center py-16 px-8 rounded-3xl bg-gradient-to-br from-emerald-500/20 via-emerald-500/10 to-transparent border border-emerald-500/30">
-					<h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+			<section className="max-w-4xl mx-auto px-6 py-16">
+				<div className="text-center py-12 px-8 rounded-xl bg-white/5 border border-emerald-500/20">
+					<h2 className="text-2xl md:text-3xl font-bold text-gray-100 mb-3">
 						{content.cta.title}
 					</h2>
-					<p className="text-gray-300 text-lg mb-8 max-w-xl mx-auto">
+					<p className="text-sm text-gray-400 mb-6 max-w-xl mx-auto">
 						{content.cta.description}
 					</p>
 					<a
 						href={content.cta.buttonLink}
-						className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-3 rounded-full transition-all hover:scale-105"
+						className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-2.5 rounded-full transition-all hover:scale-105 text-sm"
 					>
 						<span>{content.cta.buttonText}</span>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							className="h-5 w-5"
+							className="h-4 w-4"
 							viewBox="0 0 20 20"
 							fill="currentColor"
 							aria-hidden="true"
 						>
+							<title>Arrow icon</title>
 							<path
 								fillRule="evenodd"
 								d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
