@@ -1,4 +1,5 @@
 import PageTransition from "@/components/animations/page-transition";
+import AudioPreloader from "@/components/ui/audio-preloader";
 import { ChatbotPopup } from "@/components/ui/chatbot-popup";
 import Navbar from "@/components/ui/navbar";
 import type { Metadata } from "next";
@@ -116,6 +117,7 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
+					<AudioPreloader />
 					<Navbar />
 					<PageTransition>{children}</PageTransition>
 					<ChatbotPopup />

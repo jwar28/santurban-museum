@@ -1,6 +1,6 @@
 "use client";
 
-import { createClient } from "@/lib/supabase/client";
+import { useAudioStore } from "@/lib/store/audio-store";
 import { Loader2, Pause, Play, Volume2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -25,26 +25,23 @@ export default function AudioPlayer({
 	const [hasError, setHasError] = useState(false);
 	const audioRef = useRef<HTMLAudioElement>(null);
 
-	// Obtener URL del audio desde Supabase
+	// Obtener la función de la store
+	const getAudioUrl = useAudioStore((state) => state.getAudioUrl);
+
+	// Obtener URL del audio desde la store (con cache)
 	useEffect(() => {
 		const loadAudio = async () => {
 			try {
 				setIsLoading(true);
 				setHasError(false);
-				const supabase = createClient();
-				const {
-					data: { publicUrl },
-				} = supabase.storage.from(bucketName).getPublicUrl(audioFileName);
 
-				// Verificar si el archivo existe haciendo un fetch
-				const response = await fetch(publicUrl, { method: "HEAD" });
-				console.log("Estado de la respuesta:", response.status);
+				const url = await getAudioUrl(audioFileName, bucketName);
 
-				if (!response.ok) {
-					throw new Error(`Archivo no encontrado: ${response.status}`);
+				if (!url) {
+					throw new Error("No se pudo obtener la URL del audio");
 				}
 
-				setAudioUrl(publicUrl);
+				setAudioUrl(url);
 			} catch (error) {
 				console.error("Error loading audio:", error);
 				setHasError(true);
@@ -53,7 +50,7 @@ export default function AudioPlayer({
 		};
 
 		loadAudio();
-	}, [bucketName, audioFileName]);
+	}, [bucketName, audioFileName, getAudioUrl]);
 
 	// Actualizar tiempo actual y manejar eventos del audio
 	useEffect(() => {
