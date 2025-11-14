@@ -127,7 +127,7 @@ export default function AboutPage() {
 						<div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all text-center">
 							<div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-2 border-white/10">
 								<img
-									src="/lc.jpg"
+									src="/team/lc.jpg"
 									alt="Liliana Calderón-Benavides"
 									className="w-full h-full object-cover"
 								/>
@@ -147,7 +147,7 @@ export default function AboutPage() {
 						<div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all text-center">
 							<div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-2 border-white/10">
 								<img
-									src="/vc.jpg"
+									src="/team/vc.jpg"
 									alt="Verónica Chajín Ortiz"
 									className="w-full h-full object-cover"
 								/>
@@ -167,7 +167,7 @@ export default function AboutPage() {
 						<div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all text-center">
 							<div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-2 border-white/10">
 								<img
-									src="/jg.png"
+									src="/team/jg.png"
 									alt="Javier Guerra Turizo"
 									className="w-full h-full object-cover"
 								/>

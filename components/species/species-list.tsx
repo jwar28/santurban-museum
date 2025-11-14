@@ -1,6 +1,6 @@
 "use client";
 
-import { BlurFade } from "@/components/ui/blur-fade";
+import { BlurFade } from "@/components/animations/blur-fade";
 import {
 	Select,
 	SelectContent,

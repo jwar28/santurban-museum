@@ -1,5 +1,5 @@
+import PageTransition from "@/components/animations/page-transition";
 import Navbar from "@/components/ui/navbar";
-import PageTransition from "@/components/ui/page-transition";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
