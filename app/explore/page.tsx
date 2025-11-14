@@ -1,5 +1,4 @@
 import SpeciesList from "@/components/species/species-list";
-import SpeciesStoreInitializer from "@/components/species/species-store-initializer";
 import AudioPlayer from "@/components/ui/audio-player";
 import Footer from "@/components/ui/footer";
 import { createClient } from "@/lib/supabase/server";
@@ -65,9 +64,6 @@ export default async function ExplorePage() {
 
 	return (
 		<main className="min-h-screen bg-[#0b1210] text-white pb-20 md:pb-0">
-			{/* Initialize Zustand store with all species data */}
-			<SpeciesStoreInitializer species={rows} />
-
 			<section className="mx-auto max-w-7xl px-6 py-16 mt-12">
 				<h1 className="text-2xl md:text-3xl font-bold text-gray-100">
 					Explorar Especies Endémicas

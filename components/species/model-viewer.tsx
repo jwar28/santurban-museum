@@ -1,6 +1,5 @@
 "use client";
 
-import { useSpeciesStore } from "@/lib/store/species-store";
 import {
 	Environment,
 	OrbitControls,
@@ -8,17 +7,18 @@ import {
 	useGLTF,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 interface ModelProps {
 	url: string;
+	onLoad?: () => void;
 }
 
-function Model({ url }: ModelProps) {
+function Model({ url, onLoad }: ModelProps) {
 	const { scene } = useGLTF(url);
 	const groupRef = useRef<THREE.Group>(null);
-	const addLoadedModel = useSpeciesStore((state) => state.addLoadedModel);
 
 	useEffect(() => {
 		if (groupRef.current && scene) {
@@ -93,10 +93,12 @@ function Model({ url }: ModelProps) {
 			}
 			groupRef.current.add(clonedScene);
 
-			// Mark model as loaded in store
-			addLoadedModel(url);
+			// Notify that the model has loaded
+			if (onLoad) {
+				onLoad();
+			}
 		}
-	}, [scene, url, addLoadedModel]);
+	}, [scene, onLoad]);
 
 	return <group ref={groupRef} />;
 }
@@ -107,6 +109,22 @@ function LoadingFallback() {
 			<boxGeometry args={[0.1, 0.1, 0.1]} />
 			<meshStandardMaterial transparent opacity={0} />
 		</mesh>
+	);
+}
+
+function ModelLoader() {
+	return (
+		<div className="absolute inset-0 flex items-center justify-center bg-[#0b1210]/50 backdrop-blur-sm z-10">
+			<div className="text-center">
+				<Loader2 className="w-12 h-12 text-emerald-400 animate-spin mx-auto mb-4" />
+				<p className="text-emerald-300 text-sm font-medium">
+					Cargando modelo 3D...
+				</p>
+				<p className="text-gray-500 text-xs mt-2">
+					Esto puede tomar unos segundos
+				</p>
+			</div>
+		</div>
 	);
 }
 
@@ -140,6 +158,17 @@ interface ModelViewerProps {
 
 export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 	const [hasError, setHasError] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+
+	const handleModelLoad = useCallback(() => {
+		setIsLoading(false);
+	}, []);
+
+	useEffect(() => {
+		// Reset loading state when model URL changes
+		setIsLoading(true);
+		setHasError(false);
+	}, []);
 
 	if (!modelUrl || hasError) {
 		return <NoModelFallback />;
@@ -147,6 +176,7 @@ export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 
 	return (
 		<div className="w-full h-full relative">
+			{isLoading && <ModelLoader />}
 			<Canvas
 				className="bg-transparent"
 				gl={{
@@ -166,7 +196,7 @@ export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 				<directionalLight position={[-3, 3, -3]} intensity={0.4} />
 				<hemisphereLight intensity={0.3} groundColor="#1a1a1a" />
 				<Suspense fallback={<LoadingFallback />}>
-					<Model url={modelUrl} />
+					<Model url={modelUrl} onLoad={handleModelLoad} />
 					<Environment preset="city" environmentIntensity={0.4} />
 				</Suspense>
 				<OrbitControls

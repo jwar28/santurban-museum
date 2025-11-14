@@ -3,9 +3,7 @@
 import SpeciesCarousel from "@/components/species/species-carousel";
 import AudioPlayer from "@/components/ui/audio-player";
 import BackButton from "@/components/ui/back-button";
-import { useSpeciesStore } from "@/lib/store/species-store";
 import type { SpeciesRow } from "@/lib/types";
-import { useEffect, useState } from "react";
 
 interface SpeciesContentProps {
 	initialSpecies: SpeciesRow;
@@ -18,16 +16,7 @@ export default function SpeciesContent({
 	modelUrl,
 	audioFileName,
 }: SpeciesContentProps) {
-	const getSpeciesById = useSpeciesStore((state) => state.getSpeciesById);
-	const [species, setSpecies] = useState<SpeciesRow>(initialSpecies);
-
-	useEffect(() => {
-		// Try to get from store, fallback to initial
-		const cachedSpecies = getSpeciesById(initialSpecies.id);
-		if (cachedSpecies) {
-			setSpecies(cachedSpecies);
-		}
-	}, [initialSpecies.id, getSpeciesById]);
+	const species = initialSpecies;
 
 	return (
 		<main className="min-h-screen lg:h-screen bg-[#0b1210] text-white pt-16 lg:overflow-hidden pb-28 lg:pb-0">
