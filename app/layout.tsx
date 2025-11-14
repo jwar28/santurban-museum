@@ -1,4 +1,5 @@
 import PageTransition from "@/components/animations/page-transition";
+import { ChatbotPopup } from "@/components/ui/chatbot-popup";
 import Navbar from "@/components/ui/navbar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
@@ -117,6 +118,7 @@ export default function RootLayout({
 				>
 					<Navbar />
 					<PageTransition>{children}</PageTransition>
+					<ChatbotPopup />
 				</ThemeProvider>
 			</body>
 		</html>

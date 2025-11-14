@@ -64,26 +64,41 @@ export default function Navbar() {
 					))}
 
 					{/* CDT Logo */}
-					<div className="relative h-14 w-28 ml-4 flex-shrink-0">
+					<a
+						href="https://smartregionscenter.com.co/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="relative h-16 w-32 ml-6 flex-shrink-0 group"
+						aria-label="Smart Center Development"
+					>
+						<div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 						<Image
 							src="/cdt-logo.png"
-							alt="CDT"
+							alt="Smart Center Development"
 							fill
-							className="object-contain brightness-110"
+							className="object-contain brightness-100 contrast-110 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)] group-hover:brightness-110 group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.5)] transition-all duration-300"
+							priority
 						/>
-					</div>
+					</a>
 				</div>
 
 				{/* Mobile: CDT Logo + Menu */}
 				<div className="flex md:hidden items-center gap-3">
-					<div className="relative h-8 w-20 flex-shrink-0">
+					<a
+						href="https://smartcenterdevelopment.com/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="relative h-10 w-24 flex-shrink-0 group"
+						aria-label="Smart Center Development"
+					>
 						<Image
 							src="/cdt-logo.png"
-							alt="CDT"
+							alt="Smart Center Development"
 							fill
-							className="object-contain brightness-110"
+							className="object-contain brightness-100 contrast-110 drop-shadow-[0_0_6px_rgba(16,185,129,0.3)] group-active:brightness-110 transition-all duration-200"
+							priority
 						/>
-					</div>
+					</a>
 
 					<DropdownMenu.Root>
 						<DropdownMenu.Trigger asChild>
