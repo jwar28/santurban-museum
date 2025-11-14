@@ -1,10 +1,9 @@
 import { TextWithTooltips } from "@/components/santurban/text-with-tooltips";
 import AudioPlayer from "@/components/ui/audio-player";
+import Footer from "@/components/ui/footer";
 import { ParamoGallery } from "@/components/ui/paramo-gallery";
-import footerContent from "@/data/footer-content.json";
 import content from "@/data/santurban-content.json";
 import type { Metadata } from "next";
-import { Fragment } from "react";
 
 export const metadata: Metadata = {
 	title: "Páramo de Santurbán",
@@ -254,72 +253,8 @@ export default function SanturbanPage() {
 					</a>
 				</div>
 			</section>
-			{/* Footer con Fuentes */}
-			<footer className="border-t border-emerald-500/10 bg-[#0b1210]/50 backdrop-blur-sm">
-				<div className="max-w-6xl mx-auto px-6 py-12">
-					{/* Fuentes de Información */}
-					<div className="mb-8">
-						<h3 className="text-lg font-semibold text-emerald-400 mb-4">
-							{footerContent.sources.title}
-						</h3>
-						<div className="grid md:grid-cols-2 gap-4 text-sm text-gray-400">
-							<div>
-								<h4 className="text-white font-medium mb-2">
-									{footerContent.sources.official.title}
-								</h4>
-								<ul className="space-y-1.5">
-									{footerContent.sources.official.items.map((item) => (
-										<li key={item} className="flex items-start gap-2">
-											<span className="text-emerald-500 mt-1 text-xs">•</span>
-											<span>{item}</span>
-										</li>
-									))}
-								</ul>
-							</div>
-							<div>
-								<h4 className="text-white font-medium mb-2">
-									{footerContent.sources.academic.title}
-								</h4>
-								<ul className="space-y-1.5">
-									{footerContent.sources.academic.items.map((item) => (
-										<li key={item} className="flex items-start gap-2">
-											<span className="text-emerald-500 mt-1 text-xs">•</span>
-											<span>{item}</span>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
-					</div>
-
-					{/* Copyright y Enlaces */}
-					<div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-						<p className="text-gray-500 text-sm text-center md:text-left">
-							{footerContent.copyright}
-						</p>
-						<div className="flex items-center gap-4 text-sm">
-							{footerContent.links.map((link, idx) => (
-								<Fragment key={link.href}>
-									{idx > 0 && <span className="text-gray-600">•</span>}
-									<a
-										href={link.href}
-										className="text-emerald-400 hover:text-emerald-300 transition-colors"
-									>
-										{link.text}
-									</a>
-								</Fragment>
-							))}
-						</div>
-					</div>
-
-					{/* Nota de Educación */}
-					<div className="mt-6 text-center">
-						<p className="text-xs text-gray-500">
-							{footerContent.educationalNote}
-						</p>
-					</div>
-				</div>
-			</footer>
+			{/* Footer */}
+			<Footer />
 			{/* Audio Player - Fixed Position */}
 			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
 				<AudioPlayer audioFileName="conservacion.mp3" autoPlay={false} />

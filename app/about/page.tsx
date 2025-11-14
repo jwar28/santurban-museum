@@ -1,4 +1,5 @@
 import AudioPlayer from "@/components/ui/audio-player";
+import Footer from "@/components/ui/footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -185,6 +186,9 @@ export default function AboutPage() {
 					</div>
 				</section>
 			</div>
+
+			{/* Footer */}
+			<Footer />
 
 			{/* Audio Player - Fixed Position */}
 			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">

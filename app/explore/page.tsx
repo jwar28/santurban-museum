@@ -1,6 +1,7 @@
 import SpeciesList from "@/components/species/species-list";
 import SpeciesStoreInitializer from "@/components/species/species-store-initializer";
 import AudioPlayer from "@/components/ui/audio-player";
+import Footer from "@/components/ui/footer";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
 import type { Metadata } from "next";
@@ -117,7 +118,20 @@ export default async function ExplorePage() {
 				<div className="mt-12">
 					<SpeciesList rows={rowsWithPoster} />
 				</div>
+
+				{/* Coming Soon Message */}
+				<div className="text-center mt-16 mb-8">
+					<p className="text-xl text-emerald-400 font-medium mb-2">
+						✨ Más especies en camino...
+					</p>
+					<p className="text-sm text-gray-400">
+						Continúa explorando la biodiversidad del Páramo de Santurbán
+					</p>
+				</div>
 			</section>
+
+			{/* Footer */}
+			<Footer />
 
 			{/* Audio Player - Fixed Position, centered on mobile */}
 			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
