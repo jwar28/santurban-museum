@@ -36,14 +36,12 @@ export default function SanturbanPage() {
 					</p>
 				</div>
 			</section>
-
 			{/* Introducción */}
 			<section className="max-w-4xl mx-auto px-6 py-20">
 				<p className="text-2xl md:text-3xl text-gray-200 text-center leading-relaxed font-light">
-					{content.introduction.text}
+					<TextWithTooltips text={content.introduction.text} />
 				</p>
-			</section>
-
+			</section>{" "}
 			{/* Datos Científicos Clave */}
 			<section className="max-w-6xl mx-auto px-6 pb-16">
 				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
@@ -64,7 +62,6 @@ export default function SanturbanPage() {
 					))}
 				</div>
 			</section>
-
 			{/* Información Detallada */}
 			<section className="max-w-6xl mx-auto px-6 pb-16">
 				<div className="grid md:grid-cols-2 gap-8">
@@ -107,7 +104,6 @@ export default function SanturbanPage() {
 					</div>
 				</div>
 			</section>
-
 			{/* Curiosidades */}
 			<section className="max-w-6xl mx-auto px-6 pb-16">
 				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
@@ -130,7 +126,6 @@ export default function SanturbanPage() {
 					))}
 				</div>
 			</section>
-
 			{/* Clima del Páramo */}
 			<section className="max-w-6xl mx-auto px-6 pb-16">
 				<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
@@ -155,7 +150,6 @@ export default function SanturbanPage() {
 					</div>
 				</div>
 			</section>
-
 			{/* Importancia Geológica */}
 			<section className="max-w-4xl mx-auto px-6 pb-16">
 				<div className="bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-transparent p-8 rounded-3xl border border-amber-500/20">
@@ -180,7 +174,6 @@ export default function SanturbanPage() {
 					</ul>
 				</div>
 			</section>
-
 			{/* Conservación */}
 			<section className="max-w-6xl mx-auto px-6 pb-24">
 				<div className="bg-gradient-to-br from-red-500/10 via-orange-500/5 to-transparent p-8 rounded-3xl border border-red-500/20">
@@ -225,7 +218,6 @@ export default function SanturbanPage() {
 					</div>
 				</div>
 			</section>
-
 			{/* CTA */}
 			<section className="max-w-4xl mx-auto px-6 pb-24">
 				<div className="text-center py-16 px-8 rounded-3xl bg-gradient-to-br from-emerald-500/20 via-emerald-500/10 to-transparent border border-emerald-500/30">
@@ -256,7 +248,6 @@ export default function SanturbanPage() {
 					</a>
 				</div>
 			</section>
-
 			{/* Footer con Fuentes */}
 			<footer className="border-t border-emerald-500/10 bg-[#0b1210]/50 backdrop-blur-sm">
 				<div className="max-w-6xl mx-auto px-6 py-12">
@@ -323,7 +314,6 @@ export default function SanturbanPage() {
 					</div>
 				</div>
 			</footer>
-
 			{/* Audio Player - Fixed Position */}
 			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
 				<AudioPlayer audioFileName="conservacion.mp3" autoPlay={false} />

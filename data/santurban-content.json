@@ -5,7 +5,7 @@
 		"backgroundImage": "https://upload.wikimedia.org/wikipedia/commons/9/99/P%C3%A1ramo_de_Santurban.jpg"
 	},
 	"introduction": {
-		"text": "El Páramo de Santurbán es uno de los ecosistemas más importantes de Colombia, un complejo hídrico de 26 lagunas que lo convierten en una verdadera fábrica natural de agua."
+		"text": "El Páramo de Santurbán, también conocido como {Nudo de Santurbán}, es un macizo montañoso ubicado en los departamentos colombianos de Norte de Santander y Santander. Este ecosistema montano intertropical destaca por la diversidad y belleza de su fauna, así como por su importancia ecológica como fuente hídrica vital para la región."
 	},
 	"keyStats": [
 		{
@@ -43,8 +43,10 @@
 			"icon": "💧",
 			"color": "blue",
 			"paragraphs": [
-				"El páramo actúa como una {esponja natural} que captura, almacena y libera agua gradualmente a través de sus 26 lagunas interconectadas.",
-				"Suministra agua potable a ciudades como **Bucaramanga, Cúcuta y más de 40 municipios** de Norte de Santander y Santander.",
+				"El páramo actúa como una {esponja natural} que captura, almacena y libera agua gradualmente a través de sus 26 lagunas interconectadas de origen glaciar.",
+				"Suministra agua potable a **2.3 millones de personas en 48 municipios** (15 en Santander y 33 en Norte de Santander), incluyendo ciudades como **Bucaramanga, Cúcuta, Pamplona, y Floridablanca**.",
+				"El agua que desciende desde Santurbán es el **afluente más importante para el Lago Maracaibo** en Venezuela, conectando internacionalmente este ecosistema.",
+				"Abastece infraestructuras clave como la central termoeléctrica Tasajero, miles de hectáreas de café, y el distrito de riego del Zulia con 10,000 ha de arroz en producción.",
 				"Sus {humedales} pueden retener hasta **90% de su peso** en agua, regulando el ciclo hídrico durante todo el año."
 			]
 		},
@@ -54,8 +56,21 @@
 			"color": "emerald",
 			"paragraphs": [
 				"Alberga **293 especies de fauna** y **457 variedades de plantas**, muchas de ellas {endémicas}.",
-				"El {frailejón} es la especie emblemática del páramo, capaz de capturar agua de la niebla y regular el clima local.",
-				"Es hogar del **oso de anteojos**, el único oso nativo de Suramérica, y más de 70 especies de aves."
+				"El {frailejón} es la especie emblemática del páramo, capaz de capturar agua de la niebla y regular el clima local. Sus hojas peludas conducen el agua hasta sus raíces.",
+				"Es hogar del **oso de anteojos** (Tremarctos ornatus), el único oso nativo de Suramérica, y especies en peligro como el {cóndor de los Andes}.",
+				"La flora incluye importantes {musgos} como **Sphagnum magellanicum**, fundamentales para la regulación hídrica, y arbustos como **Pernettya prostrata** de la familia Ericaceae.",
+				"Entre la fauna se encuentran especies en peligro como el {chirriador} (Cisttothorus apollinari), el {pato zambullidor} (Podiceps andinos), y el venado de páramo."
+			]
+		},
+		"ecosystem": {
+			"title": "Ecosistemas del Páramo",
+			"icon": "🏔️",
+			"color": "purple",
+			"paragraphs": [
+				"El complejo se conecta directamente con los páramos de Almorzadero, Cocuy, Pisba y Tota-Bijagual-Mamapacha en la {cordillera Oriental}.",
+				"Los páramos representan el 50% del área con tres unidades principales: **páramo rocoso** (1,767 ha con fuertes pendientes), **pajonales** con frailejones y chuscales, y pequeñas zonas de {turbera}.",
+				"Los {bosques andinos} representan el 27% del área, distribuidos desde los 2,800 hasta los 3,400 msnm, con una estructura que varía según el relieve.",
+				"La zona de transición o {subpáramo} contiene bosquecillos de la familia Compositae (Asteraceae), con especies como Eupatorium, bambú **Neurolepis aristata**, y abundantes {briófitas}."
 			]
 		}
 	},
@@ -95,6 +110,24 @@
 			"icon": "🌍",
 			"title": "Ecosistema Raro",
 			"description": "Los páramos solo existen en **Colombia, Venezuela, Ecuador, Perú y Costa Rica**. Colombia tiene el 50% de todos los páramos del mundo."
+		},
+		{
+			"id": 7,
+			"icon": "💧",
+			"title": "Colchón de Musgos",
+			"description": "Los musgos forman un **espeso colchón** fundamental para la regulación hídrica. Especies como **Sphagnum** pueden retener hasta **20 veces su peso** en agua."
+		},
+		{
+			"id": 8,
+			"icon": "🌊",
+			"title": "Precipitación Variable",
+			"description": "La lluvia varía dramáticamente entre zonas: desde **700 mm anuales** en el sector de Berlín hasta **2,000 mm** en Loma Grande."
+		},
+		{
+			"id": 9,
+			"icon": "❄️",
+			"title": "Lagunas Glaciares",
+			"description": "Las lagunas como **La Pintada, El Total, La Negra y Laguna de Pajarito** son de origen glaciar, formadas hace miles de años durante la última era de hielo."
 		}
 	],
 	"climate": {
@@ -104,15 +137,16 @@
 				"title": "Características Climáticas",
 				"paragraphs": [
 					"El clima es **frío a extremadamente frío** con temperaturas mínimas por debajo de **0°C** y máximas que superan los **15°C**.",
-					"La {humedad relativa} se mantiene alta, por encima del **83%**, y rara vez baja del 73%."
+					"La {humedad relativa} se mantiene alta, generalmente por encima del **83%**, y rara vez baja del 73% a nivel promedio mensual."
 				]
 			},
 			{
 				"title": "Precipitación",
 				"paragraphs": [
-					"El {régimen bimodal} presenta períodos de alta precipitación entre abril-mayo y septiembre-noviembre.",
-					"Las lluvias varían entre **700 mm** (Páramo Berlín) y **2,000 mm** (Páramo Loma Grande) anuales.",
-					"La {evapotranspiración} es relativamente baja (~700 mm anuales), clasificando el clima como moderadamente a ligeramente húmedo."
+					"El {régimen bimodal} presenta períodos de alta precipitación entre **abril-mayo** y **septiembre-noviembre**.",
+					"Las lluvias varían entre **700 mm** anuales en el sector Páramo Berlín y **2,000 mm** en el sector Páramo Loma Grande.",
+					"La evaporación en superficie libre (lagunas, pantanos) está alrededor de los **900 mm anuales**.",
+					"La {evapotranspiración} potencial es relativamente baja (~700 mm anuales), clasificando el clima como **moderadamente húmedo a ligeramente húmedo**."
 				]
 			}
 		]
@@ -132,17 +166,93 @@
 		"icon": "⚠️",
 		"intro": "A pesar de su importancia vital, el Páramo de Santurbán enfrenta amenazas significativas que ponen en riesgo este ecosistema único y el suministro de agua para millones de personas.",
 		"threats": [
-			"{Minería ilegal y proyectos extractivos}",
+			"{Minería ilegal y proyectos extractivos} - títulos mineros vigentes y solicitudes que amenazan los frágiles ecosistemas",
 			"{Cambio climático y variabilidad de temperaturas}",
-			"{Expansión de la frontera agrícola}",
-			"Turismo no regulado"
+			"{Expansión de la frontera agrícola} - pastoreo de vacunos y ovinos con quemas periódicas",
+			"Turismo no regulado",
+			"Disminución de la diversidad florística por explotación extensiva",
+			"Destrucción de {briófitas} (musgos) y plantas macollosas"
 		],
 		"protectionActions": [
-			"Declaración como área protegida desde 2014",
+			"Declaración de múltiples áreas protegidas desde 2004 (DMI Berlín, Parques Regionales Sisavita y Santurbán)",
+			"Prohibición legal de la actividad minera en zonas de páramo",
 			"Monitoreo científico continuo de la biodiversidad",
 			"Programas de educación ambiental comunitaria",
 			"Restauración de zonas degradadas"
-		]
+		],
+		"legalProtection": {
+			"title": "Marco Legal de Protección",
+			"description": "Desde la Ley 99 de 1993, múltiples acuerdos han consolidado la protección del complejo Santurbán-Almorzadero, definiendo los páramos como **Zonas de Protección Especial** e incorporándolos en los ordenamientos territoriales municipales."
+		}
+	},
+	"tourism": {
+		"title": "Información para Visitantes",
+		"icon": "🥾",
+		"access": {
+			"title": "Vías de Acceso",
+			"description": "Desde Bucaramanga o Cúcuta se puede llegar al páramo por seis municipios: **Tona, Vetas, California, Suratá, Matanza y Charta**.",
+			"routes": [
+				{
+					"name": "Ruta desde Mutiscua",
+					"difficulty": "Difícil",
+					"duration": "8 horas aproximadamente",
+					"description": "A pie o a lomo de mula desde Mutiscua (Norte de Santander), a 2.5 horas de Pamplona. Requiere excelente estado físico. Llega al campamento base en la **Laguna de Súrcura**."
+				},
+				{
+					"name": "Ruta desde Vetas",
+					"difficulty": "Moderada",
+					"duration": "3 horas aproximadamente",
+					"description": "Permite visitar el páramo y volver el mismo día. Llega al campamento base cerca de la **Laguna La Pintada**. Se recomienda contratar servicio de Jeep (carreteras en mal estado)."
+				}
+			]
+		},
+		"placesOfInterest": {
+			"title": "Sitios de Interés",
+			"intro": "El páramo ofrece un paisaje inhóspito pero fascinante con múltiples lagunas de belleza incomparable:",
+			"places": [
+				{
+					"name": "Laguna de Pajarito",
+					"description": "Primera laguna que se encuentra en el recorrido. Agua fría con paisaje hermoso, ideal para fotografía."
+				},
+				{
+					"name": "Lagunas Las Calles",
+					"description": "Sistema de lagunas interconectadas con características únicas."
+				},
+				{
+					"name": "Laguna El Total",
+					"description": "Laguna de origen glaciar con ecosistema prístino."
+				},
+				{
+					"name": "Laguna El Plan",
+					"description": "Ubicada en zona de pajonales con rica biodiversidad."
+				},
+				{
+					"name": "Laguna La Negra",
+					"description": "Destaca por su color oscuro debido a la profundidad y sedimentos."
+				},
+				{
+					"name": "Laguna La Pintada",
+					"description": "Una de las más accesibles, cerca del campamento base de Vetas."
+				},
+				{
+					"name": "Laguna de Súrcura",
+					"description": "Punto base para expediciones en la zona de Mutiscua."
+				}
+			]
+		},
+		"recommendations": {
+			"title": "Recomendaciones Importantes",
+			"items": [
+				"🧭 **Contratar un guía local** - Esencial para seguridad. El páramo puede tornarse hostil cuando baja la neblina.",
+				"🍲 **Llevar alimentos e hidratación** - No hay restaurantes ni servicios en el páramo.",
+				"🏕️ **Hospedaje** - Hospedarse en fincas de poblaciones vecinas o acampar con permiso de habitantes locales.",
+				"🧥 **Ropa apropiada** - Llevar ropa impermeable, botas de montaña y capas térmicas.",
+				"💊 **Consulta médica previa** - Si tiene enfermedades o consume medicamentos, consulte antes del viaje.",
+				"♻️ **No deje rastro** - Lleve toda su basura, incluyendo residuos biodegradables.",
+				"💧 **No contamine el agua** - Las fuentes son súper puras y vitales para millones de personas.",
+				"🌿 **Respete la flora** - NO tome frailejones ni otras plantas. Solo observe y fotografíe."
+			]
+		}
 	},
 	"cta": {
 		"title": "Descubre las Especies del Páramo",
