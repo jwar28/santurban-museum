@@ -76,6 +76,7 @@ export default function Navbar() {
 							src="/cdt-logo.png"
 							alt="Smart Center Development"
 							fill
+							sizes="128px"
 							className="object-contain brightness-100 contrast-110 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)] group-hover:brightness-110 group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.5)] transition-all duration-300"
 							priority
 						/>
@@ -95,6 +96,7 @@ export default function Navbar() {
 							src="/cdt-logo.png"
 							alt="Smart Center Development"
 							fill
+							sizes="96px"
 							className="object-contain brightness-100 contrast-110 drop-shadow-[0_0_6px_rgba(16,185,129,0.3)] group-active:brightness-110 transition-all duration-200"
 							priority
 						/>
