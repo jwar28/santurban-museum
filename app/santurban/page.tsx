@@ -1,37 +1,70 @@
+"use client";
+
 import { TextWithTooltips } from "@/components/santurban/text-with-tooltips";
 import AudioPlayer from "@/components/ui/audio-player";
 import Footer from "@/components/ui/footer";
 import { ParamoGallery } from "@/components/ui/paramo-gallery";
 import content from "@/data/santurban-content.json";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-	title: "Páramo de Santurbán",
-	description:
-		"Descubre el Páramo de Santurbán: una fábrica natural de agua con 26 lagunas, hogar de especies únicas y ecosistema vital para más de 2 millones de personas. Conoce su importancia científica, biodiversidad y curiosidades.",
-	openGraph: {
-		title: "Páramo de Santurbán - Fábrica Natural de Agua",
-		description:
-			"Explora el ecosistema de páramo más importante de Colombia. 26 lagunas, biodiversidad única y agua para millones de personas.",
-	},
-};
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function SanturbanPage() {
+	const [heroLoaded, setHeroLoaded] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
+	const [pageReady, setPageReady] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+		// Asegurar que la página se muestre después de un timeout
+		const timer = setTimeout(() => {
+			setPageReady(true);
+		}, 100);
+		return () => clearTimeout(timer);
+	}, []);
+
+	// Mostrar loading screen inicial
+	if (!pageReady) {
+		return (
+			<main className="min-h-screen bg-[#0b1210] text-white flex items-center justify-center">
+				<div className="text-center">
+					<div className="w-16 h-16 border-4 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
+					<p className="text-emerald-400 text-lg">Cargando...</p>
+				</div>
+			</main>
+		);
+	}
+
 	return (
 		<main className="min-h-screen bg-[#0b1210] text-white pt-16 pb-20 md:pb-0">
 			{/* Hero Section */}
-			<section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-				<div
-					className="absolute inset-0 bg-cover bg-center"
-					style={{
-						backgroundImage: `linear-gradient(rgba(11, 18, 16, 0.7), rgba(11, 18, 16, 0.85)), url('${content.hero.backgroundImage}')`,
-					}}
-				/>
+			<section className="relative h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-950/30 to-[#0b1210]">
+				{/* Loading indicator */}
+				{!heroLoaded && (
+					<div className="absolute inset-0 flex items-center justify-center bg-[#0b1210]">
+						<div className="w-12 h-12 border-4 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin" />
+					</div>
+				)}
+				{/* Background image with loading state */}
+				<div className="absolute inset-0">
+					<Image
+						src={content.hero.backgroundImage}
+						alt="Páramo de Santurbán"
+						fill
+						priority
+						unoptimized
+						className={`object-cover transition-opacity duration-700 ${
+							heroLoaded ? "opacity-100" : "opacity-0"
+						}`}
+						onLoad={() => setHeroLoaded(true)}
+						sizes="100vw"
+					/>
+					<div className="absolute inset-0 bg-gradient-to-b from-[#0b1210]/70 to-[#0b1210]/85" />
+				</div>
 				<div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-					<h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-emerald-400 to-emerald-200 bg-clip-text text-transparent">
+					<h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-emerald-400 to-emerald-200 bg-clip-text text-transparent drop-shadow-lg">
 						{content.hero.title}
 					</h1>
-					<p className="text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto font-light">
+					<p className="text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto font-light drop-shadow-md">
 						{content.hero.subtitle}
 					</p>
 				</div>
@@ -255,10 +288,12 @@ export default function SanturbanPage() {
 			</section>
 			{/* Footer */}
 			<Footer />
-			{/* Audio Player - Fixed Position */}
-			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
-				<AudioPlayer audioFileName="conservacion.mp3" autoPlay={false} />
-			</div>
+			{/* Audio Player - Fixed Position - Lazy load */}
+			{isMounted && (
+				<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
+					<AudioPlayer audioFileName="conservacion.mp3" autoPlay={false} />
+				</div>
+			)}
 		</main>
 	);
 }
