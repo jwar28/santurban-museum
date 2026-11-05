@@ -116,12 +116,12 @@ const CodeBlock = ({
 	);
 };
 
-function childrenTakeAllStringContents(element: any): string {
+function childrenTakeAllStringContents(element: unknown): string {
 	if (typeof element === "string") {
 		return element;
 	}
 
-	if (element?.props?.children) {
+	if (React.isValidElement<{ children?: unknown }>(element) && element.props.children) {
 		const children = element.props.children;
 
 		if (Array.isArray(children)) {
@@ -145,7 +145,14 @@ const COMPONENTS = {
 	strong: withClass("strong", "font-semibold"),
 	a: withClass("a", "text-primary underline underline-offset-2"),
 	blockquote: withClass("blockquote", "border-l-2 border-primary pl-4"),
-	code: ({ children, className, node, ...rest }: any) => {
+	code: ({
+		children,
+		className,
+		...props
+	}: React.ComponentPropsWithoutRef<"code"> & { node?: unknown }) => {
+		// react-markdown pasa el nodo del AST; no debe llegar al DOM
+		const rest = { ...props };
+		delete rest.node;
 		const match = /language-(\w+)/.exec(className || "");
 		return match ? (
 			<CodeBlock className={className} language={match[1]} {...rest}>
@@ -162,7 +169,7 @@ const COMPONENTS = {
 			</code>
 		);
 	},
-	pre: ({ children }: any) => children,
+	pre: ({ children }: { children?: React.ReactNode }) => <>{children}</>,
 	ol: withClass("ol", "list-decimal space-y-2 pl-6"),
 	ul: withClass("ul", "list-disc space-y-2 pl-6"),
 	li: withClass("li", "my-1.5"),
@@ -184,9 +191,12 @@ const COMPONENTS = {
 };
 
 function withClass(Tag: keyof React.JSX.IntrinsicElements, classes: string) {
-	const Component = ({ node, ...props }: any) => {
-		const Element = Tag as any;
-		return <Element className={classes} {...props} />;
+	const Component = (
+		allProps: React.HTMLAttributes<HTMLElement> & { node?: unknown },
+	) => {
+		const props = { ...allProps };
+		delete props.node;
+		return React.createElement(Tag, { className: classes, ...props });
 	};
 	Component.displayName = String(Tag);
 	return Component;
