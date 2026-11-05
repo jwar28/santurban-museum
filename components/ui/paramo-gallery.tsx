@@ -1,63 +1,41 @@
-"use client";
-
-import { Marquee } from "@/components/ui/marquee";
-import { ParamoImageCard } from "@/components/ui/paramo-image-card";
+import PlateImage from "@/components/paramo/plate-image";
 import { paramoImages } from "@/data/marquee-data";
-import { useEffect, useState } from "react";
 
+/** Vistas del páramo: láminas fotográficas con pie y crédito, en una fila con desplazamiento. */
 export function ParamoGallery() {
-	const [isMobile, setIsMobile] = useState(false);
-	const [isLoaded, setIsLoaded] = useState(false);
-
-	useEffect(() => {
-		setIsMobile(window.innerWidth < 768);
-		setIsLoaded(true);
-
-		const handleResize = () => {
-			setIsMobile(window.innerWidth < 768);
-		};
-
-		window.addEventListener("resize", handleResize);
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
-
-	// En móvil mostramos menos imágenes para mejor rendimiento
-	const imagesToShow = isMobile ? paramoImages.slice(0, 4) : paramoImages;
-
 	return (
-		<section className="w-full py-12 overflow-hidden">
-			<div className="mb-8 text-center">
-				<h2 className="text-4xl font-bold text-emerald-900 dark:text-emerald-100 mb-2">
-					Galería del Páramo
+		<section aria-labelledby="vistas" className="py-20 md:py-28">
+			<div className="px-4 md:px-12 lg:px-20">
+				<h2 id="vistas" className="font-display text-4xl md:text-5xl">
+					Vistas del páramo
 				</h2>
-				<p className="text-gray-600 dark:text-gray-400">
-					Descubre la belleza natural del Páramo de Santurbán
+				<p className="mt-3 max-w-xl text-ink-soft">
+					Lagunas y paisajes de Santurbán. Desliza para recorrerlas.
 				</p>
 			</div>
-
-			<div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-				{!isLoaded ? (
-					<div className="flex gap-4 px-4">
-						{[1, 2, 3].map((i) => (
-							<div
-								key={i}
-								className="w-[350px] md:w-[400px] h-64 md:h-72 rounded-2xl bg-white/5 animate-pulse"
-							/>
-						))}
-					</div>
-				) : (
-					<>
-						<Marquee pauseOnHover className="[--duration:80s] [--gap:1rem]">
-							{imagesToShow.map((image) => (
-								<ParamoImageCard key={image.id} image={image} />
-							))}
-						</Marquee>
-						{/* Gradientes laterales para efecto fade */}
-						<div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#0b1210] to-transparent" />
-						<div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#0b1210] to-transparent" />
-					</>
-				)}
-			</div>
+			<ul
+				className="mt-10 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-6 md:gap-10 md:px-12 lg:px-20"
+				aria-label="Fotografías del páramo"
+			>
+				{paramoImages.map((image) => (
+					<li key={image.id} className="w-[82vw] max-w-[30rem] flex-none snap-start">
+						<figure>
+							<div className="border border-ink/40 bg-mist-deep p-2">
+								<PlateImage
+									src={image.imageUrl}
+									alt={image.alt}
+									caption={image.locationName}
+									className="aspect-[4/3] w-full object-cover"
+								/>
+							</div>
+							<figcaption className="mt-4 flex flex-col gap-1">
+								<span className="font-serif text-xl italic">{image.locationName}</span>
+								<span className="text-xs text-ink-soft">{image.credits}</span>
+							</figcaption>
+						</figure>
+					</li>
+				))}
+			</ul>
 		</section>
 	);
 }

@@ -1,127 +1,74 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import PlateImage from "@/components/paramo/plate-image";
 import ModelViewer from "./model-viewer";
 
 interface SpeciesCarouselProps {
 	modelUrl: string;
 	imageUrl?: string | null;
 	commonName: string;
+	credit?: string | null;
 }
 
+type View = "model" | "photo";
+
+/** Vitrina del espécimen: modelo 3D y fotografía de referencia como dos vistas de la misma lámina. */
 export default function SpeciesCarousel({
 	modelUrl,
 	imageUrl,
 	commonName,
+	credit,
 }: SpeciesCarouselProps) {
-	const [currentIndex, setCurrentIndex] = useState(0);
-
-	// Create slides array based on available content
-	const slides = [];
-	if (modelUrl) {
-		slides.push({ type: "model", content: modelUrl });
-	}
-	if (imageUrl) {
-		slides.push({ type: "image", content: imageUrl });
-	}
-
-	const totalSlides = slides.length;
-
-	// Don't show navigation if only one slide
-	if (totalSlides <= 1) {
-		return (
-			<div className="w-full h-full flex items-center justify-center">
-				{modelUrl && <ModelViewer modelUrl={modelUrl} />}
-			</div>
-		);
-	}
-
-	const goToPrevious = () => {
-		setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-	};
-
-	const goToNext = () => {
-		setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-	};
-
-	const currentSlide = slides[currentIndex];
+	const views: { id: View; label: string }[] = [
+		{ id: "model", label: "Modelo 3D" },
+		...(imageUrl ? [{ id: "photo" as View, label: "Fotografía" }] : []),
+	];
+	const [view, setView] = useState<View>("model");
 
 	return (
-		<div className="w-full h-full relative flex items-center justify-center">
-			{/* Slide Content - Keep both mounted, toggle visibility */}
-			<div className="w-full h-full relative">
-				{/* Model Slide */}
-				{modelUrl && (
-					<div
-						className={`w-full h-full flex items-center justify-center absolute inset-0 transition-opacity duration-300 ${
-							currentSlide.type === "model"
-								? "opacity-100 z-10"
-								: "opacity-0 z-0 pointer-events-none"
-						}`}
-					>
-						<ModelViewer modelUrl={modelUrl} />
-					</div>
-				)}
+		<div className="flex h-full flex-col">
+			{views.length > 1 && (
+				<div role="tablist" aria-label="Vista del espécimen" className="flex gap-6 border-b border-ink/30">
+					{views.map((v) => (
+						<button
+							key={v.id}
+							type="button"
+							role="tab"
+							aria-selected={view === v.id}
+							onClick={() => setView(v.id)}
+							className={`label relative -mb-px py-3 transition-colors duration-300 ${
+								view === v.id ? "border-b-2 border-water-deep text-ink" : "text-ink-soft hover:text-ink"
+							}`}
+						>
+							{v.label}
+						</button>
+					))}
+				</div>
+			)}
 
-				{/* Image Slide */}
+			<div
+				className="relative mt-3 min-h-0 flex-1 border border-ink/30"
+				style={{
+					background:
+						"repeating-linear-gradient(0deg, transparent 0 47px, rgba(30,45,41,0.12) 47px 48px), var(--mist-deep)",
+				}}
+			>
+				<div className={`absolute inset-0 ${view === "model" ? "" : "invisible"}`} role="tabpanel">
+					<ModelViewer modelUrl={modelUrl} />
+				</div>
 				{imageUrl && (
-					<div
-						className={`w-full h-full flex items-center justify-center absolute inset-0 transition-opacity duration-300 ${
-							currentSlide.type === "image"
-								? "opacity-100 z-10"
-								: "opacity-0 z-0 pointer-events-none"
-						}`}
-					>
-						<img
+					<div className={`absolute inset-0 p-3 ${view === "photo" ? "" : "invisible"}`} role="tabpanel">
+						<PlateImage
 							src={imageUrl}
-							alt={`${commonName} - Imagen de referencia`}
-							className="w-full h-full object-contain"
+							alt={`${commonName}, fotografía de referencia`}
+							caption={commonName}
+							className="h-full w-full object-contain"
 						/>
 					</div>
 				)}
 			</div>
-
-			{/* Navigation Buttons */}
-			<button
-				type="button"
-				onClick={goToPrevious}
-				className="absolute left-2 top-1/2 -translate-y-1/2 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/30 hover:border-emerald-500/50 text-white p-2 rounded-full transition-all z-20"
-				aria-label="Anterior"
-			>
-				<ChevronLeft size={20} />
-			</button>
-
-			<button
-				type="button"
-				onClick={goToNext}
-				className="absolute right-2 top-1/2 -translate-y-1/2 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/30 hover:border-emerald-500/50 text-white p-2 rounded-full transition-all z-20"
-				aria-label="Siguiente"
-			>
-				<ChevronRight size={20} />
-			</button>
-
-			{/* Indicators */}
-			<div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-				{slides.map((slide, index) => (
-					<button
-						key={`${slide.type}-${index}`}
-						type="button"
-						onClick={() => setCurrentIndex(index)}
-						className={`h-1.5 rounded-full transition-all ${
-							index === currentIndex
-								? "w-8 bg-emerald-500"
-								: "w-1.5 bg-emerald-500/30 hover:bg-emerald-500/50"
-						}`}
-						aria-label={`Ir a ${slide.type === "model" ? "modelo 3D" : "imagen"}`}
-					/>
-				))}
-			</div>
-
-			{/* Label */}
-			<div className="absolute top-4 left-1/2 -translate-x-1/2 text-center text-xs text-white/60 bg-black/30 px-3 py-1.5 rounded-md backdrop-blur-sm z-20">
-				{currentSlide.type === "model" ? "Modelo 3D" : "Imagen de referencia"}
-			</div>
+			{credit && view === "photo" && <p className="mt-2 text-xs text-ink-soft">{credit}</p>}
 		</div>
 	);
 }

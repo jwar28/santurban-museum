@@ -2,6 +2,38 @@
 
 import { useEffect, useState } from "react";
 
+/** Estado del oso guía: habla mientras suena una narración y saluda de vez en cuando. */
+export function useBearState() {
+	const [isSpeaking, setIsSpeaking] = useState(false);
+	const [isSaluting, setIsSaluting] = useState(false);
+
+	useEffect(() => {
+		const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		const salute = reduce
+			? undefined
+			: setInterval(() => setIsSaluting((prev) => !prev), 3200);
+
+		const onAudio = (e: Event) => {
+			setIsSpeaking((e as CustomEvent<{ isPlaying: boolean }>).detail.isPlaying);
+		};
+		window.addEventListener("audioStateChange", onAudio);
+		return () => {
+			if (salute) clearInterval(salute);
+			window.removeEventListener("audioStateChange", onAudio);
+		};
+	}, []);
+
+	const src = isSpeaking
+		? isSaluting
+			? "/bear/speaking_salute.png"
+			: "/bear/speaking.png"
+		: isSaluting
+			? "/bear/idle_salute.png"
+			: "/bear/idle.png";
+
+	return { src, isSpeaking, isSaluting };
+}
+
 export default function BearNarrator({
 	wrapperClassName = "",
 	imgClassName = "w-40 md:w-56",
@@ -9,61 +41,10 @@ export default function BearNarrator({
 	wrapperClassName?: string;
 	imgClassName?: string;
 }) {
-	const [isSpeaking, setIsSpeaking] = useState(false);
-	const [isSaluting, setIsSaluting] = useState(false);
-
-	useEffect(() => {
-		let mounted = true;
-
-		// Alterna entre normal y saludando cada 3 segundos
-		const saluteInterval = setInterval(() => {
-			if (mounted) {
-				setIsSaluting((prev) => !prev);
-			}
-		}, 3000);
-
-		// Escuchar eventos personalizados de cambio de estado del audio
-		const handleAudioStateChange = (e: Event) => {
-			const customEvent = e as CustomEvent<{ isPlaying: boolean }>;
-			if (mounted) {
-				setIsSpeaking(customEvent.detail.isPlaying);
-			}
-		};
-
-		window.addEventListener("audioStateChange", handleAudioStateChange);
-
-		return () => {
-			mounted = false;
-			clearInterval(saluteInterval);
-			window.removeEventListener("audioStateChange", handleAudioStateChange);
-		};
-	}, []);
-
-	// Determinar qué imagen mostrar
-	const getImageSrc = () => {
-		if (isSpeaking) {
-			return isSaluting ? "/bear/speaking_salute.png" : "/bear/speaking.png";
-		}
-		return isSaluting ? "/bear/idle_salute.png" : "/bear/idle.png";
-	};
-
-	const getAltText = () => {
-		if (isSpeaking) {
-			return isSaluting ? "Oso hablando y saludando" : "Oso hablando";
-		}
-		return isSaluting ? "Oso saludando" : "Oso";
-	};
-
+	const { src } = useBearState();
 	return (
-		<div
-			className={`flex items-center justify-center ${wrapperClassName}`}
-			aria-hidden
-		>
-			<img
-				src={getImageSrc()}
-				alt={getAltText()}
-				className={`${imgClassName} h-auto select-none transition-opacity duration-300`}
-			/>
+		<div className={`flex items-end justify-center ${wrapperClassName}`} aria-hidden>
+			<img src={src} alt="" className={`${imgClassName} h-auto select-none`} />
 		</div>
 	);
 }

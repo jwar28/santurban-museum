@@ -1,299 +1,259 @@
-"use client";
-
+import Altimeter from "@/components/paramo/altimeter";
+import PlateImage from "@/components/paramo/plate-image";
 import { TextWithTooltips } from "@/components/santurban/text-with-tooltips";
 import AudioPlayer from "@/components/ui/audio-player";
 import Footer from "@/components/ui/footer";
 import { ParamoGallery } from "@/components/ui/paramo-gallery";
 import content from "@/data/santurban-content.json";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import type { ReactNode } from "react";
+
+/** Encabezado de sala: título en la columna izquierda, contenido a la derecha. */
+function Room({
+	id,
+	title,
+	note,
+	children,
+	className = "",
+}: {
+	id: string;
+	title: string;
+	note?: string;
+	children: ReactNode;
+	className?: string;
+}) {
+	return (
+		<section
+			aria-labelledby={id}
+			className={`px-4 py-20 md:px-12 md:py-28 lg:px-20 ${className}`}
+		>
+			<div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[18rem_1fr] lg:gap-16">
+				<div>
+					<h2 id={id} className="font-display text-4xl leading-[1.05] md:text-5xl lg:sticky lg:top-24">
+						{title}
+					</h2>
+					{note && <p className="mt-3 font-serif italic opacity-80">{note}</p>}
+				</div>
+				<div>{children}</div>
+			</div>
+		</section>
+	);
+}
+
+const stats = [
+	{ label: "Personas abastecidas", value: "2,3 millones", note: "en 48 municipios" },
+	{ label: "Extensión", value: "142.000 ha", note: "72 % en Norte de Santander" },
+	{ label: "Lagunas de origen glaciar", value: "26 o más", note: "interconectadas" },
+	{ label: "Rango térmico diario", value: "0 – 15 °C", note: "mínimas por debajo de 0 °C" },
+];
 
 export default function SanturbanPage() {
-	const [heroLoaded, setHeroLoaded] = useState(false);
-	const [isMounted, setIsMounted] = useState(false);
-	const [pageReady, setPageReady] = useState(false);
-
-	useEffect(() => {
-		setIsMounted(true);
-		// Asegurar que la página se muestre después de un timeout
-		const timer = setTimeout(() => {
-			setPageReady(true);
-		}, 100);
-		return () => clearTimeout(timer);
-	}, []);
-
-	// Mostrar loading screen inicial
-	if (!pageReady) {
-		return (
-			<main className="min-h-screen bg-[#0b1210] text-white flex items-center justify-center">
-				<div className="text-center">
-					<div className="w-16 h-16 border-4 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin mx-auto mb-4" />
-					<p className="text-emerald-400 text-lg">Cargando...</p>
-				</div>
-			</main>
-		);
-	}
+	const { hero, introduction, detailedInfo, curiosities, climate, geology, conservation, cta } =
+		content;
 
 	return (
-		<main className="min-h-screen bg-[#0b1210] text-white pt-16 pb-20 md:pb-0">
-			{/* Hero Section */}
-			<section className="relative h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-950/30 to-[#0b1210]">
-				{/* Loading indicator */}
-				{!heroLoaded && (
-					<div className="absolute inset-0 flex items-center justify-center bg-[#0b1210]">
-						<div className="w-12 h-12 border-4 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin" />
+		<>
+			<Altimeter targetId="descenso" />
+			<main id="descenso" className="bg-mist pt-[5.75rem] text-ink md:pl-28 md:pt-14">
+				{/* Cumbre */}
+				<section aria-labelledby="titulo" className="px-4 pb-16 pt-12 md:px-12 md:pt-20 lg:px-20">
+					<div className="mx-auto max-w-6xl">
+						<h1 id="titulo" className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.92]">
+							{hero.title}
+						</h1>
+						<p className="mt-5 max-w-3xl font-serif text-[clamp(1.25rem,2.4vw,1.9rem)] italic leading-snug text-water-deep">
+							{hero.subtitle}
+						</p>
+
+						<figure className="mt-12">
+							<div className="border border-ink/40 bg-mist-deep p-2 md:p-3">
+								<PlateImage
+									src={hero.backgroundImage}
+									alt="Pajonales y frailejones del Páramo de Santurbán bajo la niebla"
+									caption="Páramo de Santurbán"
+									loading="eager"
+									className="aspect-[16/9] w-full object-cover md:aspect-[21/9]"
+								/>
+							</div>
+							<figcaption className="mt-3 flex flex-col justify-between gap-1 text-xs text-ink-soft sm:flex-row">
+								<span>Páramo de Santurbán, Santander y Norte de Santander.</span>
+								<span>Foto: Garciarovira, CC BY-SA 4.0, vía Wikimedia Commons</span>
+							</figcaption>
+						</figure>
+
+						<p className="mt-14 max-w-[52rem] font-serif text-[clamp(1.2rem,2vw,1.6rem)] leading-relaxed">
+							<TextWithTooltips text={introduction.text} />
+						</p>
 					</div>
-				)}
-				{/* Background image with loading state */}
-				<div className="absolute inset-0">
-					<Image
-						src={content.hero.backgroundImage}
-						alt="Páramo de Santurbán"
-						fill
-						priority
-						unoptimized
-						className={`object-cover transition-opacity duration-700 ${
-							heroLoaded ? "opacity-100" : "opacity-0"
-						}`}
-						onLoad={() => setHeroLoaded(true)}
-						sizes="100vw"
-					/>
-					<div className="absolute inset-0 bg-gradient-to-b from-[#0b1210]/70 to-[#0b1210]/85" />
-				</div>
-				<div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-					<h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-emerald-400 to-emerald-200 bg-clip-text text-transparent drop-shadow-lg">
-						{content.hero.title}
-					</h1>
-					<p className="text-xl md:text-2xl text-gray-100 max-w-3xl mx-auto font-light drop-shadow-md">
-						{content.hero.subtitle}
-					</p>
-				</div>
-			</section>
-			{/* Introducción */}
-			<section className="max-w-4xl mx-auto px-6 py-16">
-				<p className="text-xl md:text-2xl text-gray-300 text-center leading-relaxed font-light">
-					<TextWithTooltips text={content.introduction.text} />
-				</p>
-			</section>
+				</section>
 
-			{/* Galería del Páramo */}
-			<ParamoGallery />
+				{/* Ficha */}
+				<Room id="ficha" title="Ficha del páramo" note="Las cifras que lo hacen indispensable">
+					<dl className="border-t-2 border-ink">
+						{stats.map((s) => (
+							<div
+								key={s.label}
+								className="grid gap-1 border-b border-ink/30 py-5 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8"
+							>
+								<dt className="text-ink-soft">
+									{s.label}
+									<span className="block text-sm">{s.note}</span>
+								</dt>
+								<dd className="tabular font-display text-4xl md:text-5xl">{s.value}</dd>
+							</div>
+						))}
+					</dl>
+				</Room>
 
-			{/* Datos Científicos Clave */}
-			<section className="max-w-6xl mx-auto px-6 py-16">
-				<h2 className="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-100">
-					Datos Científicos Clave
-				</h2>
-				<div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-					{content.keyStats.map((stat) => (
-						<div
-							key={stat.id}
-							className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all"
-						>
-							<div className="text-3xl mb-3">{stat.icon}</div>
-							<div className="text-2xl font-bold text-emerald-400 mb-2">
-								{stat.value}
-							</div>
-							<p className="text-sm text-gray-400">{stat.description}</p>
-						</div>
-					))}
-				</div>
-			</section>
-			{/* Información Detallada */}
-			<section className="max-w-6xl mx-auto px-6 py-16">
-				<div className="grid md:grid-cols-2 gap-6">
-					{/* Importancia Hídrica */}
-					<div className="bg-white/5 p-8 rounded-xl border border-white/10 hover:border-blue-500/30 transition-all">
-						<div className="flex items-center gap-3 mb-6">
-							<div className="text-3xl">
-								{content.detailedInfo.waterFactory.icon}
-							</div>
-							<h3 className="text-xl font-bold text-blue-400">
-								{content.detailedInfo.waterFactory.title}
-							</h3>
-						</div>
-						<div className="space-y-3 text-sm text-gray-400">
-							{content.detailedInfo.waterFactory.paragraphs.map((para) => (
-								<p key={para.substring(0, 50)}>
-									<TextWithTooltips text={para} color="blue" />
+				<ParamoGallery />
+
+				{/* Franja del páramo */}
+				<div className="bg-slope-1">
+					<Room id="agua" title={detailedInfo.waterFactory.title} note="Cómo nace el agua de millones">
+						<div className="max-w-[40rem] space-y-5 text-lg leading-relaxed">
+							{detailedInfo.waterFactory.paragraphs.map((para) => (
+								<p key={para.slice(0, 40)}>
+									<TextWithTooltips text={para} />
 								</p>
 							))}
 						</div>
-					</div>
+					</Room>
 
-					{/* Biodiversidad */}
-					<div className="bg-white/5 p-8 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all">
-						<div className="flex items-center gap-3 mb-6">
-							<div className="text-3xl">
-								{content.detailedInfo.biodiversity.icon}
-							</div>
-							<h3 className="text-xl font-bold text-emerald-400">
-								{content.detailedInfo.biodiversity.title}
-							</h3>
-						</div>
-						<div className="space-y-3 text-sm text-gray-400">
-							{content.detailedInfo.biodiversity.paragraphs.map((para) => (
-								<p key={para.substring(0, 50)}>
-									<TextWithTooltips text={para} color="emerald" />
+					<div className="contour mx-4 text-ink/50 md:mx-12 lg:mx-20" />
+
+					<Room id="vida" title={detailedInfo.biodiversity.title} note="293 especies de fauna, 457 de plantas">
+						<div className="max-w-[40rem] space-y-5 text-lg leading-relaxed">
+							{detailedInfo.biodiversity.paragraphs.map((para) => (
+								<p key={para.slice(0, 40)}>
+									<TextWithTooltips text={para} />
 								</p>
 							))}
 						</div>
-					</div>
-				</div>
-			</section>
-			{/* Curiosidades */}
-			<section className="max-w-6xl mx-auto px-6 py-16">
-				<h2 className="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-100">
-					Curiosidades del Páramo
-				</h2>
-				<div className="grid md:grid-cols-3 gap-4">
-					{content.curiosities.map((curiosity) => (
-						<div
-							key={curiosity.id}
-							className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all"
+						<Link
+							href="/explore"
+							className="group mt-10 inline-flex items-center gap-2 border-b-2 border-ink pb-1 font-semibold"
 						>
-							<div className="text-3xl mb-4">{curiosity.icon}</div>
-							<h4 className="text-lg font-bold mb-3 text-emerald-400">
-								{curiosity.title}
-							</h4>
-							<p className="text-sm text-gray-400">
-								<TextWithTooltips text={curiosity.description} />
+							Ver estas especies en la colección
+							<ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+						</Link>
+					</Room>
+
+					<div className="contour mx-4 text-ink/50 md:mx-12 lg:mx-20" />
+
+					<Room id="notas" title="Notas de campo" note="Lo que sorprende del páramo">
+						<ol className="grid gap-x-10 sm:grid-cols-2 xl:grid-cols-3">
+							{curiosities.map((c) => (
+								<li key={c.id} className="border-t border-ink/40 py-6">
+									<h3 className="font-serif text-xl font-bold">{c.title}</h3>
+									<p className="mt-2 leading-relaxed">
+										<TextWithTooltips text={c.description} />
+									</p>
+								</li>
+							))}
+						</ol>
+					</Room>
+				</div>
+
+				{/* Franja del bosque altoandino */}
+				<div className="on-dark bg-slope-2 text-on-slope">
+					<Room id="clima" title={climate.title} note="Frío, húmedo y con dos temporadas de lluvia">
+						<div className="grid gap-12 md:grid-cols-2">
+							{climate.sections.map((section) => (
+								<div key={section.title}>
+									<h3 className="border-b border-on-slope/40 pb-3 font-serif text-xl font-bold">
+										{section.title}
+									</h3>
+									<div className="mt-5 space-y-4 leading-relaxed">
+										{section.paragraphs.map((para) => (
+											<p key={para.slice(0, 40)}>
+												<TextWithTooltips text={para} />
+											</p>
+										))}
+									</div>
+								</div>
+							))}
+						</div>
+					</Room>
+
+					<div className="contour mx-4 text-on-slope/40 md:mx-12 lg:mx-20" />
+
+					<Room id="suelo" title={geology.title} note="Hace 2 a 3 millones de años">
+						<p className="max-w-[40rem] text-lg leading-relaxed">
+							<TextWithTooltips text={geology.intro} />
+						</p>
+						<ul className="mt-8 max-w-[40rem] border-t border-on-slope/40">
+							{geology.features.map((f) => (
+								<li key={f} className="border-b border-on-slope/40 py-4 leading-relaxed">
+									<TextWithTooltips text={f} />
+								</li>
+							))}
+						</ul>
+					</Room>
+				</div>
+
+				{/* Franja del valle: lo que está en riesgo */}
+				<div className="on-dark bg-slope-3 text-on-slope">
+					<Room id="riesgo" title={conservation.title} note="Lo que lo amenaza y lo que lo protege">
+						<p className="max-w-[40rem] text-lg leading-relaxed">{conservation.intro}</p>
+						<div className="mt-12 grid gap-12 md:grid-cols-2">
+							<div>
+								<h3 className="border-b-2 border-gold pb-3 font-serif text-xl font-bold">Amenazas</h3>
+								<ul className="mt-2">
+									{conservation.threats.map((t) => (
+										<li key={t} className="border-b border-on-slope/30 py-4 leading-relaxed">
+											<TextWithTooltips text={t} />
+										</li>
+									))}
+								</ul>
+							</div>
+							<div>
+								<h3 className="border-b-2 border-water-pale pb-3 font-serif text-xl font-bold">
+									Acciones de protección
+								</h3>
+								<ul className="mt-2">
+									{conservation.protectionActions.map((a) => (
+										<li key={a} className="border-b border-on-slope/30 py-4 leading-relaxed">
+											{a}
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+						<div className="mt-12 max-w-[40rem]">
+							<h3 className="font-serif text-xl font-bold">{conservation.legalProtection.title}</h3>
+							<p className="mt-3 leading-relaxed text-on-slope-soft">
+								<TextWithTooltips text={conservation.legalProtection.description} />
 							</p>
 						</div>
-					))}
+					</Room>
 				</div>
-			</section>
-			{/* Clima del Páramo */}
-			<section className="max-w-6xl mx-auto px-6 py-16">
-				<h2 className="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-100">
-					{content.climate.title}
-				</h2>
-				<div className="bg-white/5 p-8 rounded-xl border border-white/10">
-					<div className="grid md:grid-cols-2 gap-8">
-						{content.climate.sections.map((section) => (
-							<div key={section.title}>
-								<h3 className="text-lg font-bold text-sky-400 mb-4">
-									{section.title}
-								</h3>
-								<div className="space-y-3 text-sm text-gray-400">
-									{section.paragraphs.map((para) => (
-										<p key={para.substring(0, 40)}>
-											<TextWithTooltips text={para} color="sky" />
-										</p>
-									))}
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
-			{/* Importancia Geológica */}
-			<section className="max-w-4xl mx-auto px-6 py-16">
-				<div className="bg-white/5 p-8 rounded-xl border border-white/10">
-					<div className="flex items-center gap-3 mb-6">
-						<div className="text-3xl">{content.geology.icon}</div>
-						<h3 className="text-xl font-bold text-amber-400">
-							{content.geology.title}
-						</h3>
-					</div>
-					<p className="text-sm text-gray-400 mb-4">
-						<TextWithTooltips text={content.geology.intro} />
-					</p>
-					<ul className="space-y-2 text-sm text-gray-400">
-						{content.geology.features.map((feature) => (
-							<li key={feature} className="flex items-start gap-2">
-								<span className="text-amber-500 mt-1.5 text-xs">●</span>
-								<span>
-									<TextWithTooltips text={feature} color="amber" />
-								</span>
-							</li>
-						))}
-					</ul>
-				</div>
-			</section>
-			{/* Conservación */}
-			<section className="max-w-6xl mx-auto px-6 py-16">
-				<div className="bg-white/5 p-8 rounded-xl border border-white/10">
-					<div className="flex items-center gap-3 mb-6">
-						<div className="text-3xl">{content.conservation.icon}</div>
-						<h3 className="text-xl font-bold text-red-400">
-							{content.conservation.title}
-						</h3>
-					</div>
-					<p className="text-sm text-gray-400 mb-6">
-						{content.conservation.intro}
-					</p>
-					<div className="grid md:grid-cols-2 gap-6">
-						<div>
-							<h4 className="text-base font-semibold text-gray-200 mb-3">
-								Principales Amenazas:
-							</h4>
-							<ul className="space-y-2 text-sm text-gray-400">
-								{content.conservation.threats.map((threat) => (
-									<li key={threat} className="flex items-start gap-2">
-										<span className="text-red-400 mt-1.5 text-xs">●</span>
-										<span>
-											<TextWithTooltips text={threat} color="red" />
-										</span>
-									</li>
-								))}
-							</ul>
-						</div>
-						<div>
-							<h4 className="text-base font-semibold text-gray-200 mb-3">
-								Acciones de Protección:
-							</h4>
-							<ul className="space-y-2 text-sm text-gray-400">
-								{content.conservation.protectionActions.map((action) => (
-									<li key={action} className="flex items-start gap-2">
-										<span className="text-emerald-400 mt-1.5 text-xs">●</span>
-										<span>{action}</span>
-									</li>
-								))}
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
-			{/* CTA */}
-			<section className="max-w-4xl mx-auto px-6 py-16">
-				<div className="text-center py-12 px-8 rounded-xl bg-white/5 border border-emerald-500/20">
-					<h2 className="text-2xl md:text-3xl font-bold text-gray-100 mb-3">
-						{content.cta.title}
-					</h2>
-					<p className="text-sm text-gray-400 mb-6 max-w-xl mx-auto">
-						{content.cta.description}
-					</p>
-					<a
-						href={content.cta.buttonLink}
-						className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-6 py-2.5 rounded-full transition-all hover:scale-105 text-sm"
-					>
-						<span>{content.cta.buttonText}</span>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="h-4 w-4"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-							aria-hidden="true"
+
+				{/* Llegada al valle */}
+				<section aria-labelledby="llegada" className="on-dark bg-slope-4 px-4 py-24 text-on-slope md:px-12 md:py-32 lg:px-20">
+					<div className="mx-auto max-w-6xl">
+						<h2 id="llegada" className="max-w-4xl font-display text-[clamp(2.5rem,6vw,5rem)] leading-[0.98]">
+							Llegaste al valle. Si vives aquí, el agua que bebes bajó por este páramo.
+						</h2>
+						<p className="mt-6 max-w-2xl text-lg leading-relaxed text-on-slope-soft">{cta.description}</p>
+						<Link
+							href={cta.buttonLink}
+							className="group mt-10 inline-flex h-14 items-center gap-3 bg-on-slope px-7 font-semibold text-ink transition-colors duration-300 ease-out hover:bg-water-pale"
 						>
-							<title>Arrow icon</title>
-							<path
-								fillRule="evenodd"
-								d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-								clipRule="evenodd"
-							/>
-						</svg>
-					</a>
+							Conocer la colección
+							<ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
+						</Link>
+					</div>
+				</section>
+
+				<div className="border-t border-on-slope/15">
+					<Footer />
 				</div>
-			</section>
-			{/* Footer */}
-			<Footer />
-			{/* Audio Player - Fixed Position - Lazy load */}
-			{isMounted && (
-				<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
-					<AudioPlayer audioFileName="conservacion.mp3" autoPlay={false} />
-				</div>
-			)}
-		</main>
+			</main>
+
+			<div className="fixed bottom-4 left-1/2 z-40 w-[min(92vw,22rem)] -translate-x-1/2 md:bottom-[5.25rem] md:left-auto md:right-6 md:translate-x-0">
+				<AudioPlayer audioFileName="conservacion.mp3" />
+			</div>
+		</>
 	);
 }

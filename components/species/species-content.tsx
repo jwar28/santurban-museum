@@ -2,129 +2,122 @@
 
 import SpeciesCarousel from "@/components/species/species-carousel";
 import AudioPlayer from "@/components/ui/audio-player";
-import BackButton from "@/components/ui/back-button";
 import type { SpeciesRow } from "@/lib/types";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface SpeciesContentProps {
 	initialSpecies: SpeciesRow;
 	modelUrl: string;
 	audioFileName: string;
+	previousId: number;
+	nextId: number;
+	total: number;
+}
+
+function Entry({ title, text }: { title: string; text?: string | null }) {
+	if (!text) return null;
+	return (
+		<section className="border-t border-ink/40 pt-4">
+			<h2 className="label text-ink-soft">{title}</h2>
+			<p className="mt-3 leading-relaxed">{text}</p>
+		</section>
+	);
 }
 
 export default function SpeciesContent({
-	initialSpecies,
+	initialSpecies: sp,
 	modelUrl,
 	audioFileName,
+	previousId,
+	nextId,
+	total,
 }: SpeciesContentProps) {
-	const species = initialSpecies;
+	const credit =
+		sp.pic_owner && sp.license_type ? `Foto: ${sp.pic_owner}, licencia ${sp.license_type}` : null;
+	const number = String(sp.id).padStart(2, "0");
 
 	return (
-		<main className="min-h-screen lg:h-screen bg-[#0b1210] text-white pt-16 lg:overflow-hidden pb-28 lg:pb-0">
-			<div className="max-w-[1600px] mx-auto p-4 md:p-6 h-full flex flex-col">
-				{/* Back Button */}
-				<BackButton />
+		<main className="min-h-screen bg-mist pb-32 pt-14 text-ink lg:pb-16">
+			{/* Cabecera de la lámina */}
+			<nav
+				aria-label="Láminas de la colección"
+				className="flex items-center justify-between border-b border-ink/25 px-4 py-3 text-sm md:px-8"
+			>
+				<Link href="/explore" className="inline-flex items-center gap-2 font-semibold hover:text-water-deep">
+					<ArrowLeft className="h-4 w-4" />
+					La colección
+				</Link>
+				<span className="tabular hidden text-ink-soft sm:inline">
+					Lámina {number} de {String(total).padStart(2, "0")}
+				</span>
+				<span className="flex items-center gap-1">
+					<Link
+						href={`/species/${previousId}?direction=prev`}
+						className="inline-flex h-10 items-center gap-2 px-3 font-semibold hover:bg-mist-deep"
+						aria-label="Lámina anterior"
+					>
+						<ArrowLeft className="h-4 w-4" />
+						<span className="hidden md:inline">Anterior</span>
+					</Link>
+					<Link
+						href={`/species/${nextId}?direction=next`}
+						className="inline-flex h-10 items-center gap-2 px-3 font-semibold hover:bg-mist-deep"
+						aria-label="Lámina siguiente"
+					>
+						<span className="hidden md:inline">Siguiente</span>
+						<ArrowRight className="h-4 w-4" />
+					</Link>
+				</span>
+			</nav>
 
-				<div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-6 w-full flex-1 lg:overflow-hidden">
-					{/* Left Panel - Carousel (3D Model & Reference Image) */}
-					<div className="bg-[#0f1f1a]/50 rounded-lg border border-emerald-500/10 p-6 overflow-hidden h-[50vh] lg:h-full">
+			<div className="mx-auto max-w-[1500px] px-4 md:px-8">
+				<header className="grid gap-4 pb-8 pt-10 md:grid-cols-[1fr_auto] md:items-end md:pt-14">
+					<div>
+						<h1 className="font-display text-[clamp(2.75rem,6vw,5.5rem)] leading-[0.95]">{sp.common_name}</h1>
+						<p className="mt-3 font-serif text-2xl italic text-water-deep">{sp.scientific_name}</p>
+					</div>
+					<dl className="flex gap-8 text-sm md:text-right">
+						{sp.type && (
+							<div>
+								<dt className="text-ink-soft">Grupo</dt>
+								<dd className="mt-1 font-semibold capitalize">{sp.type}</dd>
+							</div>
+						)}
+						{sp.conservation_status && (
+							<div>
+								<dt className="text-ink-soft">Estado de conservación</dt>
+								<dd className="mt-1 font-semibold">{sp.conservation_status}</dd>
+							</div>
+						)}
+					</dl>
+				</header>
+
+				{/* Tableau: columnas de datos a ambos lados del espécimen */}
+				<div className="grid gap-10 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)_minmax(0,20rem)] lg:gap-10">
+					<div className="h-[62vh] min-h-[22rem] lg:order-2 lg:h-[calc(100svh-17rem)] lg:min-h-[32rem]">
 						<SpeciesCarousel
 							modelUrl={modelUrl}
-							imageUrl={species.image_url}
-							commonName={species.common_name}
+							imageUrl={sp.image_url}
+							commonName={sp.common_name}
+							credit={credit}
 						/>
 					</div>
-
-					{/* Right Panel - Species Information */}
-					<div className="bg-[#0f1f1a]/50 rounded-lg border border-emerald-500/10 p-6 overflow-y-auto lg:h-full">
-						{/* Header Section - Name, Type, and Conservation Status */}
-						<div className="mb-6">
-							<div className="flex flex-wrap items-center gap-3 mb-3">
-								<span className="text-emerald-400/80 text-[10px] font-medium uppercase tracking-wider">
-									{species.type || "N/A"}
-								</span>
-								<span className="text-gray-500">•</span>
-								<div className="flex items-center gap-1.5">
-									<div className="h-1.5 w-1.5 rounded-full bg-emerald-500/80" />
-									<span className="text-gray-400 text-[10px] uppercase tracking-wider">
-										{species.conservation_status || "N/A"}
-									</span>
-								</div>
-							</div>
-							<h1 className="text-3xl md:text-4xl font-light text-white mb-2">
-								{species.common_name}
-							</h1>
-							<p className="text-gray-400 text-sm italic">
-								{species.scientific_name}
-							</p>
-						</div>
-
-						{/* Description */}
-						{species.description && (
-							<div className="mb-6">
-								<h2 className="text-emerald-400/80 text-[10px] font-medium uppercase tracking-wider mb-2">
-									Descripción
-								</h2>
-								<p className="text-gray-300/90 leading-relaxed text-sm">
-									{species.description}
-								</p>
-							</div>
-						)}
-
-						{/* Ecological Importance */}
-						{species.ecological_importance && (
-							<div className="mb-6">
-								<h2 className="text-emerald-400/80 text-[10px] font-medium uppercase tracking-wider mb-2">
-									Importancia Ecológica
-								</h2>
-								<p className="text-gray-300/90 leading-relaxed text-sm">
-									{species.ecological_importance}
-								</p>
-							</div>
-						)}
-
-						{/* Threats */}
-						{species.threats && (
-							<div className="mb-6">
-								<h2 className="text-emerald-400/80 text-[10px] font-medium uppercase tracking-wider mb-2">
-									Amenazas
-								</h2>
-								<p className="text-gray-300/90 leading-relaxed text-sm">
-									{species.threats}
-								</p>
-							</div>
-						)}
-
-						{/* Adaptations */}
-						{species.adaptations && (
-							<div className="mb-6">
-								<h2 className="text-emerald-400/80 text-[10px] font-medium uppercase tracking-wider mb-2">
-									Adaptaciones
-								</h2>
-								<p className="text-gray-300/90 leading-relaxed text-sm">
-									{species.adaptations}
-								</p>
-							</div>
-						)}
-
-						{/* Characteristics */}
-						{species.characteristics && (
-							<div className="mb-6">
-								<h2 className="text-emerald-400/80 text-[10px] font-medium uppercase tracking-wider mb-2">
-									Características
-								</h2>
-								<p className="text-gray-300/90 leading-relaxed text-sm">
-									{species.characteristics}
-								</p>
-							</div>
-						)}
+					<div className="space-y-8 lg:order-1">
+						<Entry title="Descripción" text={sp.description} />
+						<Entry title="Características" text={sp.characteristics} />
+					</div>
+					<div className="space-y-8 lg:order-3">
+						<Entry title="Importancia ecológica" text={sp.ecological_importance} />
+						<Entry title="Adaptaciones" text={sp.adaptations} />
+						<Entry title="Amenazas" text={sp.threats} />
 					</div>
 				</div>
 			</div>
 
-			{/* Audio Player - Fixed Position, centered on mobile */}
 			{audioFileName && (
-				<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
-					<AudioPlayer audioFileName={audioFileName} autoPlay={false} />
+				<div className="fixed bottom-4 left-1/2 z-40 w-[min(92vw,22rem)] -translate-x-1/2 md:bottom-[5.25rem] md:left-auto md:right-6 md:translate-x-0">
+					<AudioPlayer audioFileName={audioFileName} />
 				</div>
 			)}
 		</main>

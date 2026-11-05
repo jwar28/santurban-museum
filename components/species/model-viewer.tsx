@@ -8,7 +8,7 @@ import {
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Loader2 } from "lucide-react";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { Component, type ReactNode, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 interface ModelProps {
@@ -114,42 +114,44 @@ function LoadingFallback() {
 
 function ModelLoader() {
 	return (
-		<div className="absolute inset-0 flex items-center justify-center bg-[#0b1210]/50 backdrop-blur-sm z-10">
+		<div className="absolute inset-0 z-10 flex items-center justify-center" role="status">
 			<div className="text-center">
-				<Loader2 className="w-12 h-12 text-emerald-400 animate-spin mx-auto mb-4" />
-				<p className="text-emerald-300 text-sm font-medium">
-					Cargando modelo 3D...
-				</p>
-				<p className="text-gray-500 text-xs mt-2">
-					Esto puede tomar unos segundos
-				</p>
+				<Loader2 className="mx-auto h-8 w-8 animate-spin text-ink-soft" />
+				<p className="mt-4 text-sm font-semibold text-ink">Preparando el espécimen en 3D…</p>
+				<p className="mt-1 text-xs text-ink-soft">Puede tardar unos segundos</p>
 			</div>
 		</div>
 	);
 }
 
 function NoModelFallback() {
-	const messages = [
-		"¡Esta especie es tan tímida que se escondió en la neblina del páramo! 🌫️",
-		"El modelo 3D está explorando las alturas del Santurbán 🏔️",
-		"¡Ups! Parece que esta especie se fue a tomar agua del frailejón 💧",
-		"Esta criatura está más escondida que un oso de anteojos 🐻",
-		"El modelo 3D se tomó un descanso entre los frailejones ☁️",
-	];
-
-	const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
 	return (
-		<div className="flex items-center justify-center h-full">
-			<div className="text-center max-w-md px-8">
-				<div className="text-8xl mb-6">🌿</div>
-				<p className="text-emerald-300 text-lg leading-relaxed">
-					{randomMessage}
+		<div className="flex h-full items-center justify-center px-8">
+			<div className="max-w-sm text-center">
+				<p className="font-serif text-xl italic text-ink">Este espécimen aún no tiene modelo 3D</p>
+				<p className="mt-2 text-sm text-ink-soft">
+					Mientras tanto puedes ver su fotografía en la pestaña de al lado.
 				</p>
-				<p className="text-gray-500 text-sm mt-4">Modelo 3D no disponible</p>
 			</div>
 		</div>
 	);
+}
+
+/** Si el modelo no carga (archivo ausente o corrupto), muestra el aviso en vez de romper la página. */
+class ModelErrorBoundary extends Component<
+	{ children: ReactNode; onError: () => void },
+	{ failed: boolean }
+> {
+	state = { failed: false };
+	static getDerivedStateFromError() {
+		return { failed: true };
+	}
+	componentDidCatch() {
+		this.props.onError();
+	}
+	render() {
+		return this.state.failed ? null : this.props.children;
+	}
 }
 
 interface ModelViewerProps {
@@ -194,11 +196,13 @@ export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 				<ambientLight intensity={0.6} />
 				<directionalLight position={[5, 5, 5]} intensity={0.8} />
 				<directionalLight position={[-3, 3, -3]} intensity={0.4} />
-				<hemisphereLight intensity={0.3} groundColor="#1a1a1a" />
-				<Suspense fallback={<LoadingFallback />}>
-					<Model url={modelUrl} onLoad={handleModelLoad} />
-					<Environment preset="city" environmentIntensity={0.4} />
-				</Suspense>
+				<hemisphereLight intensity={0.35} color="#dfe5e1" groundColor="#3a5148" />
+				<ModelErrorBoundary onError={() => setHasError(true)}>
+					<Suspense fallback={<LoadingFallback />}>
+						<Model url={modelUrl} onLoad={handleModelLoad} />
+						<Environment preset="city" environmentIntensity={0.4} />
+					</Suspense>
+				</ModelErrorBoundary>
 				<OrbitControls
 					enablePan={false}
 					enableZoom={true}
@@ -212,9 +216,9 @@ export default function ModelViewer({ modelUrl }: ModelViewerProps) {
 				/>
 			</Canvas>
 			{!hasError && (
-				<div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center text-xs text-white/60 bg-black/30 px-3 py-1.5 rounded-md backdrop-blur-sm lg:left-4 lg:translate-x-0 lg:text-left">
-					Clickea y arrastra para rotar el modelo
-				</div>
+				<p className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-ink-soft">
+					Arrastra para girar · pellizca o usa la rueda para acercar
+				</p>
 			)}
 		</div>
 	);

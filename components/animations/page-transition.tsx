@@ -2,26 +2,13 @@
 
 import { usePathname } from "next/navigation";
 import type React from "react";
-import FadeContent from "./fade-content";
 
-export default function PageTransition({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+/** Fundido breve al cambiar de sala. El contenido nunca depende de estar a la vista para aparecer. */
+export default function PageTransition({ children }: { children: React.ReactNode }) {
 	const pathname = usePathname();
-
-	// Keying by pathname forces the fade animation to re-run on route change
-	// FadeContent expects duration in milliseconds; use ~750ms to match previous timing
 	return (
-		<FadeContent
-			key={pathname}
-			duration={450}
-			delay={30}
-			blur={false}
-			className="min-h-screen"
-		>
+		<div key={pathname} className="page-in min-h-screen">
 			{children}
-		</FadeContent>
+		</div>
 	);
 }

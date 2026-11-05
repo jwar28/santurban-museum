@@ -8,27 +8,16 @@ import tooltipsData from "@/data/tooltips.json";
 
 interface TextWithTooltipsProps {
 	text: string;
+	/** @deprecated el color lo hereda del texto */
 	color?: string;
 }
 
-const colorClasses: Record<string, string> = {
-	emerald:
-		"underline decoration-2 decoration-emerald-400 hover:decoration-emerald-300",
-	blue: "underline decoration-2 decoration-blue-400 hover:decoration-blue-300",
-	sky: "underline decoration-2 decoration-sky-400 hover:decoration-sky-300",
-	amber:
-		"underline decoration-2 decoration-amber-400 hover:decoration-amber-300",
-	red: "underline decoration-2 decoration-red-400 hover:decoration-red-300",
-};
-
 export function TextWithTooltips({
 	text,
-	color = "emerald",
 }: TextWithTooltipsProps) {
 	// Replace {term} with tooltips and **text** with bold
 	const parts = text.split(/(\{[^}]+\}|\*\*[^*]+\*\*)/g);
 
-	const colorClass = colorClasses[color] || colorClasses.emerald;
 
 	return (
 		<>
@@ -45,9 +34,9 @@ export function TextWithTooltips({
 						return (
 							<Tooltip key={`tt-${term}-${index}`}>
 								<TooltipTrigger
-									className={`${colorClass} underline-offset-2 cursor-help transition-colors`}
+									className="cursor-help font-semibold underline decoration-current decoration-dotted decoration-[1.5px] underline-offset-[0.24em] transition-colors hover:decoration-solid"
 								>
-									<strong className="text-white">{term}</strong>
+									{term}
 								</TooltipTrigger>
 								<TooltipContent className="max-w-xs">
 									{tooltipText}
@@ -56,7 +45,7 @@ export function TextWithTooltips({
 						);
 					}
 					return (
-						<strong key={`b-${term}-${index}`} className="text-white">
+						<strong key={`b-${term}-${index}`} className="font-semibold">
 							{term}
 						</strong>
 					);
@@ -66,7 +55,7 @@ export function TextWithTooltips({
 				if (part.startsWith("**") && part.endsWith("**")) {
 					const boldText = part.slice(2, -2);
 					return (
-						<strong key={`s-${boldText}-${index}`} className="text-white">
+						<strong key={`s-${boldText}-${index}`} className="font-semibold">
 							{boldText}
 						</strong>
 					);

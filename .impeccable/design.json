@@ -1,0 +1,470 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-05T18:26:53+00:00",
+  "title": "Design System: Museo Virtual Santurbán",
+  "extensions": {
+    "colorMeta": {
+      "mist": {
+        "role": "neutral",
+        "displayName": "Summit Mist",
+        "canonical": "oklch(91.6% 0.008 157)",
+        "tonalRamp": [
+          "oklch(15% 0.008 157)",
+          "oklch(26% 0.008 157)",
+          "oklch(38% 0.008 157)",
+          "oklch(50% 0.008 157)",
+          "oklch(62% 0.008 157)",
+          "oklch(74% 0.008 157)",
+          "oklch(85% 0.008 157)",
+          "oklch(95% 0.008 157)"
+        ]
+      },
+      "mist-deep": {
+        "role": "neutral",
+        "displayName": "Deep Mist",
+        "canonical": "oklch(87.0% 0.013 165)",
+        "tonalRamp": [
+          "oklch(15% 0.013 165)",
+          "oklch(26% 0.013 165)",
+          "oklch(38% 0.013 165)",
+          "oklch(50% 0.013 165)",
+          "oklch(62% 0.013 165)",
+          "oklch(74% 0.013 165)",
+          "oklch(85% 0.013 165)",
+          "oklch(95% 0.013 165)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "oklch(28.2% 0.021 176)",
+        "tonalRamp": [
+          "oklch(15% 0.021 176)",
+          "oklch(26% 0.021 176)",
+          "oklch(38% 0.021 176)",
+          "oklch(50% 0.021 176)",
+          "oklch(62% 0.021 176)",
+          "oklch(74% 0.021 176)",
+          "oklch(85% 0.021 176)",
+          "oklch(95% 0.021 176)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "oklch(41.0% 0.025 173)",
+        "tonalRamp": [
+          "oklch(15% 0.025 173)",
+          "oklch(26% 0.025 173)",
+          "oklch(38% 0.025 173)",
+          "oklch(50% 0.025 173)",
+          "oklch(62% 0.025 173)",
+          "oklch(74% 0.025 173)",
+          "oklch(85% 0.025 173)",
+          "oklch(95% 0.025 173)"
+        ]
+      },
+      "water": {
+        "role": "primary",
+        "displayName": "Lagoon Water",
+        "canonical": "oklch(51.4% 0.082 233)",
+        "tonalRamp": [
+          "oklch(15% 0.082 233)",
+          "oklch(26% 0.082 233)",
+          "oklch(38% 0.082 233)",
+          "oklch(50% 0.082 233)",
+          "oklch(62% 0.082 233)",
+          "oklch(74% 0.082 233)",
+          "oklch(85% 0.082 233)",
+          "oklch(95% 0.082 233)"
+        ]
+      },
+      "water-deep": {
+        "role": "primary",
+        "displayName": "Deep Lagoon",
+        "canonical": "oklch(44.4% 0.072 233)",
+        "tonalRamp": [
+          "oklch(15% 0.072 233)",
+          "oklch(26% 0.072 233)",
+          "oklch(38% 0.072 233)",
+          "oklch(50% 0.072 233)",
+          "oklch(62% 0.072 233)",
+          "oklch(74% 0.072 233)",
+          "oklch(85% 0.072 233)",
+          "oklch(95% 0.072 233)"
+        ]
+      },
+      "water-pale": {
+        "role": "primary",
+        "displayName": "Pale Lagoon",
+        "canonical": "oklch(83.4% 0.048 224)",
+        "tonalRamp": [
+          "oklch(15% 0.048 224)",
+          "oklch(26% 0.048 224)",
+          "oklch(38% 0.048 224)",
+          "oklch(50% 0.048 224)",
+          "oklch(62% 0.048 224)",
+          "oklch(74% 0.048 224)",
+          "oklch(85% 0.048 224)",
+          "oklch(95% 0.048 224)"
+        ]
+      },
+      "gold": {
+        "role": "secondary",
+        "displayName": "Frailejón Gold",
+        "canonical": "oklch(74.9% 0.098 92)",
+        "tonalRamp": [
+          "oklch(15% 0.098 92)",
+          "oklch(26% 0.098 92)",
+          "oklch(38% 0.098 92)",
+          "oklch(50% 0.098 92)",
+          "oklch(62% 0.098 92)",
+          "oklch(74% 0.098 92)",
+          "oklch(85% 0.098 92)",
+          "oklch(95% 0.098 92)"
+        ]
+      },
+      "slope-1": {
+        "role": "neutral",
+        "displayName": "Slope 1, Páramo",
+        "canonical": "oklch(74.7% 0.030 155)",
+        "tonalRamp": [
+          "#1a2724",
+          "#3a5148",
+          "#4f6b5c",
+          "oklch(50% 0.030 155)",
+          "oklch(62% 0.030 155)",
+          "#9fb3a5",
+          "oklch(85% 0.030 155)",
+          "oklch(95% 0.030 155)"
+        ]
+      },
+      "slope-2": {
+        "role": "neutral",
+        "displayName": "Slope 2, Altoandino",
+        "canonical": "oklch(50.1% 0.041 161)",
+        "tonalRamp": [
+          "#1a2724",
+          "#3a5148",
+          "#4f6b5c",
+          "oklch(50% 0.041 161)",
+          "oklch(62% 0.041 161)",
+          "#9fb3a5",
+          "oklch(85% 0.041 161)",
+          "oklch(95% 0.041 161)"
+        ]
+      },
+      "slope-3": {
+        "role": "neutral",
+        "displayName": "Slope 3, Valley",
+        "canonical": "oklch(41.3% 0.032 169)",
+        "tonalRamp": [
+          "#1a2724",
+          "#3a5148",
+          "#4f6b5c",
+          "oklch(50% 0.032 169)",
+          "oklch(62% 0.032 169)",
+          "#9fb3a5",
+          "oklch(85% 0.032 169)",
+          "oklch(95% 0.032 169)"
+        ]
+      },
+      "slope-4": {
+        "role": "neutral",
+        "displayName": "Slope 4, Valley Floor",
+        "canonical": "oklch(26.0% 0.019 179)",
+        "tonalRamp": [
+          "#1a2724",
+          "#3a5148",
+          "#4f6b5c",
+          "oklch(50% 0.019 179)",
+          "oklch(62% 0.019 179)",
+          "#9fb3a5",
+          "oklch(85% 0.019 179)",
+          "oklch(95% 0.019 179)"
+        ]
+      },
+      "on-slope": {
+        "role": "neutral",
+        "displayName": "On-Slope",
+        "canonical": "oklch(95.7% 0.006 154)",
+        "tonalRamp": [
+          "oklch(15% 0.006 154)",
+          "oklch(26% 0.006 154)",
+          "oklch(38% 0.006 154)",
+          "oklch(50% 0.006 154)",
+          "oklch(62% 0.006 154)",
+          "oklch(74% 0.006 154)",
+          "oklch(85% 0.006 154)",
+          "oklch(95% 0.006 154)"
+        ]
+      },
+      "on-slope-soft": {
+        "role": "neutral",
+        "displayName": "On-Slope Soft",
+        "canonical": "oklch(80.6% 0.020 163)",
+        "tonalRamp": [
+          "oklch(15% 0.020 163)",
+          "oklch(26% 0.020 163)",
+          "oklch(38% 0.020 163)",
+          "oklch(50% 0.020 163)",
+          "oklch(62% 0.020 163)",
+          "oklch(74% 0.020 163)",
+          "oklch(85% 0.020 163)",
+          "oklch(95% 0.020 163)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Display, one h1 per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Room and section titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Plate names, room names in the museum plan, filter tabs, mobile menu items."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Bold Caslon Text h3 inside rooms."
+      },
+      "epigraph": {
+        "displayName": "Epigraph",
+        "purpose": "Caslon italic: epigraph under h1, room notes, scientific and place names."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Archivo running text at 34-40rem measure."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tracked uppercase Archivo for nav, buttons and data-column titles."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Large tabular stat values in the data sheet."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float-low",
+        "value": "0 10px 28px -14px rgba(30,45,41,0.5)",
+        "purpose": "Docked audio bar and chat launcher (launcher at 0.6 alpha). Floating layers only."
+      },
+      {
+        "name": "float-menu",
+        "value": "0 12px 32px -12px rgba(30,45,41,0.45)",
+        "purpose": "Mobile navigation dropdown."
+      },
+      {
+        "name": "float-panel",
+        "value": "0 24px 60px -24px rgba(30,45,41,0.7)",
+        "purpose": "Open chat panel."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The only easing; Tailwind ease-out is remapped to it."
+      },
+      {
+        "name": "duration-color",
+        "value": "300ms",
+        "purpose": "Color, border and arrow-travel transitions on controls."
+      },
+      {
+        "name": "duration-underline",
+        "value": "500ms",
+        "purpose": "Active-nav water underline drawing from the left."
+      },
+      {
+        "name": "duration-plate",
+        "value": "700ms",
+        "purpose": "Plate image scale to 1.04 on hover."
+      },
+      {
+        "name": "water-draw",
+        "value": "2.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Signature: the profile's water line draws itself once from lagoon to valley."
+      },
+      {
+        "name": "page-in",
+        "value": "0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4 to 1",
+        "purpose": "Route entry."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "All animation and transition durations collapse under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ink, square, lettered call to action with a travelling arrow.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Comenzar el descenso <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;background:var(--ink);color:var(--mist);font-family: var(--font-label), system-ui, sans-serif; font-weight:600; font-size:.75rem; letter-spacing:.16em; text-transform:uppercase;font-size:.8rem;text-decoration:none;border-radius:0;transition:background-color .3s cubic-bezier(.16,1,.3,1)}.ds-btn-primary svg{transition:transform .3s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{background:var(--water-deep)}.ds-btn-primary:hover svg{transform:translateX(4px)}.ds-btn-primary:focus-visible{outline:2px solid var(--water-deep);outline-offset:3px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action on mist, hairline border.",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 4.7 6 9H2v6h4l5 4.3z\"/><path d=\"M15.5 8.5a5 5 0 0 1 0 7\"/></svg>Escuchar al oso guía</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 24px;background:transparent;color:var(--ink);border:1px solid rgb(var(--ink-rgb)/.5);border-radius:0;font-family: var(--font-label), system-ui, sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.025em;cursor:pointer;transition:background-color .3s cubic-bezier(.16,1,.3,1),border-color .3s cubic-bezier(.16,1,.3,1)}.ds-btn-outline:hover{border-color:var(--ink);background:var(--mist-deep)}.ds-btn-outline:focus-visible{outline:2px solid var(--water-deep);outline-offset:3px}"
+    },
+    {
+      "name": "On-Dark Button",
+      "kind": "button",
+      "refersTo": "button-on-dark",
+      "description": "Arrival CTA inside the dark valley bands.",
+      "html": "<div class=\"ds-dark-wrap\"><a class=\"ds-btn-dark\" href=\"#\">Conocer la colección <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a></div>",
+      "css": ".ds-dark-wrap{background:var(--slope-4);padding:32px}.ds-btn-dark{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;background:var(--on-slope);color:var(--ink);font-family: var(--font-label), system-ui, sans-serif;font-weight:600;text-decoration:none;transition:background-color .3s cubic-bezier(.16,1,.3,1)}.ds-btn-dark:hover{background:var(--water-pale)}.ds-btn-dark:focus-visible{outline:2px solid var(--water-pale);outline-offset:3px}"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Fixed mist bar; active room carries a water underline on the bar's border.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-nav-brand\">Museo Virtual Santurbán</span><nav class=\"ds-nav-links\"><a href=\"#\" class=\"ds-nav-link\">El descenso</a><a href=\"#\" class=\"ds-nav-link is-active\" aria-current=\"page\">La colección</a><a href=\"#\" class=\"ds-nav-link\">Créditos</a></nav></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px;background:var(--mist);border-bottom:1px solid rgb(var(--ink-rgb)/.25)}.ds-nav-brand,.ds-nav-link{font-family: var(--font-label), system-ui, sans-serif; font-weight:600; font-size:.75rem; letter-spacing:.16em; text-transform:uppercase;}.ds-nav-brand{color:var(--ink)}.ds-nav-links{display:flex;gap:40px}.ds-nav-link{position:relative;padding:8px 0;color:var(--ink-soft);text-decoration:none;transition:color .3s cubic-bezier(.16,1,.3,1)}.ds-nav-link::after{content:'';position:absolute;left:0;right:0;bottom:-13px;height:2px;background:var(--water);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-nav-link:hover,.ds-nav-link.is-active{color:var(--ink)}.ds-nav-link.is-active::after{transform:scaleX(1)}.ds-nav-link:focus-visible{outline:2px solid var(--water-deep);outline-offset:3px}"
+    },
+    {
+      "name": "Species Plate",
+      "kind": "card",
+      "refersTo": "plate-mount",
+      "description": "Photograph in a deep-mist mount with number, Caslon name and italic scientific name.",
+      "html": "<a class=\"ds-plate\" href=\"#\"><div class=\"ds-plate-mount\"><div class=\"ds-plate-img\" role=\"img\" aria-label=\"Frailejón\"><span>Frailejón</span></div></div><div class=\"ds-plate-cap\"><span class=\"ds-plate-no\">Nº 01</span><div><h3>Frailejón</h3><p>Espeletia grandiflora</p></div></div></a>",
+      "css": ".ds-plate{display:block;width:260px;color:var(--ink);text-decoration:none}.ds-plate-mount{overflow:hidden;border:1px solid rgb(var(--ink-rgb)/.4);background:var(--mist-deep);padding:8px;transition:border-color .3s cubic-bezier(.16,1,.3,1)}.ds-plate:hover .ds-plate-mount{border-color:var(--ink)}.ds-plate-img{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;background:var(--mist) repeating-linear-gradient(0deg,transparent 0 23px,rgb(var(--ink-rgb)/.08) 23px 24px);transition:transform .7s cubic-bezier(.16,1,.3,1)}.ds-plate:hover .ds-plate-img{transform:scale(1.04)}.ds-plate-img span{font-family:var(--font-text),Georgia,serif;font-style:italic;font-size:1.125rem;color:var(--ink-soft)}.ds-plate-cap{display:flex;align-items:baseline;gap:16px;margin-top:16px}.ds-plate-no{font-family:var(--font-label),sans-serif;font-variant-numeric:tabular-nums lining-nums;font-weight:600;font-size:.875rem;color:var(--ink-soft)}.ds-plate-cap h3{margin:0;font-family:var(--font-display),Georgia,serif;font-weight:400;font-size:1.5rem;line-height:1.25}.ds-plate:hover h3{color:var(--water-deep)}.ds-plate-cap p{margin:0;font-family:var(--font-text),Georgia,serif;font-style:italic;color:var(--ink-soft)}.ds-plate:focus-visible{outline:2px solid var(--water-deep);outline-offset:3px}"
+    },
+    {
+      "name": "Data Sheet",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Ruled list: 2px ink opening rule, hairline rows, large tabular Caslon values.",
+      "html": "<dl class=\"ds-sheet\"><div><dt>Personas abastecidas<span>en 48 municipios</span></dt><dd>2,3 millones</dd></div><div><dt>Lagunas de origen glaciar<span>interconectadas</span></dt><dd>26 o más</dd></div></dl>",
+      "css": ".ds-sheet{margin:0;border-top:2px solid var(--ink);max-width:640px}.ds-sheet>div{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:32px;padding:20px 0;border-bottom:1px solid rgb(var(--ink-rgb)/.3)}.ds-sheet dt{font-family:var(--font-label),sans-serif;color:var(--ink-soft)}.ds-sheet dt span{display:block;font-size:.875rem}.ds-sheet dd{margin:0;font-family:var(--font-display),Georgia,serif;font-size:3rem;line-height:1;font-variant-numeric:tabular-nums lining-nums;color:var(--ink)}"
+    },
+    {
+      "name": "Contour Rule",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Dotted contour line separating rooms inside a band.",
+      "html": "<div class=\"ds-contour\" role=\"separator\"></div>",
+      "css": ".ds-contour{height:1px;width:100%;color:rgb(var(--ink-rgb)/.5);background-image:linear-gradient(90deg,currentColor 0 4px,transparent 4px 10px);background-size:10px 1px;background-repeat:repeat-x}"
+    },
+    {
+      "name": "Chat Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Square mist field in the chat tray; border darkens on focus.",
+      "html": "<div class=\"ds-input-tray\"><textarea class=\"ds-input\" rows=\"1\" placeholder=\"Escribe tu pregunta\"></textarea></div>",
+      "css": ".ds-input-tray{background:var(--mist-deep);padding:16px;border-top:1px solid rgb(var(--ink-rgb)/.3)}.ds-input{width:100%;resize:none;border:1px solid rgb(var(--ink-rgb)/.4);border-radius:0;background:var(--mist);color:var(--ink);padding:12px 48px 12px 16px;font-family:var(--font-label),sans-serif;font-size:1rem}.ds-input::placeholder{color:var(--ink-soft)}.ds-input:focus{border-color:var(--ink);outline:none}"
+    },
+    {
+      "name": "Audio Guide",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Docked narration bar: ink play square, label, tabular time, water progress on a hairline.",
+      "html": "<div class=\"ds-audio\"><button class=\"ds-audio-play\" type=\"button\" aria-label=\"Escuchar la narración\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M7 4v16l13-8z\"/></svg></button><div class=\"ds-audio-body\"><div class=\"ds-audio-top\"><span class=\"ds-audio-label\">Guía de sala</span><span class=\"ds-audio-time\">0:42 / 2:10</span></div><div class=\"ds-audio-track\"><span class=\"ds-audio-fill\"></span><span class=\"ds-audio-head\"></span></div></div></div>",
+      "css": ".ds-audio{display:flex;align-items:center;gap:16px;width:352px;padding:8px 16px 8px 8px;background:var(--mist);border:1px solid rgb(var(--ink-rgb)/.3);box-shadow:0 10px 28px -14px rgba(30,45,41,.5)}.ds-audio-play{display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex:none;border:0;background:var(--ink);color:var(--mist);cursor:pointer;transition:background-color .3s cubic-bezier(.16,1,.3,1)}.ds-audio-play:hover{background:var(--water-deep)}.ds-audio-play:focus-visible{outline:2px solid var(--water-deep);outline-offset:3px}.ds-audio-body{flex:1;display:flex;flex-direction:column;gap:6px}.ds-audio-top{display:flex;justify-content:space-between;align-items:baseline}.ds-audio-label{font-family: var(--font-label), system-ui, sans-serif; font-weight:600; font-size:.75rem; letter-spacing:.16em; text-transform:uppercase;color:var(--ink)}.ds-audio-time{font-family: var(--font-label), system-ui, sans-serif;font-size:.75rem;font-variant-numeric:tabular-nums;color:var(--ink-soft)}.ds-audio-track{position:relative;height:12px}.ds-audio-track::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgb(var(--ink-rgb)/.4)}.ds-audio-fill{position:absolute;left:0;top:50%;height:3px;width:32%;transform:translateY(-50%);background:var(--water)}.ds-audio-head{position:absolute;left:calc(32% - 1px);top:0;width:3px;height:12px;background:var(--ink)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Tableau Physique",
+    "overview": "**Creative North Star: \"The Tableau Physique\"**\n\nThe site is drawn as Humboldt's altitudinal cross-section of the páramo. Scrolling is descending: every long page starts in summit mist and ends in the dark of the valley, the way water leaves the glacial lagoons and arrives in Bucaramanga. The engraved scientific plate supplies the materials: a Caslon roman for titles, its italic for scientific names and epigraphs, a narrow grotesque for lettering and tabular figures, hairline rules, dotted contour lines and straight corners.\n\nDensity is moderate and editorial. Content sits in ruled lists and labelled columns, the way a plate annotates its specimen, never in stacks of boxed cards. Depth is altitude: surfaces darken in bands (mist, slope-1, slope-2, slope-3, slope-4) as the reader goes down, and color carries position in the descent rather than decoration. Water blue is the one active accent: it marks the path, the current place, and the live control.\n\nThe build rejects the template museum: a dark full-bleed photo hero over a row of rounded cards.",
+    "keyCharacteristics": [
+      "Pages read top to bottom as a descent, banded light to dark.",
+      "Engraved-plate typography: Caslon roman and italic over a tracked grotesque label.",
+      "Hairline and dotted rules instead of boxes; zero corner radius everywhere.",
+      "Photography lives in plate mounts with captions and credits, never full bleed.",
+      "Water blue is reserved for path, position and action."
+    ],
+    "rules": [
+      {
+        "name": "The Descent Rule",
+        "body": "On a long page, bands only get darker going down: mist, slope-1, slope-2, slope-3, slope-4. Never put a lighter band below a darker one; the footer is always slope-4.",
+        "section": "colors"
+      },
+      {
+        "name": "The Water Means Path Rule",
+        "body": "Water blue marks where the water goes, where the reader is, and what is live (progress, active nav, focus). It is not a decorative fill or a section background.",
+        "section": "colors"
+      },
+      {
+        "name": "The Gold Is Rare Rule",
+        "body": "Gold appears on dark slope ground or as a drawn botanical mark. It never carries body text on mist.",
+        "section": "colors"
+      },
+      {
+        "name": "The Italic Is Latin Rule",
+        "body": "Italic serif is for scientific names, place names and epigraphs. Do not italicize for emphasis in body copy; emphasis is Archivo 600.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Every altitude, count, plate number and time readout sets tabular lining figures, with metres written \"4.290 m\" (es-CO grouping, a space before the unit).",
+        "section": "typography"
+      },
+      {
+        "name": "The Label Titles Data Rule",
+        "body": "The tracked uppercase label titles a block of data it sits directly on (nav, column, entry). It is never a category line stacked above a display heading.",
+        "section": "typography"
+      },
+      {
+        "name": "The Altitude Is Depth Rule",
+        "body": "Sections never lift; they descend. Use a darker slope band, not a shadow, to separate a section.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Overlay-Only Shadow Rule",
+        "body": "A shadow is allowed only on a fixed or portalled layer floating over content, always the diffuse ink drop above. Never hard, never offset sideways, never on a plate, list row or section.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do order bands light to dark down the page and end on slope-4.",
+      "Do set every h1 in Caslon Display with a deep-lagoon italic epigraph beneath it.",
+      "Do separate rooms with dotted contour rules and open data lists with a 2px ink rule.",
+      "Do mount every photograph as a plate with caption and credit, and give it the mist fallback.",
+      "Do set altitudes, counts and plate numbers in tabular lining figures, \"4.290 m\".",
+      "Do use the ease-out curve (cubic-bezier(0.16, 1, 0.3, 1)) at 300ms for color, 500ms for drawn underlines, 700ms for plate zoom, and honor reduced motion.",
+      "Do keep scientific names in Caslon italic."
+    ],
+    "donts": [
+      "Don't round corners; radius is 0 across controls, plates and panels.",
+      "Don't box content as shadowed cards; use ruled lists and plate mounts.",
+      "Don't put shadows on in-flow surfaces; only floating overlays get the soft ink drop.",
+      "Don't use water blue as a background fill or decoration; it marks path, position and live state.",
+      "Don't set gold text on mist.",
+      "Don't stack a tracked caps category line above a display heading outside the profile's slope lettering.",
+      "Don't run a photograph full bleed behind text."
+    ]
+  }
+}

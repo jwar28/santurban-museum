@@ -3,7 +3,7 @@ import { ChatbotPopup } from "@/components/ui/chatbot-popup";
 import Navbar from "@/components/ui/navbar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Geist } from "next/font/google";
+import { Archivo, Libre_Caslon_Display, Libre_Caslon_Text } from "next/font/google";
 import "./globals.css";
 
 const defaultUrl = process.env.VERCEL_URL
@@ -89,10 +89,26 @@ export const viewport = {
 	maximumScale: 5,
 };
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	display: "swap",
+const display = Libre_Caslon_Display({
+	weight: "400",
 	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-display",
+});
+
+const text = Libre_Caslon_Text({
+	weight: ["400", "700"],
+	style: ["normal", "italic"],
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-text",
+});
+
+const label = Archivo({
+	subsets: ["latin"],
+	display: "swap",
+	axes: ["wdth"],
+	variable: "--font-label",
 });
 
 export default function RootLayout({
@@ -105,15 +121,15 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/logo.svg" type="image/svg+xml" />
 				<link rel="apple-touch-icon" href="/logo.svg" />
-				<meta name="theme-color" content="#0b1210" />
+				<meta name="theme-color" content="#dfe5e1" />
 			</head>
 			<body
-				className={`${geistSans.className} min-h-screen bg-[#0b1210] text-white antialiased`}
+				className={`${display.variable} ${text.variable} ${label.variable} min-h-screen bg-mist font-sans text-ink antialiased`}
 			>
 				<ThemeProvider
 					attribute="class"
-					defaultTheme="system"
-					enableSystem
+					forcedTheme="light"
+					enableSystem={false}
 					disableTransitionOnChange
 				>
 					<Navbar />

@@ -1,7 +1,7 @@
 "use client";
 
 import { createClient } from "@/lib/supabase/client";
-import { Loader2, Pause, Play, Volume2 } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 interface AudioPlayerProps {
@@ -54,7 +54,6 @@ export default function AudioPlayer({
 
 		const updateTime = () => setCurrentTime(audio.currentTime);
 		const updateDuration = () => {
-			console.log("Duration cargada:", audio.duration);
 			setDuration(audio.duration);
 			setIsLoading(false);
 		};
@@ -66,7 +65,6 @@ export default function AudioPlayer({
 			);
 		};
 		const handlePlay = () => {
-			console.log("Audio playing");
 			setIsPlaying(true);
 			// Disparar evento cuando el audio empieza a reproducirse
 			window.dispatchEvent(
@@ -74,7 +72,6 @@ export default function AudioPlayer({
 			);
 		};
 		const handlePause = () => {
-			console.log("Audio paused");
 			setIsPlaying(false);
 			// Disparar evento cuando el audio se pausa
 			window.dispatchEvent(
@@ -87,12 +84,10 @@ export default function AudioPlayer({
 			setIsLoading(false);
 		};
 		const handleCanPlay = () => {
-			console.log("Audio listo para reproducir");
 			setIsLoading(false);
 			setHasError(false);
 		};
 		const handleLoadStart = () => {
-			console.log("Iniciando carga del audio...");
 		};
 
 		audio.addEventListener("timeupdate", updateTime);
@@ -184,74 +179,58 @@ export default function AudioPlayer({
 
 	if (!audioUrl) return null;
 
-	// Mostrar estado de error
-	if (hasError) {
-		return (
-			<div
-				className={`group flex items-center gap-3 px-5 py-4 rounded-full bg-slate-800/40 backdrop-blur-sm border border-red-500/20 ${className}`}
-			>
-				<div className="text-sm text-red-400">⚠️ Error al cargar el audio</div>
-			</div>
-		);
-	}
+	// Sin narración disponible, la sala se lee igual: el reproductor se retira.
+	if (hasError) return null;
+
+	const progress = (currentTime / duration) * 100 || 0;
 
 	return (
 		<div
-			className={`group flex items-center gap-4 px-5 py-4 rounded-full bg-slate-800/40 backdrop-blur-sm border border-emerald-500/20 hover:border-emerald-500/40 transition-all duration-300 ${className}`}
+			className={`flex items-center gap-4 border border-ink/30 bg-mist py-2 pl-2 pr-4 shadow-[0_10px_28px_-14px_rgba(30,45,41,0.5)] ${className}`}
 		>
-			{/* Audio element */}
-			<audio
-				ref={audioRef}
-				src={audioUrl}
-				preload="none"
-				crossOrigin="anonymous"
-			>
+			<audio ref={audioRef} src={audioUrl} preload="none" crossOrigin="anonymous">
 				<track kind="captions" />
 			</audio>
 
-			{/* Play/Pause Button */}
 			<button
 				type="button"
 				onClick={togglePlayPause}
-				disabled={isLoading}
-				className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 flex items-center justify-center transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
-				aria-label={isPlaying ? "Pausar" : "Reproducir"}
+				aria-busy={isLoading && isPlaying}
+				className="flex h-11 w-11 flex-shrink-0 items-center justify-center bg-ink text-mist transition-colors duration-300 ease-out hover:bg-water-deep disabled:cursor-not-allowed disabled:opacity-50"
+				aria-label={isPlaying ? "Pausar la narración" : "Escuchar la narración"}
 			>
-				{isLoading ? (
-					<Loader2 className="w-4 h-4 text-emerald-400 animate-spin" />
-				) : isPlaying ? (
-					<Pause className="w-4 h-4 text-emerald-400" />
+				{isPlaying ? (
+					<Pause className="h-4 w-4" />
 				) : (
-					<Play className="w-4 h-4 text-emerald-400 ml-0.5" />
+					<Play className="ml-0.5 h-4 w-4" />
 				)}
 			</button>
 
-			{/* Progress Bar */}
-			<div className="flex-1 flex items-center gap-3">
+			<div className="flex min-w-0 flex-1 flex-col gap-1.5">
+				<div className="flex items-baseline justify-between gap-4">
+					<span className="label text-ink">Guía de sala</span>
+					<span className="tabular text-xs text-ink-soft">
+						{formatTime(currentTime)} / {formatTime(duration)}
+					</span>
+				</div>
 				<button
 					type="button"
-					className="relative flex-1 h-1.5 bg-slate-700/50 rounded-full cursor-pointer overflow-hidden group/progress"
+					className="group/progress relative h-3 w-full cursor-pointer"
 					onClick={handleProgressClick}
 					onKeyDown={handleProgressClick}
-					aria-label="Barra de progreso del audio"
+					aria-label="Avanzar o retroceder la narración"
 				>
-					{/* Progress */}
-					<div
-						className="absolute inset-y-0 left-0 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-100 pointer-events-none"
-						style={{ width: `${(currentTime / duration) * 100 || 0}%` }}
+					<span className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-ink/40" />
+					<span
+						className="absolute left-0 top-1/2 h-[3px] -translate-y-1/2 bg-water transition-[width] duration-100"
+						style={{ width: `${progress}%` }}
 					/>
-					{/* Hover effect */}
-					<div className="absolute inset-0 bg-emerald-400/10 opacity-0 group-hover/progress:opacity-100 transition-opacity pointer-events-none" />
+					<span
+						className="absolute top-1/2 h-3 w-[3px] -translate-y-1/2 bg-ink"
+						style={{ left: `calc(${progress}% - 1px)` }}
+					/>
 				</button>
-
-				{/* Time */}
-				<div className="flex-shrink-0 text-xs text-slate-400 font-mono min-w-[80px] text-right">
-					{formatTime(currentTime)} / {formatTime(duration)}
-				</div>
 			</div>
-
-			{/* Volume Icon */}
-			<Volume2 className="flex-shrink-0 w-4 h-4 text-emerald-400/60 group-hover:text-emerald-400 transition-colors" />
 		</div>
 	);
 }

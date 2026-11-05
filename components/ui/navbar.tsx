@@ -1,139 +1,131 @@
 "use client";
 
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+
+const navLinks = [
+	{ href: "/santurban", label: "El descenso" },
+	{ href: "/explore", label: "La colección" },
+	{ href: "/about", label: "Créditos" },
+];
+
+function isActive(pathname: string, href: string) {
+	if (href === "/explore") {
+		return pathname.startsWith("/explore") || pathname.startsWith("/species");
+	}
+	return pathname.startsWith(href);
+}
 
 export default function Navbar() {
-	const [isScrolled, setIsScrolled] = useState(false);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 10);
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
-
-	const navLinks = [
-		{ href: "/santurban", label: "Conoce Santurbán" },
-		{ href: "/explore", label: "Ver especies" },
-		{ href: "/about", label: "Acerca de" },
-	];
+	const pathname = usePathname();
+	const [open, setOpen] = useState(false);
 
 	return (
-		<nav
-			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-				isScrolled
-					? "backdrop-blur-md bg-[#0b1210]/90 border-b border-emerald-500/20 shadow-lg"
-					: "bg-transparent"
-			}`}
-		>
-			<div className="max-w-[1600px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-				{/* Logo and Title */}
+		<header className="fixed inset-x-0 top-0 z-50 border-b border-ink/25 bg-mist">
+			<div className="mx-auto flex h-14 max-w-[1600px] items-center justify-between px-4 md:px-8">
 				<Link
 					href="/"
-					className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity"
+					className="group flex items-center gap-3"
+					aria-label="Museo Virtual Santurbán, inicio"
 				>
-					<div className="relative h-8 w-8 flex-shrink-0">
-						<Image
-							src="/logo.svg"
-							alt="Museo Virtual Santurbán"
-							fill
-							className="object-contain"
-						/>
-					</div>
-					<span className="font-semibold text-xs md:text-sm text-white">
-						Museo Virtual: Santurbán
+					<Image
+						src="/logo.svg"
+						alt=""
+						width={28}
+						height={28}
+						className="h-7 w-7"
+					/>
+					<span className="label text-ink">
+						Museo Virtual <span className="hidden sm:inline">Santurbán</span>
 					</span>
 				</Link>
 
-				{/* Desktop Navigation Links */}
-				<div className="hidden md:flex items-center gap-6">
-					{navLinks.map((link) => (
-						<Link
-							key={link.href}
-							href={link.href}
-							className="text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
-						>
-							{link.label}
-						</Link>
-					))}
-
-					{/* CDT Logo */}
+				<nav aria-label="Principal" className="hidden items-center gap-10 md:flex">
+					{navLinks.map((link) => {
+						const active = isActive(pathname, link.href);
+						return (
+							<Link
+								key={link.href}
+								href={link.href}
+								aria-current={active ? "page" : undefined}
+								className={`label relative py-2 transition-colors duration-300 ease-out ${
+									active ? "text-ink" : "text-ink-soft hover:text-ink"
+								}`}
+							>
+								{link.label}
+								<span
+									aria-hidden
+									className={`absolute inset-x-0 -bottom-[13px] h-[2px] origin-left bg-water transition-transform duration-500 ease-out ${
+										active ? "scale-x-100" : "scale-x-0"
+									}`}
+								/>
+							</Link>
+						);
+					})}
 					<a
 						href="https://smartregionscenter.com.co/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="relative h-16 w-32 ml-6 flex-shrink-0 group"
-						aria-label="Smart Center Development"
-					>
-						<div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-						<Image
-							src="/cdt-logo.png"
-							alt="Smart Center Development"
-							fill
-							sizes="128px"
-							className="object-contain brightness-100 contrast-110 drop-shadow-[0_0_8px_rgba(16,185,129,0.3)] group-hover:brightness-110 group-hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.5)] transition-all duration-300"
-							priority
-						/>
-					</a>
-				</div>
-
-				{/* Mobile: CDT Logo + Menu */}
-				<div className="flex md:hidden items-center gap-3">
-					<a
-						href="https://smartcenterdevelopment.com/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="relative h-10 w-24 flex-shrink-0 group"
-						aria-label="Smart Center Development"
+						className="relative ml-2 h-9 w-20 opacity-80 transition-opacity hover:opacity-100"
+						aria-label="Smart Regions Center (abre en otra pestaña)"
 					>
 						<Image
 							src="/cdt-logo.png"
-							alt="Smart Center Development"
+							alt=""
 							fill
-							sizes="96px"
-							className="object-contain brightness-100 contrast-110 drop-shadow-[0_0_6px_rgba(16,185,129,0.3)] group-active:brightness-110 transition-all duration-200"
-							priority
+							sizes="80px"
+							className="object-contain"
 						/>
 					</a>
+				</nav>
 
-					<DropdownMenu.Root>
-						<DropdownMenu.Trigger asChild>
-							<button
-								type="button"
-								className="p-2 text-emerald-400 hover:text-emerald-300 transition-colors"
-								aria-label="Toggle menu"
+				<DropdownMenu.Root open={open} onOpenChange={setOpen}>
+					<DropdownMenu.Trigger asChild>
+						<button
+							type="button"
+							className="label -mr-2 flex h-11 items-center gap-2 px-2 text-ink md:hidden"
+							aria-label={open ? "Cerrar menú" : "Abrir menú"}
+						>
+							{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+							<span>Menú</span>
+						</button>
+					</DropdownMenu.Trigger>
+					<DropdownMenu.Portal>
+						<DropdownMenu.Content
+							align="end"
+							sideOffset={10}
+							className="z-50 w-[min(92vw,320px)] border border-ink/30 bg-mist p-2 shadow-[0_12px_32px_-12px_rgba(30,45,41,0.45)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-2"
+						>
+							{navLinks.map((link) => (
+								<DropdownMenu.Item key={link.href} asChild>
+									<Link
+										href={link.href}
+										className={`flex items-center justify-between px-3 py-4 font-display text-2xl outline-none data-[highlighted]:bg-mist-deep ${
+											isActive(pathname, link.href) ? "text-water-deep" : "text-ink"
+										}`}
+									>
+										{link.label}
+									</Link>
+								</DropdownMenu.Item>
+							))}
+							<div className="contour mx-3 my-2 text-ink/40" />
+							<a
+								href="https://smartregionscenter.com.co/"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="relative mx-3 my-2 block h-10 w-24"
+								aria-label="Smart Regions Center (abre en otra pestaña)"
 							>
-								<Menu className="w-6 h-6" />
-							</button>
-						</DropdownMenu.Trigger>
-
-						<DropdownMenu.Portal>
-							<DropdownMenu.Content
-								className="md:hidden min-w-[220px] bg-[#0b1210]/95 backdrop-blur-lg rounded-lg border border-emerald-500/20 shadow-lg p-2 z-50"
-								sideOffset={5}
-								align="end"
-							>
-								{navLinks.map((link) => (
-									<DropdownMenu.Item key={link.href} asChild>
-										<Link
-											href={link.href}
-											className="flex items-center px-4 py-3 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 rounded-md transition-colors outline-none cursor-pointer font-medium"
-										>
-											{link.label}
-										</Link>
-									</DropdownMenu.Item>
-								))}
-							</DropdownMenu.Content>
-						</DropdownMenu.Portal>
-					</DropdownMenu.Root>
-				</div>
+								<Image src="/cdt-logo.png" alt="" fill sizes="96px" className="object-contain object-left" />
+							</a>
+						</DropdownMenu.Content>
+					</DropdownMenu.Portal>
+				</DropdownMenu.Root>
 			</div>
-		</nav>
+		</header>
 	);
 }

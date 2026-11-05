@@ -13,186 +13,101 @@ export const metadata: Metadata = {
 	},
 };
 
+const recognitions = [
+	{ when: "2024", what: "Participación destacada", where: "XI CIINATIC 2024" },
+	{ when: "2025", what: "Ganador", where: "INNGENIATE-C, Semana de Ingeniería UNAB" },
+	{
+		when: "Propuesta",
+		what: "Hub Eco Smart Regions",
+		where: "Centro de interpretación del Páramo de Santurbán",
+	},
+];
+
+const team = [
+	{ name: "Liliana Calderón-Benavides", role: "Directora", detail: "Smart Regions Center", photo: "/team/lc.jpg" },
+	{
+		name: "Verónica Chajín Ortiz",
+		role: "Co-directora",
+		detail: "Ing. de Sistemas y Magíster en Software",
+		photo: "/team/vc.jpg",
+	},
+	{ name: "Javier Guerra Turizo", role: "Desarrollador", detail: "Ing. de Sistemas", photo: "/team/jg.png" },
+];
+
 export default function AboutPage() {
 	return (
-		<main className="min-h-screen bg-[#0b1210] text-white pt-16">
-			{/* Hero Section */}
-			<div className="max-w-5xl mx-auto px-6 py-16">
-				<div className="text-center mb-24">
-					<h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">
-						Santurbán
-					</h1>
-					<p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light">
-						Preservando la biodiversidad digital del páramo
-					</p>
-				</div>
+		<main className="min-h-screen bg-mist text-ink">
+			<div className="mx-auto max-w-6xl px-4 pb-24 pt-28 md:px-8 md:pt-32">
+				<h1 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.92]">Créditos</h1>
+				<p className="mt-5 max-w-2xl font-serif text-[clamp(1.2rem,2.2vw,1.7rem)] italic text-water-deep">
+					Preservando la biodiversidad digital del páramo
+				</p>
 
-				{/* Misión y Visión - Layout Minimalista */}
-				<div className="space-y-16 mb-24">
-					<section className="bg-white/5 p-8 rounded-xl border border-white/10">
-						<div className="flex items-center gap-3 mb-4">
-							<div className="h-px w-8 bg-emerald-500/50" />
-							<h2 className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
-								Misión
-							</h2>
-						</div>
-						<p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
-							Educar a una audiencia global sobre la importancia ecológica de
-							este ecosistema vital e inspirar un compromiso colectivo para su
-							conservación.
+				<div className="mt-16 grid gap-12 border-t-2 border-ink pt-10 md:grid-cols-2">
+					<section>
+						<h2 className="label text-ink-soft">Misión</h2>
+						<p className="mt-4 font-serif text-2xl leading-snug">
+							Educar a una audiencia global sobre la importancia ecológica de este
+							ecosistema vital e inspirar un compromiso colectivo para su conservación.
 						</p>
 					</section>
-
-					<section className="bg-white/5 p-8 rounded-xl border border-white/10">
-						<div className="flex items-center gap-3 mb-4">
-							<div className="h-px w-8 bg-emerald-500/50" />
-							<h2 className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
-								Visión
-							</h2>
-						</div>
-						<p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
-							Convertirnos en el principal recurso digital para la educación
-							sobre ecosistemas de páramo, fomentando una comunidad global de
-							defensores.
+					<section>
+						<h2 className="label text-ink-soft">Visión</h2>
+						<p className="mt-4 font-serif text-2xl leading-snug">
+							Convertirnos en el principal recurso digital para la educación sobre
+							ecosistemas de páramo, fomentando una comunidad global de defensores.
 						</p>
 					</section>
 				</div>
 
-				{/* Reconocimientos */}
-				<section className="mb-24">
-					<div className="flex items-center gap-3 mb-12">
-						<div className="h-px w-8 bg-emerald-500/50" />
-						<h2 className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
-							Reconocimientos
-						</h2>
-					</div>
-
-					<div className="space-y-6">
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
-							<div className="flex items-start gap-4">
-								<div className="text-emerald-400 text-sm font-bold">2024</div>
-								<div>
-									<p className="text-gray-300 text-sm leading-relaxed">
-										Participación destacada{" "}
-										<span className="text-white font-medium">
-											XI CIINATIC 2024
-										</span>
-									</p>
+				<section aria-labelledby="equipo" className="mt-24">
+					<h2 id="equipo" className="font-display text-4xl md:text-5xl">
+						Equipo
+					</h2>
+					<ul className="mt-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+						{team.map((m) => (
+							<li key={m.name}>
+								<div className="flex justify-center border border-ink/40 bg-mist-deep p-8">
+									<div className="aspect-square w-full max-w-[15rem] overflow-hidden rounded-full border border-ink/40">
+										<img
+											src={m.photo}
+											alt={m.name}
+											className="h-full w-full scale-[1.06] object-cover grayscale-[30%]"
+										/>
+									</div>
 								</div>
-							</div>
-						</div>
-
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
-							<div className="flex items-start gap-4">
-								<div className="text-emerald-400 text-sm font-bold">2025</div>
-								<div>
-									<p className="text-gray-300 text-sm leading-relaxed">
-										Ganador{" "}
-										<span className="text-white font-medium">INNGENIATE-C</span>
-										, Semana de Ingeniería UNAB
-									</p>
-								</div>
-							</div>
-						</div>
-
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
-							<div className="flex items-start gap-4">
-								<div className="text-emerald-400 text-sm font-bold">
-									Propuesta
-								</div>
-								<div>
-									<p className="text-gray-300 text-sm leading-relaxed">
-										<span className="text-white font-medium">
-											Hub Eco Smart Regions
-										</span>{" "}
-										— Centro de interpretación del Paramo de Santurbán
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
+								<h3 className="mt-4 font-display text-2xl">{m.name}</h3>
+								<p className="mt-1 font-semibold text-water-deep">{m.role}</p>
+								<p className="mt-1 text-sm text-ink-soft">{m.detail}</p>
+							</li>
+						))}
+					</ul>
 				</section>
 
-				{/* El Equipo */}
-				<section>
-					<div className="flex items-center gap-3 mb-12">
-						<div className="h-px w-8 bg-emerald-500/50" />
-						<h2 className="text-xs uppercase tracking-widest text-emerald-400 font-semibold">
-							Equipo
-						</h2>
-					</div>
-
-					{/* Team Members Grid - Diseño Minimalista */}
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						{/* Team Member 1 */}
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all text-center">
-							<div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-2 border-white/10">
-								<img
-									src="/team/lc.jpg"
-									alt="Liliana Calderón-Benavides"
-									className="w-full h-full object-cover"
-								/>
-							</div>
-							<h3 className="text-base font-bold text-gray-100 mb-1">
-								Liliana Calderón-Benavides
-							</h3>
-							<p className="text-emerald-400 text-xs uppercase tracking-wide mb-3 font-semibold">
-								Directora
-							</p>
-							<p className="text-gray-400 text-xs leading-relaxed">
-								Smart Regions Center
-							</p>
-						</div>
-
-						{/* Team Member 2 */}
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all text-center">
-							<div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-2 border-white/10">
-								<img
-									src="/team/vc.jpg"
-									alt="Verónica Chajín Ortiz"
-									className="w-full h-full object-cover"
-								/>
-							</div>
-							<h3 className="text-base font-bold text-gray-100 mb-1">
-								Verónica Chajín Ortiz
-							</h3>
-							<p className="text-emerald-400 text-xs uppercase tracking-wide mb-3 font-semibold">
-								Co-directora
-							</p>
-							<p className="text-gray-400 text-xs leading-relaxed">
-								Ing. de Sistemas & Magíster en Software
-							</p>
-						</div>
-
-						{/* Team Member 3 */}
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-all text-center">
-							<div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full border-2 border-white/10">
-								<img
-									src="/team/jg.png"
-									alt="Javier Guerra Turizo"
-									className="w-full h-full object-cover"
-								/>
-							</div>
-							<h3 className="text-base font-bold text-gray-100 mb-1">
-								Javier Guerra Turizo
-							</h3>
-							<p className="text-emerald-400 text-xs uppercase tracking-wide mb-3 font-semibold">
-								Desarrollador
-							</p>
-							<p className="text-gray-400 text-xs leading-relaxed">
-								Ing. de Sistemas
-							</p>
-						</div>
-					</div>
+				<section aria-labelledby="reconocimientos" className="mt-24">
+					<h2 id="reconocimientos" className="font-display text-4xl md:text-5xl">
+						Reconocimientos
+					</h2>
+					<ol className="mt-10 border-t border-ink/40">
+						{recognitions.map((r) => (
+							<li
+								key={r.where}
+								className="grid gap-1 border-b border-ink/40 py-6 sm:grid-cols-[10rem_1fr] sm:gap-8"
+							>
+								<span className="tabular font-semibold text-ink-soft">{r.when}</span>
+								<p className="text-lg">
+									{r.what} · <span className="font-serif italic">{r.where}</span>
+								</p>
+							</li>
+						))}
+					</ol>
 				</section>
 			</div>
 
-			{/* Footer */}
 			<Footer />
 
-			{/* Audio Player - Fixed Position */}
-			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
-				<AudioPlayer audioFileName="creditos.mp3" autoPlay={false} />
+			<div className="fixed bottom-4 left-1/2 z-40 w-[min(92vw,22rem)] -translate-x-1/2 md:bottom-[5.25rem] md:left-auto md:right-6 md:translate-x-0">
+				<AudioPlayer audioFileName="creditos.mp3" />
 			</div>
 		</main>
 	);

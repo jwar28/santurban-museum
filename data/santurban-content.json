@@ -2,7 +2,7 @@
 	"hero": {
 		"title": "Páramo de Santurbán",
 		"subtitle": "La fábrica natural de agua que sustenta la vida de millones",
-		"backgroundImage": "https://upload.wikimedia.org/wikipedia/commons/9/99/P%C3%A1ramo_de_Santurban.jpg"
+		"backgroundImage": "/paramo/hero.jpg"
 	},
 	"introduction": {
 		"text": "El Páramo de Santurbán, también conocido como {Nudo de Santurbán}, es un ecosistema montano intertropical ubicado en los departamentos de Norte de Santander y Santander, reconocido por su biodiversidad y su importancia como fuente de agua para la región."
@@ -39,19 +39,19 @@
 	],
 	"detailedInfo": {
 		"waterFactory": {
-			"title": "Fábrica de Agua",
+			"title": "Fábrica de agua",
 			"icon": "💧",
 			"color": "blue",
 			"paragraphs": [
 				"El páramo actúa como una {esponja natural} que captura, almacena y libera agua gradualmente a través de sus 26 lagunas interconectadas de origen glaciar.",
-				"Suministra agua potable a **2.3 millones de personas en 48 municipios** (15 en Santander y 33 en Norte de Santander), incluyendo ciudades como **Bucaramanga, Cúcuta, Pamplona, y Floridablanca**.",
+				"Suministra agua potable a **2,3 millones de personas en 48 municipios** (15 en Santander y 33 en Norte de Santander), incluyendo ciudades como **Bucaramanga, Cúcuta, Pamplona, y Floridablanca**.",
 				"El agua que desciende desde Santurbán es el **afluente más importante para el Lago Maracaibo** en Venezuela, conectando internacionalmente este ecosistema.",
-				"Abastece infraestructuras clave como la central termoeléctrica Tasajero, miles de hectáreas de café, y el distrito de riego del Zulia con 10,000 ha de arroz en producción.",
+				"Abastece infraestructuras clave como la central termoeléctrica Tasajero, miles de hectáreas de café, y el distrito de riego del Zulia con 10.000 ha de arroz en producción.",
 				"Sus {humedales} pueden retener hasta **90% de su peso** en agua, regulando el ciclo hídrico durante todo el año."
 			]
 		},
 		"biodiversity": {
-			"title": "Biodiversidad Única",
+			"title": "Biodiversidad única",
 			"icon": "🌿",
 			"color": "emerald",
 			"paragraphs": [
@@ -59,7 +59,7 @@
 				"El {frailejón} es la especie emblemática del páramo, capaz de capturar agua de la niebla y regular el clima local. Sus hojas peludas conducen el agua hasta sus raíces.",
 				"Es hogar del **oso de anteojos** (Tremarctos ornatus), el único oso nativo de Suramérica, y especies en peligro como el {cóndor de los Andes}.",
 				"La flora incluye importantes {musgos} como **Sphagnum magellanicum**, fundamentales para la regulación hídrica, y arbustos como **Pernettya prostrata** de la familia Ericaceae.",
-				"Entre la fauna se encuentran especies en peligro como el {chirriador} (Cisttothorus apollinari), el {pato zambullidor} (Podiceps andinos), y el venado de páramo."
+				"Entre la fauna se encuentran especies en peligro como el {chirriador} (Cistothorus apolinari), el {pato zambullidor} (Podiceps andinos), y el venado de páramo."
 			]
 		},
 		"ecosystem": {
@@ -78,63 +78,63 @@
 		{
 			"id": 1,
 			"icon": "🌡️",
-			"title": "Clima Extremo",
+			"title": "Clima extremo",
 			"description": "Las temperaturas pueden variar de **-5°C a 20°C en un solo día**. Los frailejones han evolucionado durante millones de años para adaptarse a estas condiciones."
 		},
 		{
 			"id": 2,
 			"icon": "⏳",
-			"title": "Crecimiento Lento",
+			"title": "Crecimiento lento",
 			"description": "Los frailejones crecen apenas **1 cm por año**. Un frailejón de 5 metros puede tener más de **500 años de edad**."
 		},
 		{
 			"id": 3,
 			"icon": "🌫️",
-			"title": "Capturadores de Niebla",
+			"title": "Capturadores de niebla",
 			"description": "Las hojas peludas de los frailejones **capturan agua de la niebla** y la conducen hasta sus raíces, contribuyendo significativamente al ciclo del agua."
 		},
 		{
 			"id": 4,
 			"icon": "🔬",
-			"title": "Carbono Atrapado",
+			"title": "Carbono atrapado",
 			"description": "El suelo del páramo almacena enormes cantidades de **carbono**, ayudando a mitigar el cambio climático. Su {turba} puede tener miles de años."
 		},
 		{
 			"id": 5,
 			"icon": "🦋",
-			"title": "Mariposas de Altura",
-			"description": "Santurbán alberga especies de **mariposas que solo viven a más de 3,000 metros**, adaptadas para volar en el aire delgado del páramo."
+			"title": "Mariposas de altura",
+			"description": "Santurbán alberga especies de **mariposas que solo viven a más de 3.000 metros**, adaptadas para volar en el aire delgado del páramo."
 		},
 		{
 			"id": 6,
 			"icon": "🌍",
-			"title": "Ecosistema Raro",
+			"title": "Ecosistema raro",
 			"description": "Los páramos solo existen en **Colombia, Venezuela, Ecuador, Perú y Costa Rica**. Colombia tiene el 50% de todos los páramos del mundo."
 		},
 		{
 			"id": 7,
 			"icon": "💧",
-			"title": "Colchón de Musgos",
+			"title": "Colchón de musgos",
 			"description": "Los musgos forman un **espeso colchón** fundamental para la regulación hídrica. Especies como **Sphagnum** pueden retener hasta **20 veces su peso** en agua."
 		},
 		{
 			"id": 8,
 			"icon": "🌊",
-			"title": "Precipitación Variable",
-			"description": "La lluvia varía dramáticamente entre zonas: desde **700 mm anuales** en el sector de Berlín hasta **2,000 mm** en Loma Grande."
+			"title": "Precipitación variable",
+			"description": "La lluvia varía dramáticamente entre zonas: desde **700 mm anuales** en el sector de Berlín hasta **2.000 mm** en Loma Grande."
 		},
 		{
 			"id": 9,
 			"icon": "❄️",
-			"title": "Lagunas Glaciares",
+			"title": "Lagunas glaciares",
 			"description": "Las lagunas como **La Pintada, El Total, La Negra y Laguna de Pajarito** son de origen glaciar, formadas hace miles de años durante la última era de hielo."
 		}
 	],
 	"climate": {
-		"title": "Clima del Páramo",
+		"title": "Clima del páramo",
 		"sections": [
 			{
-				"title": "Características Climáticas",
+				"title": "Características climáticas",
 				"paragraphs": [
 					"El clima es **frío a extremadamente frío** con temperaturas mínimas por debajo de **0°C** y máximas que superan los **15°C**.",
 					"La {humedad relativa} se mantiene alta, generalmente por encima del **83%**, y rara vez baja del 73% a nivel promedio mensual."
@@ -144,7 +144,7 @@
 				"title": "Precipitación",
 				"paragraphs": [
 					"El {régimen bimodal} presenta períodos de alta precipitación entre **abril-mayo** y **septiembre-noviembre**.",
-					"Las lluvias varían entre **700 mm** anuales en el sector Páramo Berlín y **2,000 mm** en el sector Páramo Loma Grande.",
+					"Las lluvias varían entre **700 mm** anuales en el sector Páramo Berlín y **2.000 mm** en el sector Páramo Loma Grande.",
 					"La evaporación en superficie libre (lagunas, pantanos) está alrededor de los **900 mm anuales**.",
 					"La {evapotranspiración} potencial es relativamente baja (~700 mm anuales), clasificando el clima como **moderadamente húmedo a ligeramente húmedo**."
 				]
@@ -152,7 +152,7 @@
 		]
 	},
 	"geology": {
-		"title": "Formación Geológica",
+		"title": "Formación geológica",
 		"icon": "⛰️",
 		"intro": "El Páramo de Santurbán se formó hace aproximadamente **2-3 millones de años** durante el levantamiento de la Cordillera Oriental de los Andes. Su geología única incluye:",
 		"features": [
@@ -162,7 +162,7 @@
 		]
 	},
 	"conservation": {
-		"title": "Estado de Conservación",
+		"title": "Estado de conservación",
 		"icon": "⚠️",
 		"intro": "A pesar de su importancia vital, el Páramo de Santurbán enfrenta amenazas significativas que ponen en riesgo este ecosistema único y el suministro de agua para millones de personas.",
 		"threats": [
@@ -181,7 +181,7 @@
 			"Restauración de zonas degradadas"
 		],
 		"legalProtection": {
-			"title": "Marco Legal de Protección",
+			"title": "Marco legal de protección",
 			"description": "Desde la Ley 99 de 1993, múltiples acuerdos han consolidado la protección del complejo Santurbán-Almorzadero, definiendo los páramos como **Zonas de Protección Especial** e incorporándolos en los ordenamientos territoriales municipales."
 		}
 	},

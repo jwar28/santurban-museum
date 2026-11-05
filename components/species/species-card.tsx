@@ -1,63 +1,58 @@
-"use client";
-
-import Image from "next/image";
+import PlateImage from "@/components/paramo/plate-image";
 import Link from "next/link";
 
 export default function SpeciesCard({
 	href,
+	number,
 	title,
 	subtitle,
 	image,
 	picOwner,
 	licenseType,
 	type,
+	status,
 }: {
 	href: string;
+	number: number;
 	title: string;
 	subtitle: string;
 	image: string;
 	picOwner?: string | null;
 	licenseType?: string | null;
 	type?: string | null;
+	status?: string | null;
 }) {
 	return (
-		<Link
-			href={href}
-			className="group relative block overflow-hidden rounded-2xl ring-1 ring-white/10 bg-white/5 transition-all hover:ring-white/20 shadow-[0_8px_30px_rgba(0,0,0,.35)] hover:shadow-[0_12px_40px_rgba(0,0,0,.45)]"
-		>
-			<div className="relative h-48 md:h-56">
-				<Image
-					src={image}
-					alt={title}
-					fill
-					unoptimized
-					className="object-cover filter brightness-75 group-hover:brightness-100 transition-all duration-300"
-					sizes="(min-width: 768px) 33vw, 100vw"
-				/>
-				{/* Dark overlay by default; it fades out on hover so the image returns to original color */}
-				<div className="absolute inset-0 bg-black/40 group-hover:opacity-0 transition-opacity duration-300" />
+		<Link href={href} className="group block">
+			<div className="overflow-hidden border border-ink/40 bg-mist-deep p-2 transition-colors duration-300 ease-out group-hover:border-ink">
+				<div className="overflow-hidden">
+					<PlateImage
+						src={image}
+						alt={`${title} (${subtitle})`}
+						caption={title}
+						className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+					/>
+				</div>
 			</div>
-
-			{/* Photo Credits */}
+			<div className="mt-4 flex items-baseline gap-4">
+				<span className="tabular text-sm font-semibold text-ink-soft">Nº {String(number).padStart(2, "0")}</span>
+				<div className="min-w-0">
+					<h3 className="font-display text-2xl leading-tight transition-colors duration-300 group-hover:text-water-deep">
+						{title}
+					</h3>
+					<p className="font-serif italic text-ink-soft">{subtitle}</p>
+					{(type || status) && (
+						<p className="mt-2 text-xs capitalize text-ink-soft">
+							{[type, status].filter(Boolean).join(" · ")}
+						</p>
+					)}
+				</div>
+			</div>
 			{picOwner && licenseType && (
-				<div className="absolute top-0 right-0 bg-black/70 px-2 py-0.5 text-[9px] text-gray-200/90 backdrop-blur-sm z-10 rounded-bl-md">
-					Foto por {picOwner} bajo licencia {licenseType}
-				</div>
+				<p className="mt-2 pl-12 text-[0.7rem] leading-snug text-ink-soft">
+					Foto: {picOwner}, {licenseType}
+				</p>
 			)}
-
-			{/* Type indicator (Fauna/Flora) */}
-			{type && (
-				<div className="absolute top-0 left-0 bg-black/70 px-2 py-0.5 text-[9px] text-gray-200/90 backdrop-blur-sm z-10 rounded-br-md uppercase">
-					{type}
-				</div>
-			)}
-
-			<div className="absolute inset-0 p-5 flex flex-col justify-end pointer-events-none">
-				<h3 className="text-white font-extrabold text-lg md:text-xl">
-					{title}
-				</h3>
-				<p className="text-emerald-300/90 text-sm">{subtitle}</p>
-			</div>
 		</Link>
 	);
 }

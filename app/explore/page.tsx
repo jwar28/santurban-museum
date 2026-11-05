@@ -42,96 +42,54 @@ export default async function ExplorePage() {
 	if (error) {
 		console.error(error);
 		return (
-			<main className="min-h-screen bg-[#0b1210] text-white p-10">
-				<p>Ups, no pude cargar las especies.</p>
+			<main className="min-h-screen bg-mist px-4 pb-24 pt-32 text-ink md:px-12">
+				<h1 className="font-display text-5xl">La colección</h1>
+				<p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+					No pudimos traer las especies en este momento. Revisa tu conexión y vuelve a
+					cargar la página.
+				</p>
 			</main>
 		);
 	}
 
 	const rows = (data ?? []) as SpeciesRow[];
-
-	// Compute a poster URL for each row on the server so the client component
-	// doesn't need to re-derive it or access env vars.
 	const rowsWithPoster = rows.map((r) => ({ ...r, poster: posterUrl(r) }));
 
-	// Contar fauna y flora
-	const faunaCount = rows.filter(
-		(r) => r.type?.toLowerCase() === "fauna",
-	).length;
-	const floraCount = rows.filter(
-		(r) => r.type?.toLowerCase() === "flora",
-	).length;
+	const faunaCount = rows.filter((r) => r.type?.toLowerCase() === "fauna").length;
+	const floraCount = rows.filter((r) => r.type?.toLowerCase() === "flora").length;
 
 	return (
-		<main className="min-h-screen bg-[#0b1210] text-white pb-20 md:pb-0">
-			<section className="mx-auto max-w-7xl px-6 py-16 mt-12">
-				<h1 className="text-2xl md:text-3xl font-bold text-gray-100">
-					Explorar Especies Endémicas
-				</h1>
-				<p className="mt-4 max-w-3xl text-sm text-gray-400">
-					Sumérgete en la biodiversidad única del Páramo de Santurbán. Haz clic
-					en cualquier especie para descubrir su modelo 3D interactivo y conocer
-					sus fascinantes características y estado de conservación.
-				</p>
-
-				{/* Información sobre especies endémicas */}
-				<div className="mt-8 p-8 bg-white/5 rounded-xl border border-white/10">
-					<h2 className="text-xl font-bold mb-4 text-gray-100">
-						¿Qué es una especie endémica?
-					</h2>
-					<p className="text-sm text-gray-400 mb-6">
-						Las especies endémicas son aquellas que solo se encuentran en una
-						región geográfica específica y no existen naturalmente en ningún
-						otro lugar del mundo. El Páramo de Santurbán alberga una riqueza
-						única de biodiversidad.
-					</p>
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
-							<div className="text-emerald-400 font-semibold text-xs mb-2 uppercase tracking-wide">
-								Fauna
-							</div>
-							<div className="text-2xl font-bold text-gray-100">
-								{faunaCount}/293
-							</div>
-							<div className="text-gray-400 text-xs mt-1">
-								especies documentadas
-							</div>
-						</div>
-						<div className="bg-white/5 p-6 rounded-xl border border-white/10">
-							<div className="text-emerald-400 font-semibold text-xs mb-2 uppercase tracking-wide">
-								Flora
-							</div>
-							<div className="text-2xl font-bold text-gray-100">
-								{floraCount}/457
-							</div>
-							<div className="text-gray-400 text-xs mt-1">
-								variedades de plantas
-							</div>
-						</div>
+		<main className="min-h-screen bg-mist text-ink">
+			<section className="mx-auto max-w-[1500px] px-4 pb-20 pt-28 md:px-8 md:pt-32">
+				<div className="grid gap-10 lg:grid-cols-[1fr_24rem] lg:items-end">
+					<div>
+						<h1 className="font-display text-[clamp(3rem,8vw,6rem)] leading-[0.92]">La colección</h1>
+						<p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+							Especies del Páramo de Santurbán. Entra a cualquier lámina para girar su
+							modelo 3D y conocer su estado de conservación.
+						</p>
 					</div>
+					<aside className="border-t-2 border-ink pt-4">
+						<h2 className="font-serif text-lg font-bold">¿Qué es una especie endémica?</h2>
+						<p className="mt-2 text-sm leading-relaxed text-ink-soft">
+							Una especie que solo existe de forma natural en una región del mundo. El
+							páramo alberga 293 especies de fauna y 457 de plantas; aquí hay{" "}
+							<span className="tabular font-semibold text-ink">{faunaCount}</span> de fauna y{" "}
+							<span className="tabular font-semibold text-ink">{floraCount}</span> de flora,
+							y la colección sigue creciendo.
+						</p>
+					</aside>
 				</div>
 
-				<div className="mt-12">
+				<div className="mt-16">
 					<SpeciesList rows={rowsWithPoster} />
-				</div>
-
-				{/* Coming Soon Message */}
-				<div className="text-center mt-16 mb-8">
-					<p className="text-xl text-emerald-400 font-medium mb-2">
-						✨ Más especies en camino...
-					</p>
-					<p className="text-sm text-gray-400">
-						Continúa explorando la biodiversidad del Páramo de Santurbán
-					</p>
 				</div>
 			</section>
 
-			{/* Footer */}
 			<Footer />
 
-			{/* Audio Player - Fixed Position, centered on mobile */}
-			<div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-4 md:translate-x-0 z-40">
-				<AudioPlayer audioFileName="explora.mp3" autoPlay={false} />
+			<div className="fixed bottom-4 left-1/2 z-40 w-[min(92vw,22rem)] -translate-x-1/2 md:bottom-[5.25rem] md:left-auto md:right-6 md:translate-x-0">
+				<AudioPlayer audioFileName="explora.mp3" />
 			</div>
 		</main>
 	);

@@ -2,9 +2,7 @@ import SlideTransition from "@/components/animations/slide-transition";
 import SpeciesContent from "@/components/species/species-content";
 import { createClient } from "@/lib/supabase/server";
 import type { SpeciesRow } from "@/lib/types";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface SpeciesPageProps {
@@ -107,32 +105,15 @@ export default async function SpeciesPage({ params }: SpeciesPageProps) {
 	}
 
 	return (
-		<div className="relative overflow-x-hidden">
-			{/* Previous Button */}
-			<Link
-				href={`/species/${previousId}?direction=prev`}
-				className="fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-primary/80 hover:bg-primary text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 backdrop-blur-sm"
-				aria-label="Especie anterior"
-			>
-				<ChevronLeft className="w-6 h-6" />
-			</Link>
-
-			{/* Next Button */}
-			<Link
-				href={`/species/${nextId}?direction=next`}
-				className="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-primary/80 hover:bg-primary text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 backdrop-blur-sm"
-				aria-label="Siguiente especie"
-			>
-				<ChevronRight className="w-6 h-6" />
-			</Link>
-
-			<SlideTransition>
-				<SpeciesContent
-					initialSpecies={species}
-					modelUrl={modelUrl}
-					audioFileName={audioFileName}
-				/>
-			</SlideTransition>
-		</div>
+		<SlideTransition>
+			<SpeciesContent
+				initialSpecies={species}
+				modelUrl={modelUrl}
+				audioFileName={audioFileName}
+				previousId={previousId}
+				nextId={nextId}
+				total={totalSpecies}
+			/>
+		</SlideTransition>
 	);
 }
